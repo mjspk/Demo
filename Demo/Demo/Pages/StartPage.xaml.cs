@@ -94,6 +94,9 @@ namespace Demo.Pages
                 case 13:
                     Navigation.PushAsync(new ProductsPage());
                     break;
+                case 21:
+                    Navigation.PushAsync(new ProductsBPage());
+                    break;
                 case 14:
                     Navigation.PushAsync(new RestoreAccountPage());
                     break;
