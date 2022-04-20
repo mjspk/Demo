@@ -37,13 +37,13 @@ namespace Demo.Pages
                     Navigation.PushAsync(new AuthorsPage());
                     break;
                 case 2:
-                    Navigation.PushAsync(new AuthorRegistrationPage(new Author { BidStatus = BidStatus.None, Name = "amazon.com", ActiveDue = "Active due: 07/07/2022 (in 182 days)" }));
+                    Navigation.PushAsync(new AuthorSearchPage(new Author { BidStatus = BidStatus.None, Name = "amazon.com", ActiveDue = "Active due: 07/07/2022 (in 182 days)" }));
                     break;
                 case 19:
-                    Navigation.PushAsync(new AuthorRegistrationBPage(new Author { BidStatus = BidStatus.None, Name = "amazon.com", ActiveDue = "Active due: 07/07/2022 (in 182 days)" }));
+                    Navigation.PushAsync(new AuthorSearchBPage(new Author { BidStatus = BidStatus.None, Name = "amazon.com", ActiveDue = "Active due: 07/07/2022 (in 182 days)" }));
                     break;
                 case 20:
-                    Navigation.PushAsync(new AuthorRegistrationCPage(new Author { BidStatus = BidStatus.None, Name = "amazon.com", ActiveDue = "Active due: 07/07/2022 (in 182 days)" }));
+                    Navigation.PushAsync(new AuthorSearchCPage(new Author { BidStatus = BidStatus.None, Name = "amazon.com", ActiveDue = "Active due: 07/07/2022 (in 182 days)" }));
                     break;
                 case 3:
                     Navigation.PushAsync(new AuthorTransferPage());

@@ -13,10 +13,10 @@ using Xamarin.Forms;
 
 namespace Demo.Pages
 {
-    public partial class AuthorRegistrationCPage : CustomPage
+    public partial class AuthorSearchCPage : CustomPage
     {
         AuthorRegistrationCViewModel viewModel;
-        public AuthorRegistrationCPage(Author Author)
+        public AuthorSearchCPage(Author Author)
         {
             InitializeComponent();
             BindingContext=viewModel=new AuthorRegistrationCViewModel(this, Author);

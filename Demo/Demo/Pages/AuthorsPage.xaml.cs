@@ -85,7 +85,7 @@ namespace Demo.Pages
         {
             if (Author == null) 
                 return;
-            await Page.Navigation.PushAsync(new AuthorRegistrationPage(Author));
+            await Page.Navigation.PushAsync(new AuthorSearchPage(Author));
         }
         public Command OptionsCommand
         {

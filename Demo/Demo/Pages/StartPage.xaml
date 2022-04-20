@@ -7,9 +7,9 @@
             <StackLayout Padding="35">
                 <Button Text="Account Details" Clicked="ButtonClicked" CommandParameter="0"/>
                 <Button Text="Authors" Clicked="ButtonClicked" CommandParameter="1"/>
-                <Button Text="Author Registration A" Clicked="ButtonClicked" CommandParameter="2"/>
-                <Button Text="Author Registration B" Clicked="ButtonClicked" CommandParameter="19"/>
-                <Button Text="Author Registration C" Clicked="ButtonClicked" CommandParameter="20"/>
+                <Button Text="Author Search A" Clicked="ButtonClicked" CommandParameter="2"/>
+				<Button Text="Author Search B" Clicked="ButtonClicked" CommandParameter="19"/>
+				<Button Text="Author Search C" Clicked="ButtonClicked" CommandParameter="20"/>
                 <Button Text="Tranfer Author A" Clicked="ButtonClicked" CommandParameter="3"/>
                 <Button Text="Tranfer Author B" Clicked="ButtonClicked" CommandParameter="4"/>
                 <Button Text="Create Account" Clicked="ButtonClicked" CommandParameter="5"/>
