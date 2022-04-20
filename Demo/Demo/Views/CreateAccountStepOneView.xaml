@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="Demo.Views.CreateAccountStepOneView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cls="clr-namespace:Demo.Controls"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit">
+    <StackLayout Padding="5" Spacing="30">
+        <StackLayout>
+            <Label FontSize="18" Text="Choose account password" />
+            <Label
+                FontSize="13"
+                Style="{StaticResource Regular}"
+                Text="Use strong password for account" />
+        </StackLayout>
+        <cls:BorderEntry IsPassword="True" Text="password">
+            <cls:BorderEntry.Behaviors>
+                <xct:MultiValidationBehavior>
+                    <xct:TextValidationBehavior MinimumLength="8" />
+                    <xct:CharactersValidationBehavior CharacterType="Digit" MinimumCharacterCount="1" />
+                    <xct:CharactersValidationBehavior CharacterType="LowercaseLetter" MinimumCharacterCount="1" />
+                    <xct:CharactersValidationBehavior CharacterType="UppercaseLetter" MinimumCharacterCount="1" />
+                    <xct:CharactersValidationBehavior CharacterType="NonAlphanumericSymbol" MinimumCharacterCount="1" />
+                    <xct:CharactersValidationBehavior CharacterType="Whitespace" MaximumCharacterCount="0" />
+                </xct:MultiValidationBehavior>
+            </cls:BorderEntry.Behaviors>
+        </cls:BorderEntry>
+        <Button Margin="0,-10,0,0" Style="{StaticResource RandomizeButton}" />
+        <Label
+            FontSize="13"
+            Style="{StaticResource Regular}"
+            Text="Characteristics of strong passwords" />
+        <StackLayout>
+            <Grid ColumnDefinitions="30,*">
+                <ImageButton Grid.Column="0" Style="{StaticResource Check}" />
+                <Label
+                    Grid.Column="1"
+                    FontSize="13"
+                    Style="{StaticResource SubText}"
+                    Text="At least 8 characters- the more characters the better"
+                    VerticalOptions="Center" />
+            </Grid>
+            <Grid ColumnDefinitions="30,*">
+                <ImageButton
+                    Grid.Column="0"
+                    IsEnabled="False"
+                    Style="{StaticResource Check}" />
+                <Label
+                    Grid.Column="1"
+                    FontSize="13"
+                    Style="{StaticResource SubText}"
+                    Text="A mixture of both uppercase and lowercase"
+                    VerticalOptions="Center" />
+            </Grid>
+            <Grid ColumnDefinitions="30,*">
+                <ImageButton Grid.Column="0" Style="{StaticResource Check}" />
+                <Label
+                    Grid.Column="1"
+                    FontSize="13"
+                    Style="{StaticResource SubText}"
+                    Text="A mixture of letters and numbers"
+                    VerticalOptions="Center" />
+            </Grid>
+            <Grid ColumnDefinitions="30,*">
+                <ImageButton
+                    Grid.Column="0"
+                    IsEnabled="False"
+                    Style="{StaticResource Check}" />
+                <Label
+                    Grid.Column="1"
+                    FontSize="13"
+                    Style="{StaticResource SubText}"
+                    Text="Inclusion of  at least one special character e.g !@#?"
+                    VerticalOptions="Center" />
+            </Grid>
+        </StackLayout>
+
+    </StackLayout>
+</ContentView>

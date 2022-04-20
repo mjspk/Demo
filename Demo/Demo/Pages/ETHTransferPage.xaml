@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cls:CustomPage
+    x:Class="Demo.Pages.ETHTransferPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cls="clr-namespace:Demo.Controls"
+    xmlns:views="clr-namespace:Demo.Views"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    x:Name="page"
+    Title="ETH-UNT Transfer">
+    <cls:CustomPage.RightContent>
+        <ImageButton
+            Command="{Binding OptionsCommad}"
+            Opacity="0.5"
+            Style="{StaticResource Dots}" />
+    </cls:CustomPage.RightContent>
+    <cls:CustomPage.MainContent>
+        <Grid
+            Padding="{StaticResource PagePadding}"
+            RowDefinitions="*,Auto,Auto,Auto"
+            RowSpacing="30">
+            <CarouselView
+                Grid.Row="0"
+                HorizontalScrollBarVisibility="Never"
+                IndicatorView="indicator"
+                IsSwipeEnabled="False"
+                Loop="False"
+                PeekAreaInsets="0"
+                Position="{Binding Position}">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <ContentView Content="{Binding .}" />
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+                <CarouselView.ItemsSource>
+                    <x:Array Type="{x:Type View}">
+                        <views:ETHTransferStepOneView />
+                        <views:ETHTransferStepTwoView />
+                        <views:ETHTransferStepThreeView />
+                    </x:Array>
+                </CarouselView.ItemsSource>
+            </CarouselView>
+            <IndicatorView x:Name="indicator" Grid.Row="1" />
+
+            <Grid
+                Grid.Row="2"
+                ColumnDefinitions="*,*"
+                ColumnSpacing="15">
+                <Grid.Triggers>
+                    <DataTrigger
+                        Binding="{Binding Position}"
+                        TargetType="Grid"
+                        Value="2">
+                        <Setter Property="IsVisible" Value="False" />
+                    </DataTrigger>
+                </Grid.Triggers>
+                <Button
+                    Grid.Column="0"
+                    Command="{Binding PrevCommad}"
+                    Style="{StaticResource PrevButton}" />
+                <Button
+                    Grid.Column="1"
+                    Command="{Binding NextCommad}"
+                    Style="{StaticResource NextButton}" />
+            </Grid>
+            <StackLayout Grid.Row="2" IsVisible="False">
+                <StackLayout.Triggers>
+                    <DataTrigger
+                        Binding="{Binding Position}"
+                        TargetType="StackLayout"
+                        Value="2">
+                        <Setter Property="IsVisible" Value="True" />
+                    </DataTrigger>
+                </StackLayout.Triggers>
+                <Button Command="{Binding ConfirmCommand}" Style="{StaticResource ConfirmButton}" />
+                <Button Style="{StaticResource LableButton}" Text="Cancel" />
+            </StackLayout>
+
+        </Grid>
+    </cls:CustomPage.MainContent>
+</cls:CustomPage>

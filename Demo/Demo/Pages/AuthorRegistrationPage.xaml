@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cls:CustomPage
+    x:Class="Demo.Pages.AuthorRegistrationPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cls="clr-namespace:Demo.Controls"
+    xmlns:fi="clr-namespace:Demo.Models"
+    xmlns:views="clr-namespace:Demo.Views"
+    x:Name="page"
+    Title="Authors">
+    <cls:CustomPage.RightContent>
+        <Grid ColumnDefinitions="Auto,Auto">
+            <ImageButton
+                Grid.Column="1"
+                HorizontalOptions="End"
+                Style="{StaticResource Dots}"
+                VerticalOptions="Center" />
+            <ImageButton
+                Grid.Column="0"
+                HorizontalOptions="End"
+                Style="{StaticResource Sort}"
+                VerticalOptions="Center" />
+        </Grid>
+    </cls:CustomPage.RightContent>
+    <cls:CustomPage.MainContent>
+        <ScrollView>
+            <StackLayout Padding="{StaticResource PagePadding}" Spacing="30">
+                <AbsoluteLayout Grid.Row="0">
+                    <cls:BorderEntry AbsoluteLayout.LayoutBounds="0,1,1,1" AbsoluteLayout.LayoutFlags="All" />
+                    <Image
+                        Margin="10,0"
+                        AbsoluteLayout.LayoutBounds="1,0.5,-1,-1"
+                        AbsoluteLayout.LayoutFlags="PositionProportional"
+                        HorizontalOptions="End"
+                        Style="{StaticResource SearchIcon}"
+                        VerticalOptions="Center" />
+                </AbsoluteLayout>
+                <StackLayout Spacing="15">
+                    <Label FontSize="14" Text="Microsoft (microsoft)" />
+                    <Grid ColumnDefinitions="Auto,*">
+                        <Label
+                            Grid.Column="0"
+                            Style="{StaticResource DashLabel}"
+                            Text="Status" />
+                        <Label
+                            Grid.Column="1"
+                            HorizontalOptions="End"
+                            Text="Available" />
+                    </Grid>
+                    <Grid ColumnDefinitions="Auto,*">
+                        <Label
+                            Grid.Column="0"
+                            Style="{StaticResource DashLabel}"
+                            Text="Registered by" />
+                        <Label
+                            Grid.Column="1"
+                            HorizontalOptions="End"
+                            Text="0x63FaC9201494f0bd17B9892B9f" />
+                    </Grid>
+                    <Grid ColumnDefinitions="Auto,*">
+                        <Label
+                            Grid.Column="0"
+                            Style="{StaticResource DashLabel}"
+                            Text="Highest bid" />
+                        <Label
+                            Grid.Column="1"
+                            HorizontalOptions="End"
+                            Text="Available" />
+                    </Grid>
+                    <Grid ColumnDefinitions="Auto,*">
+                        <Label
+                            Grid.Column="0"
+                            Style="{StaticResource DashLabel}"
+                            Text="Active due" />
+                        <Label
+                            Grid.Column="1"
+                            HorizontalOptions="End"
+                            Text="{Binding Author.ActiveDue}" />
+                    </Grid>
+                </StackLayout>
+                <StackLayout VerticalOptions="EndAndExpand">
+                    <Button
+                        Command="{Binding RegisterCommand}"
+                        Text="Register" />
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </cls:CustomPage.MainContent>
+</cls:CustomPage>

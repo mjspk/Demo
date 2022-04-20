@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+    x:Class="Demo.Popups.SourceAccountPopup"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cls="clr-namespace:Demo.Controls"
+    xmlns:pages="http://rotorgames.com"
+    xmlns:views="clr-namespace:Demo.Views"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    x:Name="page"
+    HasSystemPadding="{OnPlatform Android=True,
+                                  iOS=False}">
+    <pages:PopupPage.Animation>
+        <pages:ScaleAnimation
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="False"
+            PositionIn="Bottom"
+            PositionOut="Bottom"
+            ScaleIn="1.2"
+            ScaleOut="0.8" />
+    </pages:PopupPage.Animation>
+    <Frame
+        x:Name="Mainframe"
+        Margin="0,0,0,-20"
+        Padding="0"
+        BackgroundColor="{AppThemeBinding Dark={StaticResource Secondary},
+                                          Light={StaticResource LightBackground}}"
+        CornerRadius="20"
+        HasShadow="True"
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="EndAndExpand">
+        <Grid
+            HorizontalOptions="FillAndExpand"
+            RowDefinitions="Auto,Auto,Auto"
+            RowSpacing="15">
+            <Grid
+                Grid.Row="0"
+                RowDefinitions="25,Auto"
+                RowSpacing="15">
+                <Frame
+                    Grid.Row="0"
+                    HorizontalOptions="CenterAndExpand"
+                    Style="{StaticResource PopupHandle}"
+                    VerticalOptions="Center" />
+                <Label
+                    Grid.Row="1"
+                    FontSize="18"
+                    HorizontalOptions="Center"
+                    Text="Source Account" />
+            </Grid>
+            <Grid
+                Grid.Row="1"
+                RowDefinitions="Auto,*"
+                RowSpacing="15">
+                <AbsoluteLayout Grid.Row="0" Padding="15">
+                    <cls:BorderEntry AbsoluteLayout.LayoutBounds="0,1,1,1" AbsoluteLayout.LayoutFlags="All" />
+                    <Image
+                        Margin="10,0"
+                        AbsoluteLayout.LayoutBounds="1,0.5,-1,-1"
+                        AbsoluteLayout.LayoutFlags="PositionProportional"
+                        HorizontalOptions="End"
+                        Style="{StaticResource SearchIcon}"
+                        VerticalOptions="Center" />
+                </AbsoluteLayout>
+                <ListView
+                    Grid.Row="1"
+                    SelectedItem="{Binding Wallet}" SelectionMode="Single"
+                    BackgroundColor="{AppThemeBinding Dark={StaticResource DarkBackground},
+                                                      Light={StaticResource PrimaryLight}}"
+                    HeightRequest="350"
+                    ItemsSource="{Binding Wallets}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame
+                                    Margin="15,5,15,5"
+                                    Padding="0"
+                                    CornerRadius="6">
+                                    <Grid
+                                        xct:TouchEffect.Command="{Binding BindingContext.ItemTppedCommand, Source={Reference page}}"
+                                        xct:TouchEffect.CommandParameter="{Binding .}"
+                                        ColumnDefinitions="*,Auto,10"
+                                        RowDefinitions="Auto,Auto">
+                                        <Grid.Triggers>
+                                            <DataTrigger
+                                                Binding="{Binding IsSelected}"
+                                                TargetType="Grid"
+                                                Value="True">
+                                                <Setter Property="BackgroundColor" Value="{Binding AccountColor}" />
+                                            </DataTrigger>
+                                            <DataTrigger
+                                                Binding="{Binding IsSelected}"
+                                                TargetType="Grid"
+                                                Value="False">
+                                                <Setter Property="BackgroundColor" Value="Transparent" />
+                                            </DataTrigger>
+                                        </Grid.Triggers>
+                                        <Label
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            Margin="10,5,0,0"
+                                            FontSize="12"
+                                            Text="{Binding Name}" />
+                                        <Label
+                                            Grid.Row="1"
+                                            Grid.Column="0"
+                                            Margin="10,0,0,5"
+                                            FontSize="10"
+                                            Style="{StaticResource UNTLabel}"
+                                            Text="s0x0bb99e...ed66b85b47f0" />
+                                        <Label
+                                            Grid.RowSpan="2"
+                                            Grid.Column="1"
+                                            FontSize="12"
+                                            Text="720 UNT"
+                                            VerticalOptions="Center" />
+                                        <StackLayout
+                                            Grid.RowSpan="2"
+                                            Grid.Column="2"
+                                            Margin="0,-5,0,-5"
+                                            BackgroundColor="{Binding AccountColor}" />
+                                    </Grid>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+            <StackLayout Grid.Row="2" Padding="15">
+                <Button Command="{Binding CloseCommand}" Text="Continue" />
+                <Button
+                    Command="{Binding CloseCommand}"
+                    Style="{StaticResource LableButton}"
+                    Text="Cancel" />
+            </StackLayout>
+        </Grid>
+    </Frame>
+</pages:PopupPage>

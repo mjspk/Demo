@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="Demo.Views.MakeBidStepOneView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cls="clr-namespace:Demo.Controls"
+    xmlns:views="clr-namespace:Demo.Views"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    x:Name="view">
+    <StackLayout Padding="5" Spacing="30">
+        <StackLayout>
+            <Label FontSize="18" Text="Make your bid" />
+            <Label
+                FontSize="13"
+                Style="{StaticResource Regular}"
+                Text="Make your bid. Your bid should be higher than current bid in order to win Auction" />
+        </StackLayout>
+        <StackLayout>
+            <Label Style="{StaticResource DashLabel}" Text="Payment Account" />
+            <Grid ColumnDefinitions="*,35" RowSpacing="-10">
+                <views:AccountView Grid.ColumnSpan="2" BindingContext="{Binding Wallet}">
+                    <views:AccountView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SelectAccountCommand}" />
+                    </views:AccountView.GestureRecognizers>
+                </views:AccountView>
+                <Image
+                    Grid.Column="1"
+                    HorizontalOptions="Center"
+                    InputTransparent="True"
+                    Style="{StaticResource BottomArrowsIcon}"
+                    VerticalOptions="Center" />
+            </Grid>
+        </StackLayout>
+        <StackLayout>
+            <Label Style="{StaticResource DashLabel}" Text="Author name" />
+            <Label Opacity="0.7" Text="Normalized Author name" />
+            <Frame
+                Padding="10,0"
+                HeightRequest="44"
+                Style="{StaticResource KeyFrame}">
+                <Label
+                    FontSize="12"
+                    Style="{StaticResource Medium}"
+                    Text="author"
+                    VerticalOptions="Center" />
+            </Frame>
+        </StackLayout>
+        <StackLayout Spacing="15">
+            <Grid ColumnDefinitions="*,*">
+                <Label
+                    Grid.Column="0"
+                    Style="{StaticResource DashLabel}"
+                    Text="Current bid" />
+                <Label
+                    Grid.Column="1"
+                    HorizontalOptions="End"
+                    Text="185 UNT ($104 100)" />
+            </Grid>
+            <StackLayout Grid.Column="0" Spacing="10">
+                <Label Style="{StaticResource DashLabel}" Text="Your bid" />
+                <AbsoluteLayout>
+                    <cls:BorderEntry
+                        AbsoluteLayout.LayoutBounds="0,1,1,1"
+                        AbsoluteLayout.LayoutFlags="All"
+                        FontSize="24"
+                        HeightRequest="60"
+                        HorizontalTextAlignment="End"
+                        Placeholder="10 000.00"
+                        RightPadding="45">
+                        <cls:BorderEntry.Behaviors>
+                            <xct:CharactersValidationBehavior
+                                x:Name="cb1"
+                                CharacterType="Letter"
+                                Flags="ValidateOnValueChanging"
+                                MaximumCharacterCount="30"
+                                MinimumCharacterCount="1" />
+                        </cls:BorderEntry.Behaviors>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Valid">
+                                    <VisualState.Setters>
+                                        <Setter Property="Style" Value="{StaticResource Valid}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Invalid">
+                                    <VisualState.Setters>
+                                        <Setter Property="Style" Value="{StaticResource InValid}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </cls:BorderEntry>
+                    <Label
+                        Margin="10,10"
+                        AbsoluteLayout.LayoutBounds="1,0.5,-1,-1"
+                        AbsoluteLayout.LayoutFlags="PositionProportional"
+                        Style="{StaticResource UNTLabel}"
+                        Text="UNT" />
+                </AbsoluteLayout>
+                <StackLayout HeightRequest="12">
+                    <Label
+                        FontSize="12"
+                        IsVisible="{Binding IsNotValid, Source={x:Reference cb1}}"
+                        Text="Validation text message"
+                        TextColor="{StaticResource Red}" />
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
+</ContentView>

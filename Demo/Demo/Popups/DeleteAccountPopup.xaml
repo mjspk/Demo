@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+    x:Class="Demo.Popups.DeleteAccountPopup"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cls="clr-namespace:Demo.Controls"
+    xmlns:pages="http://rotorgames.com"
+    xmlns:views="clr-namespace:Demo.Views"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    x:Name="page"
+    HasSystemPadding="{OnPlatform Android=True,
+                                  iOS=False}">
+    <pages:PopupPage.Animation>
+        <pages:ScaleAnimation
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="False"
+            PositionIn="Bottom"
+            PositionOut="Bottom"
+            ScaleIn="1.2"
+            ScaleOut="0.8" />
+    </pages:PopupPage.Animation>
+    <Frame
+        x:Name="Mainframe"
+        Margin="0,0,0,-20"
+        Padding="20,8,20,50"
+        BackgroundColor="{AppThemeBinding Dark={StaticResource Secondary},
+                                          Light={StaticResource LightBackground}}"
+        CornerRadius="20"
+        HasShadow="True"
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="EndAndExpand">
+        <Grid
+            HorizontalOptions="FillAndExpand"
+            RowDefinitions="4,Auto,Auto,Auto,Auto,Auto"
+            RowSpacing="15">
+            <Frame
+                Grid.Row="0"
+                HorizontalOptions="CenterAndExpand"
+                Style="{StaticResource PopupHandle}" />
+            <Label
+                Grid.Row="1"
+                FontSize="18"
+                HorizontalOptions="Center"
+                Text="Delete confirmation" />
+
+            <views:AccountView BindingContext="{Binding Wallet}" Grid.Row="2" />
+            <StackLayout Grid.Row="3">
+                <Label Style="{StaticResource SubText}" Text="If you wish to delete account please specify next text" />
+                <AbsoluteLayout HeightRequest="55">
+                    <Rectangle Opacity="0.3"
+                        AbsoluteLayout.LayoutBounds="0,1,1,1"
+                        AbsoluteLayout.LayoutFlags="All"
+                        Stroke="{StaticResource LighRed}"
+                        StrokeDashArray="4,4,4,4"
+                        StrokeDashOffset="9"
+                        StrokeThickness="1.1"
+                        VerticalOptions="FillAndExpand" />
+                    <Label
+                        Grid.Row="1"
+                        AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
+                        AbsoluteLayout.LayoutFlags="PositionProportional"
+                        FontSize="14"
+                        Text="0x07-47f0"
+                        TextColor="{StaticResource Red}"
+                        VerticalOptions="CenterAndExpand" />
+                </AbsoluteLayout>
+            </StackLayout>
+            <cls:BorderEntry
+                Grid.Row="4"
+                Text="0x07-47f0" />
+
+            <Grid
+                Grid.Row="5"
+                Margin="0,20,0,0"
+                ColumnDefinitions="*,*"
+                ColumnSpacing="12">
+                <Button
+                    Grid.Column="0"
+                    Style="{StaticResource DeleteButton}"
+                    Text="Delete" />
+                <Button Grid.Column="1" Text="Cancel" />
+            </Grid>
+        </Grid>
+    </Frame>
+</pages:PopupPage>

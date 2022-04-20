@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="Demo.Views.ETHTransferStepThreeView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cls="clr-namespace:Demo.Controls"
+    xmlns:views="clr-namespace:Demo.Views"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit">
+    <StackLayout Padding="5" Spacing="25">
+        <StackLayout>
+            <Label FontSize="18" Text="Confirm Transfer" />
+            <Label
+                FontSize="13"
+                Style="{StaticResource Regular}"
+                Text="Your need specify your Ethereum private key or wallet file and transfer amount" />
+        </StackLayout>
+        <StackLayout>
+            <Label Style="{StaticResource DashLabel}" Text="Source Ethereum Account" />
+            <Label
+                FontSize="13"
+                Style="{StaticResource Regular}"
+                Text="0x2d7a6adeb37dcb6e0a796dc6b15d3e8889092cd9" />
+        </StackLayout>
+        <Grid ColumnDefinitions="*,Auto">
+            <Label Grid.Column="0" Text="Ethereum amount to transfer" />
+            <Label
+                Grid.Column="1"
+                Text="345 ETH" />
+        </Grid>
+        <StackLayout>
+            <Label Style="{StaticResource DashLabel}" Text="To destination Ultranet Account" />
+            <views:AccountView BindingContext="{Binding Wallet}"/>
+        </StackLayout>
+        <StackLayout Spacing="10">
+            <Grid ColumnDefinitions="*,*">
+                <Label
+                    Grid.Column="0"
+                    Style="{StaticResource DashLabel}"
+                    Text="UNT amount" />
+                <Label
+                    Grid.Column="1"
+                    HorizontalOptions="End"
+                    Opacity="0.7"
+                    Text="22355 UNT" />
+            </Grid>
+            <Grid ColumnDefinitions="*,*">
+                <Label
+                    Grid.Column="0"
+                    Style="{StaticResource DashLabel}"
+                    Text="ETH comission" />
+                <Label
+                    Grid.Column="1"
+                    HorizontalOptions="End"
+                    Opacity="0.7"
+                    Text="1 ETH" />
+            </Grid>
+            <Grid ColumnDefinitions="*,*">
+                <Label
+                    Grid.Column="0"
+                    Style="{StaticResource DashLabel}"
+                    Text="ETH comission" />
+                <Label
+                    Grid.Column="1"
+                    HorizontalOptions="End"
+                    Opacity="0.7"
+                    Text="12 UNT" />
+            </Grid>
+        </StackLayout>
+    </StackLayout>
+
+</ContentView>

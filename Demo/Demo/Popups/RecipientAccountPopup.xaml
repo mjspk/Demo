@@ -1,0 +1,296 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+    x:Class="Demo.Popups.RecipientAccountPopup"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cls="clr-namespace:Demo.Controls"
+    xmlns:pages="http://rotorgames.com"
+    xmlns:views="clr-namespace:Demo.Views"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+    x:Name="page"
+    HasSystemPadding="{OnPlatform Android=True,
+                                  iOS=False}">
+    <pages:PopupPage.Animation>
+        <pages:ScaleAnimation
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="False"
+            PositionIn="Bottom"
+            PositionOut="Bottom"
+            ScaleIn="1.2"
+            ScaleOut="0.8" />
+    </pages:PopupPage.Animation>
+    <Frame
+        x:Name="Mainframe"
+        Margin="0,0,0,-20"
+        Padding="0"
+        BackgroundColor="{AppThemeBinding Dark={StaticResource Secondary},
+                                          Light={StaticResource LightBackground}}"
+        CornerRadius="20"
+        HasShadow="True"
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="EndAndExpand">
+        <Grid
+            HorizontalOptions="FillAndExpand"
+            RowDefinitions="Auto,Auto,Auto"
+            RowSpacing="15">
+            <Grid
+                Grid.Row="0"
+                RowDefinitions="25,Auto"
+                RowSpacing="15">
+                <Frame
+                    Grid.Row="0"
+                    HorizontalOptions="CenterAndExpand"
+                    Style="{StaticResource PopupHandle}"
+                    VerticalOptions="Center" />
+                <Label
+                    Grid.Row="1"
+                    FontSize="18"
+                    HorizontalOptions="Center"
+                    Text="Recipient Account" />
+            </Grid>
+            <xct:TabView
+                x:Name="tv"
+                Grid.Row="1"
+                HeightRequest="440"
+                IsSwipeEnabled="False"
+                TabStripHeight="48"
+                TabStripPlacement="Top">
+                <xct:TabView.Triggers>
+                    <DataTrigger
+                        Binding="{Binding SelectedIndex, Source={Reference tv}}"
+                        TargetType="xct:TabView"
+                        Value="0">
+                        <Setter Property="HeightRequest" Value="440" />
+                    </DataTrigger>
+                    <DataTrigger
+                        Binding="{Binding SelectedIndex, Source={Reference tv}}"
+                        TargetType="xct:TabView"
+                        Value="1">
+                        <Setter Property="HeightRequest" Value="200" />
+                    </DataTrigger>
+                    <DataTrigger
+                        Binding="{Binding SelectedIndex, Source={Reference tv}}"
+                        TargetType="xct:TabView"
+                        Value="2">
+                        <Setter Property="HeightRequest" Value="480" />
+                    </DataTrigger>
+                </xct:TabView.Triggers>
+                <xct:TabView.TabStripBackgroundView>
+                    <Frame
+                        Margin="15,0,15,0"
+                        HeightRequest="46"
+                        Style="{StaticResource Container}" />
+                </xct:TabView.TabStripBackgroundView>
+                <xct:TabViewItem
+                    Margin="15,0,0,0"
+                    Style="{StaticResource RecipientTaps}"
+                    Text="Local">
+                    <Grid
+                        Margin="0,60,0,0"
+                        RowDefinitions="Auto,*"
+                        RowSpacing="15"
+                        VerticalOptions="EndAndExpand">
+                        <AbsoluteLayout Grid.Row="0" Padding="15">
+                            <cls:BorderEntry AbsoluteLayout.LayoutBounds="0,1,1,1" AbsoluteLayout.LayoutFlags="All" />
+                            <Image
+                                Margin="10,0"
+                                AbsoluteLayout.LayoutBounds="1,0.5,-1,-1"
+                                AbsoluteLayout.LayoutFlags="PositionProportional"
+                                HorizontalOptions="End"
+                                Style="{StaticResource SearchIcon}"
+                                VerticalOptions="Center" />
+                        </AbsoluteLayout>
+                        <ListView
+                            Grid.Row="1"
+                            BackgroundColor="{AppThemeBinding Dark={StaticResource DarkBackground},
+                                                              Light={StaticResource PrimaryLight}}"
+                            HeightRequest="350"
+                            ItemsSource="{Binding Wallets}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Frame
+                                            Margin="15,5,15,5"
+                                            Padding="0"
+                                            CornerRadius="6">
+                                            <Grid
+                                                xct:TouchEffect.Command="{Binding BindingContext.ItemTppedCommand, Source={Reference page}}"
+                                                xct:TouchEffect.CommandParameter="{Binding .}"
+                                                ColumnDefinitions="*,Auto,10"
+                                                RowDefinitions="Auto,Auto">
+                                                <Grid.Triggers>
+                                                    <DataTrigger
+                                                        Binding="{Binding IsSelected}"
+                                                        TargetType="Grid"
+                                                        Value="True">
+                                                        <Setter Property="BackgroundColor" Value="{Binding AccountColor}" />
+                                                    </DataTrigger>
+                                                    <DataTrigger
+                                                        Binding="{Binding IsSelected}"
+                                                        TargetType="Grid"
+                                                        Value="False">
+                                                        <Setter Property="BackgroundColor" Value="Transparent" />
+                                                    </DataTrigger>
+                                                </Grid.Triggers>
+                                                <Label
+                                                    Grid.Row="0"
+                                                    Grid.Column="0"
+                                                    Margin="10,5,0,0"
+                                                    FontSize="12"
+                                                    Text="{Binding Name}" />
+                                                <Label
+                                                    Grid.Row="1"
+                                                    Grid.Column="0"
+                                                    Margin="10,0,0,5"
+                                                    FontSize="10"
+                                                    Style="{StaticResource UNTLabel}"
+                                                    Text="s0x0bb99e...ed66b85b47f0" />
+                                                <Label
+                                                    Grid.RowSpan="2"
+                                                    Grid.Column="1"
+                                                    FontSize="12"
+                                                    Text="720 UNT"
+                                                    VerticalOptions="Center" />
+                                                <StackLayout
+                                                    Grid.RowSpan="2"
+                                                    Grid.Column="2"
+                                                    Margin="0,-5,0,-5"
+                                                    BackgroundColor="{Binding AccountColor}" />
+                                            </Grid>
+                                        </Frame>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Grid>
+                </xct:TabViewItem>
+                <xct:TabViewItem Style="{StaticResource RecipientTaps}" Text="External">
+                    <StackLayout
+                        Padding="15,60,15,0"
+                        Spacing="20"
+                        VerticalOptions="EndAndExpand">
+                        <StackLayout>
+                            <Label Text="Recipient UNT address" />
+                            <Label
+                                FontSize="13"
+                                Style="{StaticResource Regular}"
+                                Text="Please specify Ethereum account private key" />
+                        </StackLayout>
+                        <StackLayout Spacing="8">
+                            <cls:BorderEntry Placeholder="Account name" Text="0x63FaC9201494f0bd17B9892B9fae4d52fe3BD377">
+                                <cls:BorderEntry.Behaviors>
+                                    <xct:CharactersValidationBehavior
+                                        x:Name="cb"
+                                        CharacterType="Letter"
+                                        Flags="ValidateOnValueChanging"
+                                        MaximumCharacterCount="30"
+                                        MinimumCharacterCount="1" />
+                                </cls:BorderEntry.Behaviors>
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Valid">
+                                            <VisualState.Setters>
+                                                <Setter Property="Style" Value="{StaticResource Valid}" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                        <VisualState x:Name="Invalid">
+                                            <VisualState.Setters>
+                                                <Setter Property="Style" Value="{StaticResource InValid}" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                            </cls:BorderEntry>
+                            <StackLayout HeightRequest="12">
+                                <Label
+                                    FontSize="12"
+                                    IsVisible="{Binding IsNotValid, Source={x:Reference cb}}"
+                                    Text="Validation text message"
+                                    TextColor="{StaticResource Red}" />
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </xct:TabViewItem>
+                <xct:TabViewItem
+                    Margin="0,0,15,0"
+                    Style="{StaticResource RecipientTaps}"
+                    Text="QR Code">
+                    <Grid
+                        Padding="15,60,15,0"
+                        RowDefinitions="Auto,Auto"
+                        RowSpacing="20"
+                        VerticalOptions="EndAndExpand">
+                        <Frame
+                            Grid.Row="0"
+                            Padding="0"
+                            HorizontalOptions="Fill"
+                            IsClippedToBounds="False"
+                            VerticalOptions="Fill"
+                           >
+                            <Frame.Triggers>
+                                <DataTrigger
+                                    Binding="{Binding SelectedIndex, Source={Reference tv}}"
+                                    TargetType="Frame"
+                                    Value="2">
+                                    <Setter Property="HeightRequest" Value="323" />
+                                </DataTrigger>
+                                <DataTrigger
+                                    Binding="{Binding SelectedIndex, Source={Reference tv}}"
+                                    TargetType="Frame"
+                                    Value="1">
+                                    <Setter Property="HeightRequest" Value="0" />
+                                </DataTrigger>
+                            </Frame.Triggers>
+                            <zxing:ZXingScannerView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                        </Frame>
+                        <StackLayout Grid.Row="1" Spacing="8">
+                            <Label Text="Recipient UNT address" />
+                            <cls:BorderEntry Placeholder="Account name" Text="0x63FaC9201494f0bd17B9892B9fae4d52fe3BD377">
+                                <cls:BorderEntry.Behaviors>
+                                    <xct:CharactersValidationBehavior
+                                        x:Name="cb1"
+                                        CharacterType="Letter"
+                                        Flags="ValidateOnValueChanging"
+                                        MaximumCharacterCount="30"
+                                        MinimumCharacterCount="1" />
+                                </cls:BorderEntry.Behaviors>
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Valid">
+                                            <VisualState.Setters>
+                                                <Setter Property="Style" Value="{StaticResource Valid}" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                        <VisualState x:Name="Invalid">
+                                            <VisualState.Setters>
+                                                <Setter Property="Style" Value="{StaticResource InValid}" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                            </cls:BorderEntry>
+                            <StackLayout HeightRequest="12">
+                                <Label
+                                    FontSize="12"
+                                    IsVisible="{Binding IsNotValid, Source={x:Reference cb1}}"
+                                    Text="Validation text message"
+                                    TextColor="{StaticResource Red}" />
+                            </StackLayout>
+                        </StackLayout>
+                    </Grid>
+                </xct:TabViewItem>
+            </xct:TabView>
+            <StackLayout Grid.Row="2" Padding="15">
+                <Button Command="{Binding CloseCommand}" Text="Continue" />
+                <Button
+                    Command="{Binding CloseCommand}"
+                    Style="{StaticResource LableButton}"
+                    Text="Cancel" />
+            </StackLayout>
+        </Grid>
+    </Frame>
+</pages:PopupPage>

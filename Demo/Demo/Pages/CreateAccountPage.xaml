@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cls:CustomPage
+    x:Class="Demo.Pages.CreateAccountPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cls="clr-namespace:Demo.Controls"
+    xmlns:views="clr-namespace:Demo.Views"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    x:Name="page"
+    Title="Create account"
+    HasBackButton="False">
+    <cls:CustomPage.LeftContent>
+        <ImageButton Opacity="0.5" HeightRequest="28"
+            Command="{Binding PrevCommand}"
+            IsVisible="{Binding Position, Converter={StaticResource IntToBoolConverter}}"
+            Style="{StaticResource Prev}" />
+    </cls:CustomPage.LeftContent>
+    <cls:CustomPage.RightContent>
+        <ImageButton Opacity="0.5" HeightRequest="28" Command="{Binding CloseCommad}" Style="{StaticResource Close}" />
+    </cls:CustomPage.RightContent>
+    <cls:CustomPage.MainContent>
+        <Grid
+            Padding="{StaticResource PagePadding}"
+            RowDefinitions="*,Auto,Auto"
+            RowSpacing="30">
+            <CarouselView
+                Grid.Row="0"
+                HorizontalScrollBarVisibility="Never"
+                IndicatorView="indicator"
+                IsSwipeEnabled="False"
+                Loop="False"
+                PeekAreaInsets="0"
+                Position="{Binding Position}">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <ContentView Content="{Binding .}" />
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+                <CarouselView.ItemsSource>
+                    <x:Array Type="{x:Type View}">
+                        <views:CreateAccountStepOneView />
+                        <views:CreateAccountStepTwoView />
+                    </x:Array>
+                </CarouselView.ItemsSource>
+            </CarouselView>
+            <IndicatorView x:Name="indicator" Grid.Row="1" />
+            <Button 
+                Grid.Row="2"
+                Command="{Binding NextCommad}"
+                Style="{StaticResource NextButton}" />
+        </Grid>
+    </cls:CustomPage.MainContent>
+</cls:CustomPage>

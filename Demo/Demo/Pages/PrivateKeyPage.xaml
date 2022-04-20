@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cls:CustomPage
+    x:Class="Demo.Pages.PrivateKeyPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cls="clr-namespace:Demo.Controls"
+    xmlns:views="clr-namespace:Demo.Views"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    x:Name="page"
+    Title="Show private key">
+    <cls:CustomPage.MainContent>
+        <ScrollView>
+            <StackLayout Padding="{StaticResource PagePadding}" Spacing="30">
+                <StackLayout>
+                    <Label FontSize="18" Text="Never show and share your private key with other person!" />
+                    <Label
+                        FontSize="13"
+                        Style="{StaticResource Regular}"
+                        Text="This can lead to the loss of funds, domains and applications on the account" />
+                </StackLayout>
+                <views:AccountView BindingContext="{Binding Wallet}"/>
+                <StackLayout>
+                    <Label Style="{StaticResource DashLabel}" Text="Private key" />
+                    <Frame  Style="{StaticResource Key=KeyFrame}">
+                        <Label
+                            FontSize="12"
+                            Style="{StaticResource Medium}"
+                            Text="8da4ef21b864d2cc526dbdb2a120bd2874c36c9d0a1fb7f8c63d7f7a8b41de8f" />
+                    </Frame>
+                </StackLayout>
+                <StackLayout VerticalOptions="EndAndExpand">
+                    <Button
+                    Command="{Binding CopyCommand}"
+                    Text="Copy private key to clipboard"
+                     />
+                    <Button
+                    Command="{Binding CancelCommand}"
+                    Style="{StaticResource LableButton}"
+                    Text="Cancel"
+                    />
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </cls:CustomPage.MainContent>
+</cls:CustomPage>

@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cls:CustomPage
+    x:Class="Demo.Pages.UnfinishTransferPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cls="clr-namespace:Demo.Controls"
+    xmlns:fi="clr-namespace:Demo.Models"
+    xmlns:views="clr-namespace:Demo.Views"
+    x:Name="page"
+    Title="ETH-UNT Transfer">
+    <cls:CustomPage.RightContent>
+        <ImageButton HeightRequest="28" Command="{Binding CloseCommad}" Style="{StaticResource Close}" />
+    </cls:CustomPage.RightContent>
+    <cls:CustomPage.MainContent>
+        <ScrollView>
+            <StackLayout Padding="{StaticResource PagePadding}" Spacing="30">
+                <Label FontSize="18" Text="Detected unfinished transfer" />
+                <StackLayout>
+                    <Label Style="{StaticResource DashLabel}" Text="Last transfer destination account" />
+                    <views:AccountView BindingContext="{Binding Wallet}"/>
+                </StackLayout>
+                <StackLayout Spacing="15">
+                    <Grid ColumnDefinitions="*,*">
+                        <Label
+                            Grid.Column="0"
+                            Style="{StaticResource DashLabel}"
+                            Text="Total" />
+                        <Label
+                            Grid.Column="1"
+                            HorizontalOptions="End"
+                            Text="22355 UNT" />
+                    </Grid>
+                    <Grid ColumnDefinitions="*,*">
+                        <Label
+                            Grid.Column="0"
+                            Style="{StaticResource DashLabel}"
+                            Text="Estimated UNT" />
+                        <Label
+                            Grid.Column="1"
+                            HorizontalOptions="End"
+                            Text="10 000 UNT" />
+                    </Grid>
+                    <Grid RowDefinitions="Auto,*" ColumnDefinitions="*,*,*">
+                        <Label
+                            Grid.Column="0"
+                            Style="{StaticResource DashLabel}"
+                            Text="Emission #" />
+                        <Label
+                            Grid.Column="1" HorizontalOptions="End"
+                            Style="{StaticResource DashLabel}"
+                            Text="ETH" />
+                        <Label
+                            Grid.Column="2" HorizontalOptions="End"
+                            Style="{StaticResource DashLabel}"
+                            Text="UNT" />
+                    </Grid>
+                    <StackLayout BindableLayout.ItemsSource="{Binding Emissions}" Grid.ColumnSpan="3" Grid.Row="1">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Grid  ColumnDefinitions="*,*,*">
+                                    <Label
+                            Grid.Column="0"
+
+                                        Text="{Binding Number}" />
+                                    <Label
+                            Grid.Column="1"
+HorizontalOptions="End"
+                                        Text="{Binding ETH}" />
+                                    <Label
+                            Grid.Column="2" HorizontalOptions="End"
+                                        Text="{Binding UNT}" />
+                                </Grid>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout VerticalOptions="EndAndExpand">
+                    <Button Command="{Binding TransactionsCommand}" Text="Transfer" />
+                    <Button  Command="{Binding CancelCommand}"  Style="{StaticResource LableButton}" Text="Cancel" />
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </cls:CustomPage.MainContent>
+</cls:CustomPage>

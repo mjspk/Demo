@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cls:CustomPage
+    x:Class="Demo.Pages.ManageAccountsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cls="clr-namespace:Demo.Controls"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    x:Name="page"
+    Title="Manage Accounts">
+    <cls:CustomPage.RightContent>
+        <StackLayout>
+            <ImageButton
+                HorizontalOptions="End"
+                Style="{StaticResource Sort}"
+                VerticalOptions="Center" />
+        </StackLayout>
+    </cls:CustomPage.RightContent>
+    <cls:CustomPage.MainContent>
+        <Grid RowDefinitions="*,Auto">
+            <CollectionView
+                Grid.Row="0"
+                ItemsSource="{Binding Wallets}"
+                SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Frame Margin="18,8,18,8" Style="{StaticResource AccountCard}">
+                                <SwipeView>
+                                    <SwipeView.RightItems>
+                                        <SwipeItems>
+                                            <SwipeItemView WidthRequest="85">
+                                                <ImageButton
+                                                    Padding="28"
+                                                    CornerRadius="0"
+                                                    HorizontalOptions="FillAndExpand"
+                                                    Style="{StaticResource Receive}"
+                                                    VerticalOptions="FillAndExpand" />
+                                            </SwipeItemView>
+                                            <SwipeItemView BackgroundColor="Transparent" WidthRequest="2" />
+                                            <SwipeItemView WidthRequest="85">
+                                                <ImageButton
+                                                    Padding="28"
+                                                    CornerRadius="0"
+                                                    HorizontalOptions="FillAndExpand"
+                                                    Style="{StaticResource Send}"
+                                                    VerticalOptions="FillAndExpand" />
+                                            </SwipeItemView>
+                                        </SwipeItems>
+                                    </SwipeView.RightItems>
+                                    <Grid
+                                        Padding="14"
+                                        ColumnDefinitions="60,*,30"
+                                        ColumnSpacing="10"
+                                        RowDefinitions="20,20,20"
+                                        RowSpacing="0"
+                                        Style="{StaticResource AccountGrid}">
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding BindingContext.ItemTappedCommand, Source={x:Reference page}}" CommandParameter="{Binding .}" />
+                                        </Grid.GestureRecognizers>
+                                        <Frame
+                                            Grid.Row="0"
+                                            Grid.RowSpan="3"
+                                            Grid.Column="0"
+                                            Background="{Binding Background}"
+                                            Style="{StaticResource AccountColor}">
+                                            <Label
+                                                HorizontalOptions="Center"
+                                                Style="{StaticResource CodeLabel}"
+                                                Text="{Binding IconCode}"
+                                                VerticalOptions="Center" />
+                                        </Frame>
+                                        <Label
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            FontSize="13"
+                                            Text="{Binding Name}"
+                                            VerticalOptions="Center" />
+                                        <Label
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            FontSize="12"
+                                            VerticalOptions="Center">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding Unts}" />
+                                                    <Span Text=" " />
+                                                    <Span Style="{StaticResource Regular}" Text="UNT" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label
+                                            Grid.Row="2"
+                                            Grid.Column="1"
+                                            MaxLines="1"
+                                            Opacity="0.3"
+                                            Style="{StaticResource Light}"
+                                            Text="{Binding Id}"
+                                            VerticalOptions="Center" />
+                                        <ImageButton
+                                            Grid.RowSpan="3"
+                                            Grid.Column="2"
+                                            Padding="1"
+                                            Command="{Binding BindingContext.OptionsCommand, Source={x:Reference page}}"
+                                            CommandParameter="{Binding .}"
+                                            Style="{StaticResource Dots}"
+                                            VerticalOptions="Center" />
+                                    </Grid>
+                                </SwipeView>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Frame
+                Grid.Row="1"
+                Margin="0,0,0,-20"
+                Padding="0,0,0,30"
+                AbsoluteLayout.LayoutBounds="1,1,1,-1"
+                AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                HasShadow="True">
+                <StackLayout Padding="15">
+                    <Button Command="{Binding CreateCommand}" Text="Create" />
+                    <Button
+                        Command="{Binding RestoreCommand}"
+                        Style="{StaticResource LableButton}"
+                        Text="Restore account" />
+                </StackLayout>
+            </Frame>
+        </Grid>
+    </cls:CustomPage.MainContent>
+</cls:CustomPage>

@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cls:CustomPage
+    x:Class="Demo.Pages.TransferCompletePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cls="clr-namespace:Demo.Controls"
+    xmlns:fi="clr-namespace:Demo.Models"
+    xmlns:views="clr-namespace:Demo.Views"
+    x:Name="page"
+    Title="Transfer sucessfully completed">
+    <cls:CustomPage.RightContent>
+        <ImageButton HeightRequest="28" Command="{Binding CloseCommad}" Style="{StaticResource Close}" />
+    </cls:CustomPage.RightContent>
+    <cls:CustomPage.MainContent>
+        <ScrollView>
+            <StackLayout Padding="{StaticResource PagePadding}" Spacing="30">
+                <Grid
+                    HeightRequest="192"
+                    HorizontalOptions="Center"
+                    WidthRequest="192">
+                    <Image
+                        HeightRequest="64"
+                        HorizontalOptions="Center"
+                        Source="{FontImage Size=305,
+                                           Color={StaticResource Primary},
+                                           FontFamily=icomoon,
+                                           Glyph={x:Static fi:IconFont.Done}}"
+                        VerticalOptions="Center" />
+                </Grid>
+                <StackLayout>
+                    <Label Style="{StaticResource DashLabel}" Text="Transfering from Ethereum account" />
+                    <Label
+                        FontSize="13"
+                        Style="{StaticResource Regular}"
+                        Text="0x63FaC9201494f0bd17B9892B9fad52fe3BD377" />
+                </StackLayout>
+                <StackLayout>
+                    <Label Style="{StaticResource DashLabel}" Text="To Ultranet Account" />
+                    <views:AccountView BindingContext="{Binding Wallet}"/>
+                </StackLayout>
+                <StackLayout Spacing="10">
+                    <Grid ColumnDefinitions="*,*">
+                        <Label
+                            Grid.Column="0"
+                            Style="{StaticResource DashLabel}"
+                            Text="You will receive" />
+                        <Label
+                            Grid.Column="1"
+                            HorizontalOptions="End"
+                            Opacity="0.7"
+                            Text="22355 UNT" />
+                    </Grid>
+                    <Grid ColumnDefinitions="*,*">
+                        <Label
+                            Grid.Column="0"
+                            Style="{StaticResource DashLabel}"
+                            Text="You have paid ETH comission" />
+                        <Label
+                            Grid.Column="1"
+                            HorizontalOptions="End"
+                            Opacity="0.7"
+                            Text="1 ETH" />
+                    </Grid>
+                    <Grid ColumnDefinitions="*,*">
+                        <Label
+                            Grid.Column="0"
+                            Style="{StaticResource DashLabel}"
+                            Text="You have paid UNT comission" />
+                        <Label
+                            Grid.Column="1"
+                            HorizontalOptions="End"
+                            Opacity="0.7"
+                            Text="12 UNT" />
+                    </Grid>
+                    <Grid ColumnDefinitions="*,*">
+                        <Label
+                            Grid.Column="0"
+                            Style="{StaticResource DashLabel}"
+                            Text="Transaction date and time" />
+                        <Label
+                            Grid.Column="1"
+                            HorizontalOptions="End"
+                            Opacity="0.7"
+                            Text="10/15/2021 19:24" />
+                    </Grid>
+                </StackLayout>
+
+                <StackLayout VerticalOptions="EndAndExpand">
+                    <Button Command="{Binding TransactionsCommand}" Text="Transactions" />
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </cls:CustomPage.MainContent>
+</cls:CustomPage>

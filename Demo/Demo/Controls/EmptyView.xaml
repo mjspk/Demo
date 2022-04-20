@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="Demo.Controls.EmptyView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:fi="clr-namespace:Demo.Models"
+    x:Name="emptyview">
+    <ContentView.Content>
+        <StackLayout Spacing="10" VerticalOptions="CenterAndExpand">
+            <Image
+                HeightRequest="100"
+                HorizontalOptions="Center"
+                Source="{FontImage Color=Gray,
+                                   FontFamily=Material,
+                                   Size=60,
+                                   Glyph={x:Static fi:MaterialIconFont.Error}}"
+                WidthRequest="100" />
+            <Label
+                FontSize="17"
+                HorizontalOptions="Center"
+                Text="{Binding Text, Source={x:Reference emptyview}}" />
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

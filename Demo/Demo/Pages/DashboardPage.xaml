@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cls:CustomPage
+    x:Class="Demo.Pages.DashboardPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cls="clr-namespace:Demo.Controls"
+    xmlns:fi="clr-namespace:Demo.Models"
+    BadgeValue="3"
+    HasBackButton="False">
+    <cls:CustomPage.LeftContent>
+        <StackLayout>
+            <Label
+                HorizontalOptions="Start"
+                Text="Ultranet User Center"
+                VerticalOptions="Center" />
+        </StackLayout>
+    </cls:CustomPage.LeftContent>
+    <cls:CustomPage.RightContent>
+        <AbsoluteLayout HeightRequest="32" WidthRequest="32">
+            <ImageButton
+                AbsoluteLayout.LayoutBounds="0,1,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                Style="{StaticResource Bell2}" />
+            <Frame
+                Margin="2"
+                AbsoluteLayout.LayoutBounds="1,0,-1,-1"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                IsVisible="{Binding Text, Source={x:Reference BadgeValue}, Converter={StaticResource IsNotNullOrEmptyConverter}}"
+                Style="{StaticResource BadgeFrame}">
+                <Label
+                    x:Name="BadgeValue"
+                    Padding="0"
+                    FontSize="11"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="2"
+                    TextColor="White"
+                    VerticalOptions="CenterAndExpand" />
+            </Frame>
+        </AbsoluteLayout>
+    </cls:CustomPage.RightContent>
+    <cls:CustomPage.MainContent>
+        <ScrollView>
+            <StackLayout Padding="15,0,15,40">
+                <Label
+                    FontSize="12"
+                    Style="{StaticResource DashLabel}"
+                    Text="Accounts" />
+                <Frame Style="{StaticResource SqureFrame}">
+                    <StackLayout BindableLayout.ItemsSource="{Binding Wallets}" Spacing="5">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnDefinitions="*,*,Auto" ColumnSpacing="20">
+                                    <Label
+                                        Grid.Column="0"
+                                        MaxLines="1"
+                                        Style="{StaticResource Regular}"
+                                        Text="{Binding Name}"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        Grid.Column="1"
+                                        MaxLines="1"
+                                        Style="{StaticResource Regular}"
+                                        Text="{Binding Id}"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        Grid.Column="2"
+                                        Style="{StaticResource Regular}"
+                                        VerticalOptions="Center">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span
+                                                    FontAttributes="Bold"
+                                                    FontSize="11"
+                                                    Text="{Binding Unts}" />
+                                                <Span Text=" " />
+                                                <Span Text="UNT" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </Grid>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                </Frame>
+                <Label
+                    FontSize="12"
+                    Style="{StaticResource DashLabel}"
+                    Text="Transactions" />
+                <Frame Style="{StaticResource SqureFrame}">
+                    <StackLayout BindableLayout.ItemsSource="{Binding Transactions}" Spacing="0">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnDefinitions="Auto,*,23">
+                                    <Label
+                                        Grid.Column="0"
+                                        FontSize="11"
+                                        MaxLines="1"
+                                        Text="{Binding Name}"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        Grid.Column="1"
+                                        MaxLines="1"
+                                        Style="{StaticResource Regular}"
+                                        VerticalOptions="Center">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding Unt}" />
+                                                <Span Text=" Unt" />
+                                                <Span Text=", " />
+                                                <Span Text="{Binding FromId}" />
+                                                <Span Text="-&gt;" />
+                                                <Span Text="{Binding ToId}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <ImageButton
+                                        Grid.Column="2"
+                                        Padding="2"
+                                        HeightRequest="23"
+                                        Style="{Binding Status, Converter={StaticResource StatusToStyleConverter}}"
+                                        VerticalOptions="Center"
+                                        WidthRequest="23" />
+                                </Grid>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                </Frame>
+                <StackLayout Padding="10">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Label
+                            Grid.Column="0"
+                            FontSize="11"
+                            Style="{StaticResource DashLabel}"
+                            Text="Accounts" />
+                        <Label
+                            Grid.Column="1"
+                            FontSize="11"
+                            Text="10" />
+                    </Grid>
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Label
+                            Grid.Column="0"
+                            FontSize="11"
+                            Style="{StaticResource DashLabel}"
+                            Text="Auctions (OutBinded)" />
+                        <Label
+                            Grid.Column="1"
+                            FontSize="11"
+                            Text="0(0)" />
+                    </Grid>
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Label
+                            Grid.Column="0"
+                            FontSize="11"
+                            Style="{StaticResource DashLabel}"
+                            Text="Auctions (renewal needed)" />
+                        <Label
+                            Grid.Column="1"
+                            FontSize="11"
+                            Text="2(0)" />
+                    </Grid>
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Label
+                            Grid.Column="0"
+                            FontSize="11"
+                            Style="{StaticResource DashLabel}"
+                            Text="Procusts" />
+                        <Label
+                            Grid.Column="1"
+                            FontSize="11"
+                            Text="4" />
+                    </Grid>
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Label
+                            Grid.Column="0"
+                            FontSize="11"
+                            Style="{StaticResource DashLabel}"
+                            Text="Releases (total/clean/compromised)" />
+                        <Label
+                            Grid.Column="1"
+                            FontSize="11"
+                            Text="346/300/2" />
+                    </Grid>
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Label
+                            Grid.Column="0"
+                            FontSize="11"
+                            Style="{StaticResource DashLabel}"
+                            Text="Last Release" />
+                        <Label
+                            Grid.Column="1"
+                            FontSize="11"
+                            Text="UOS 0.1.670" />
+                    </Grid>
+                </StackLayout>
+                <Grid
+                    Margin="0,25,0,0"
+                    ColumnDefinitions="*,*,*,*"
+                    RowDefinitions="Auto,Auto,Auto"
+                    RowSpacing="15">
+                    <cls:ImageTextButton
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Command="{Binding AccountsCommand}"
+                        ImageStyle="{StaticResource Accounts}"
+                        Text="Accounts" />
+                    <cls:ImageTextButton
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Command="{Binding AuthorsCommand}"
+                        ImageStyle="{StaticResource Authors}"
+                        Text="Authors" />
+                    <cls:ImageTextButton
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        Command="{Binding AccountsCommand}"
+                        ImageStyle="{StaticResource Auctions}"
+                        Text="Auctions" />
+                    <cls:ImageTextButton
+                        Grid.Row="0"
+                        Grid.Column="3"
+                        Command="{Binding ProductsCommand}"
+                        ImageStyle="{StaticResource Products}"
+                        Text="Products" />
+                    <cls:ImageTextButton
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Command="{Binding TransactionsCommand}"
+                        ImageStyle="{StaticResource Transactions}"
+                        Text="Transactions" />
+                    <cls:ImageTextButton
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Command="{Binding AccountsCommand}"
+                        ImageStyle="{StaticResource Search}"
+                        Text="Search" />
+                    <cls:ImageTextButton
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Command="{Binding AccountsCommand}"
+                        ImageStyle="{StaticResource Network}"
+                        Text="Network" />
+                    <cls:ImageTextButton
+                        Grid.Row="1"
+                        Grid.Column="3"
+                        Command="{Binding ETHTransferCommand}"
+                        ImageStyle="{StaticResource Transfer}"
+                        Text="ETH-UNT Transfer" />
+                    <cls:ImageTextButton
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Command="{Binding AccountsCommand}"
+                        ImageStyle="{StaticResource Help}"
+                        Text="Help" />
+
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </cls:CustomPage.MainContent>
+</cls:CustomPage>

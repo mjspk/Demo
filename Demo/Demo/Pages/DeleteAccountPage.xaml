@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cls:CustomPage
+    x:Class="Demo.Pages.DeleteAccountPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cls="clr-namespace:Demo.Controls"
+    xmlns:views="clr-namespace:Demo.Views"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    x:Name="page"
+    Title="Delete Account">
+    <cls:CustomPage.MainContent>
+        <ScrollView>
+            <StackLayout Padding="{StaticResource PagePadding}" Spacing="30">
+                <StackLayout>
+                    <Label FontSize="18" Text="This account has non zero balance. Do you wish to delete it?" />
+                    <Label
+                        FontSize="13"
+                        Style="{StaticResource Regular}"
+                        Text="If you have not backuped it or not exported, all moneys, domains and programs will be lost" />
+                </StackLayout>
+                <views:AccountView BindingContext="{Binding Wallet}"/>
+                <Grid RowDefinitions="Auto,23">
+                    <Label
+                        Grid.Row="0"
+                        Style="{StaticResource DashLabel}"
+                        Text="Authors" />
+                    <ScrollView
+                        Grid.Row="1"
+                        HorizontalScrollBarVisibility="Never"
+                        Orientation="Horizontal">
+                        <StackLayout
+                            BindableLayout.ItemsSource="{Binding Authors}"
+                            Orientation="Horizontal"
+                            Spacing="10">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame
+                                        HeightRequest="22"
+                                        HorizontalOptions="Start"
+                                        Style="{StaticResource ButtonFrame}"
+                                        VerticalOptions="Center">
+                                        <Label
+                                            Style="{StaticResource ButtonLabel}"
+                                            Text="{Binding Name}"
+                                            VerticalOptions="Center" />
+                                    </Frame>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                    </ScrollView>
+                </Grid>
+                <Grid RowDefinitions="Auto,23">
+                    <Label
+                        Grid.Row="0"
+                        Style="{StaticResource DashLabel}"
+                        Text="Products" />
+                    <CollectionView Grid.Row="1" ItemsSource="{Binding Products}">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout>
+                                    <Frame
+                                        HeightRequest="22"
+                                        HorizontalOptions="Start"
+                                        Style="{StaticResource ButtonFrame}"
+                                        VerticalOptions="Center">
+                                        <Label
+                                            Style="{StaticResource ButtonLabel}"
+                                            Text="{Binding Name}"
+                                            VerticalOptions="Center" />
+                                    </Frame>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                        <CollectionView.Footer>
+                            <StackLayout Padding="{StaticResource SidePadding}">
+                                <Label
+                                    Style="{StaticResource Medium}"
+                                    Text="and 100 more"
+                                    TextColor="{StaticResource Primary}"
+                                    TextDecorations="Underline"
+                                    VerticalOptions="CenterAndExpand" />
+                            </StackLayout>
+                        </CollectionView.Footer>
+                    </CollectionView>
+                </Grid>
+                <Button
+                    Command="{Binding DeleteCommand}"
+                    Style="{StaticResource DeleteButton}"
+                    Text="Delete"
+                    VerticalOptions="EndAndExpand" />
+            </StackLayout>
+
+        </ScrollView>
+    </cls:CustomPage.MainContent>
+</cls:CustomPage>

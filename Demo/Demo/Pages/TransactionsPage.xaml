@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cls:CustomPage
+    x:Class="Demo.Pages.TransactionsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cls="clr-namespace:Demo.Controls"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    x:Name="page"
+    Title="Transactions">
+    <cls:CustomPage.RightContent>
+        <StackLayout>
+            <ImageButton
+                HorizontalOptions="End"
+                Style="{StaticResource Sort}"
+                VerticalOptions="Center" />
+        </StackLayout>
+    </cls:CustomPage.RightContent>
+    <cls:CustomPage.MainContent>
+        <Grid Padding="20,0" RowDefinitions="Auto,*">
+            <AbsoluteLayout Grid.Row="0">
+                <cls:BorderEntry AbsoluteLayout.LayoutBounds="0,1,1,1" AbsoluteLayout.LayoutFlags="All" />
+                <Image
+                    Margin="10,0"
+                    AbsoluteLayout.LayoutBounds="1,0.5,-1,-1"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    HorizontalOptions="End"
+                    Style="{StaticResource SearchIcon}"
+                    VerticalOptions="Center" />
+            </AbsoluteLayout>
+            <CollectionView
+                Grid.Row="1"
+                ItemsSource="{Binding Transactions}"
+                SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Frame
+                                Margin="0,5,0,5"
+                                HasShadow="False"
+                                Style="{StaticResource TransactionCard}">
+                                <Grid
+                                    Padding="5"
+                                    ColumnDefinitions="56,*,Auto"
+                                    ColumnSpacing="15"
+                                    HeightRequest="56"
+                                    RowDefinitions="27,27"
+                                    RowSpacing="6">
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding BindingContext.ItemTappedCommand, Source={x:Reference page}}" CommandParameter="{Binding .}" />
+                                    </Grid.GestureRecognizers>
+                                    <Image
+                                        Grid.RowSpan="2"
+                                        Grid.Column="0"
+                                        HeightRequest="30"
+                                        HorizontalOptions="Center"
+                                        Source="{Binding Status, Converter={StaticResource TransactionStatusToIconConverter}}"
+                                        VerticalOptions="Center"
+                                        WidthRequest="30" />
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        FontSize="11"
+                                        Text="{Binding Name}"
+                                        VerticalOptions="End" />
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        FontSize="10"
+                                        Opacity="0.4"
+                                        Text="{Binding Date}"
+                                        VerticalOptions="Start" />
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="2"
+                                        FontSize="11"
+                                        Text="{Binding Unt, StringFormat='{0} UNT'}"
+                                        VerticalOptions="End" />
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="2"
+                                        FontSize="10"
+                                        Opacity="0.4"
+                                        Text="{Binding USD, StringFormat='${0}'}"
+                                        VerticalOptions="Start" />
+
+                                </Grid>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </cls:CustomPage.MainContent>
+</cls:CustomPage>

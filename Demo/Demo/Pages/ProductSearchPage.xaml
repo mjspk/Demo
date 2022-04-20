@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cls:CustomPage
+    x:Class="Demo.Pages.ProductSearchPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cls="clr-namespace:Demo.Controls"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    x:Name="page"
+    Title="Product Search">
+    <cls:CustomPage.RightContent>
+        <StackLayout>
+            <ImageButton
+                HorizontalOptions="End"
+                Style="{StaticResource Close}"
+                VerticalOptions="Center" />
+        </StackLayout>
+    </cls:CustomPage.RightContent>
+    <cls:CustomPage.MainContent>
+        <Grid
+            Padding="{StaticResource PagePadding}"
+            RowDefinitions="Auto,*"
+            RowSpacing="30">
+            <Grid Grid.Row="0" RowDefinitions="Auto,30">
+                <AbsoluteLayout Grid.Row="0">
+                    <cls:BorderEntry AbsoluteLayout.LayoutBounds="0,1,1,1" AbsoluteLayout.LayoutFlags="All" />
+                    <Image
+                        Margin="10,0"
+                        AbsoluteLayout.LayoutBounds="1,0.5,-1,-1"
+                        AbsoluteLayout.LayoutFlags="PositionProportional"
+                        HorizontalOptions="End"
+                        Style="{StaticResource SearchIcon}"
+                        VerticalOptions="Center" />
+                </AbsoluteLayout>
+                <CollectionView Grid.Row="1" ItemsSource="{Binding ProductsFilter}">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame
+                                HeightRequest="29"
+                                HorizontalOptions="Start"
+                                Style="{StaticResource ButtonFrame}"
+                                VerticalOptions="Center">
+                                <Label
+                                    FontSize="11"
+                                    Style="{StaticResource ButtonLabel}"
+                                    Text="{Binding .}"
+                                    VerticalOptions="Center" />
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
+            <StackLayout Grid.Row="1">
+                <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,*">
+                    <Label
+                        Grid.Column="0"
+                        Style="{StaticResource DashLabel}"
+                        Text="Product" />
+                    <Label
+                        Grid.Column="1"
+                        HorizontalOptions="Start"
+                        Style="{StaticResource DashLabel}"
+                        Text="Author" />
+                </Grid>
+                <Frame Grid.Row="2" Style="{StaticResource SqureFrame}">
+                    <ScrollView>
+                        <StackLayout
+                            Grid.Row="1"
+                            Grid.ColumnSpan="3"
+                            BindableLayout.ItemsSource="{Binding Products}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid ColumnDefinitions="*,*">
+                                        <Label Grid.Column="0" Text="{Binding Name}" />
+                                        <Label
+                                            Grid.Column="1"
+                                            HorizontalOptions="Start"
+                                            Text="{Binding Owner}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                    </ScrollView>
+                </Frame>
+            </StackLayout>
+        </Grid>
+    </cls:CustomPage.MainContent>
+</cls:CustomPage>

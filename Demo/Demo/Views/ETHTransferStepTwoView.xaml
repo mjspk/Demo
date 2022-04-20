@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="Demo.Views.ETHTransferStepTwoView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cls="clr-namespace:Demo.Controls"
+    xmlns:views="clr-namespace:Demo.Views"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    x:Name="view">
+    <StackLayout Padding="5" Spacing="30">
+        <StackLayout>
+            <Label FontSize="18" Text="Select Ultranet Account" />
+            <Label
+                FontSize="13"
+                Style="{StaticResource Regular}"
+                Text="Your need specify your Ethereum private key or wallet file and transfer amount" />
+        </StackLayout>
+        <StackLayout>
+            <Label Style="{StaticResource DashLabel}" Text="Destination Ultranet Account" />
+            <Label
+                FontSize="13"
+                Style="{StaticResource Regular}"
+                Text="Destination Account that will receive Ultranet tokens" />
+        </StackLayout>
+        <Grid
+            ColumnDefinitions="*,35"
+            RowDefinitions="auto,280"
+            RowSpacing="-10">
+
+            <views:AccountView BindingContext="{Binding Wallet}"
+                x:Name="accountcard"
+                Grid.Row="0"
+                Grid.ColumnSpan="2">
+                <views:AccountView.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ShowHideAccountsCommand}" />
+                </views:AccountView.GestureRecognizers>
+            </views:AccountView>
+            <Image
+                Grid.Row="0"
+                Grid.Column="1"
+                HorizontalOptions="Center"
+                InputTransparent="True"
+                Style="{StaticResource BottomArrowIcon}"
+                VerticalOptions="Center">
+                <Image.Triggers>
+                    <DataTrigger
+                        Binding="{Binding AccountsShown}"
+                        TargetType="Image"
+                        Value="False">
+                        <Setter Property="Rotation" Value="0" />
+                    </DataTrigger>
+                    <DataTrigger
+                        Binding="{Binding AccountsShown}"
+                        TargetType="Image"
+                        Value="True">
+                        <Setter Property="Rotation" Value="180" />
+                    </DataTrigger>
+                </Image.Triggers>
+            </Image>
+            <Frame
+                Grid.Row="1"
+                Grid.ColumnSpan="2"
+                HorizontalOptions="FillAndExpand"
+                IsVisible="{Binding AccountsShown}"
+                Style="{StaticResource AccountCard}"
+                VerticalOptions="FillAndExpand">
+                <ListView ItemsSource="{Binding Wallets}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="10,5,0,5"
+                                    xct:TouchEffect.Command="{Binding BindingContext.ItemTppedCommand, Source={Reference view}}"
+                                    xct:TouchEffect.CommandParameter="{Binding .}"
+                                    ColumnDefinitions="*,Auto,10"
+                                    RowDefinitions="15,15">
+                                    <Grid.Triggers>
+                                        <DataTrigger
+                                            Binding="{Binding IsSelected}"
+                                            TargetType="Grid"
+                                            Value="True">
+                                            <Setter Property="BackgroundColor" Value="{Binding AccountColor}" />
+                                        </DataTrigger>
+                                        <DataTrigger
+                                            Binding="{Binding IsSelected}"
+                                            TargetType="Grid"
+                                            Value="False">
+                                            <Setter Property="BackgroundColor" Value="Transparent" />
+                                        </DataTrigger>
+                                    </Grid.Triggers>
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        FontSize="12"
+                                        Text="{Binding Name}" />
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="0"
+                                        FontSize="10"
+                                        Style="{StaticResource UNTLabel}"
+                                        Text="s0x0bb99e...ed66b85b47f0" />
+                                    <Label
+                                        Grid.RowSpan="2"
+                                        Grid.Column="1"
+                                        FontSize="12"
+                                        Text="720 UNT"
+                                        VerticalOptions="Center" />
+                                    <StackLayout Margin="0,-5,0,-5"
+                                        Grid.RowSpan="2"
+                                        Grid.Column="2"
+                                        BackgroundColor="{Binding AccountColor}" />
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Frame>
+        </Grid>
+    </StackLayout>
+</ContentView>

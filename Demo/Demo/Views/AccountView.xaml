@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="Demo.Views.AccountView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <Frame 
+        Style="{StaticResource AccountCard}">
+        <Grid
+            Padding="14"
+            ColumnDefinitions="60,*"
+            ColumnSpacing="10"
+            InputTransparent="False"
+            RowDefinitions="20,20,20"
+            RowSpacing="0">
+            <Frame
+                Grid.Row="0"
+                Grid.RowSpan="3"
+                Grid.Column="0"
+                Background="{Binding Background}"
+                HorizontalOptions="Center"
+                Style="{StaticResource AccountColor}">
+                <Label
+                    HorizontalOptions="Center"
+                    Style="{StaticResource CodeLabel}"
+                    Text="{Binding IconCode}"
+                    VerticalOptions="Center" />
+            </Frame>
+            <Label
+                Grid.Row="0"
+                Grid.Column="1"
+                FontSize="13" VerticalOptions="Center"
+                Text="{Binding Name}" />
+            <Label
+                Grid.Row="1"
+                Grid.Column="1"
+                FontSize="12"
+                VerticalOptions="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="{Binding Unts}" />
+                        <Span Text=" " />
+                        <Span Style="{StaticResource Regular}" Text="UNT" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label VerticalOptions="Center"
+                Grid.Row="2"
+                Grid.Column="1"
+                MaxLines="1"
+                Opacity="0.3"
+                Style="{StaticResource Light}"
+                Text="{Binding Id}" />
+        </Grid>
+    </Frame>
+
+</ContentView>

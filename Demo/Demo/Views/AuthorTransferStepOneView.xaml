@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="Demo.Views.AuthorTransferStepOneView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cls="clr-namespace:Demo.Controls"
+    xmlns:views="clr-namespace:Demo.Views"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    x:Name="view">
+    <StackLayout Padding="5" Spacing="30">
+        <StackLayout>
+            <Label FontSize="18" Text="Choose your Author and destination Account" />
+            <Label
+                FontSize="13"
+                Style="{StaticResource Regular}"
+                Text="Your need specify your source, destination accounts and amount to transfer" />
+        </StackLayout>
+        <StackLayout>
+            <Label Style="{StaticResource DashLabel}" Text="Transfer Author" />
+            <Grid ColumnDefinitions="*,35" RowSpacing="-10">
+                <Frame
+                    Grid.ColumnSpan="2"
+                    Padding="15,0"
+                    HeightRequest="60"
+                    Style="{StaticResource AccountCard}">
+                    <Grid RowDefinitions="Auto,Auto" VerticalOptions="Center">
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            FontSize="13"
+                            Text="{Binding Author.Name}"
+                            VerticalOptions="Center" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            FontSize="10"
+                            Text="{Binding Author.ActiveDue}"
+                            VerticalOptions="Center" />
+                    </Grid>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SelectAuthorCommand}" />
+                    </Frame.GestureRecognizers>
+                </Frame>
+                <Image
+                    Grid.Column="1"
+                    HorizontalOptions="Center"
+                    InputTransparent="True"
+                    Style="{StaticResource BottomArrowsIcon}"
+                    VerticalOptions="Center" />
+            </Grid>
+        </StackLayout>
+
+        <StackLayout>
+            <Label Style="{StaticResource DashLabel}" Text="To Account" />
+            <Grid ColumnDefinitions="*,35" RowSpacing="-10">
+                <views:AccountView Grid.ColumnSpan="2" BindingContext="{Binding Wallet}">
+                    <views:AccountView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SelectAccountCommand}" />
+                    </views:AccountView.GestureRecognizers>
+                </views:AccountView>
+                <Image
+                    Grid.Column="1"
+                    HorizontalOptions="Center"
+                    InputTransparent="True"
+                    Style="{StaticResource BottomArrowsIcon}"
+                    VerticalOptions="Center" />
+
+            </Grid>
+        </StackLayout>
+        <Grid ColumnDefinitions="*,*">
+            <Label
+                Grid.Column="0"
+                Style="{StaticResource DashLabel}"
+                Text="Estimated comission" />
+            <Label
+                Grid.Column="1"
+                HorizontalOptions="End"
+                Opacity="0.7"
+                Text="10 UNT ($15)" />
+        </Grid>
+    </StackLayout>
+</ContentView>

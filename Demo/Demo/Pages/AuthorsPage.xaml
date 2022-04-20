@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cls:CustomPage
+    x:Class="Demo.Pages.AuthorsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cls="clr-namespace:Demo.Controls"
+    xmlns:models="clr-namespace:Demo.Models"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    x:Name="page"
+    Title="Authors">
+    <cls:CustomPage.RightContent>
+        <Grid ColumnDefinitions="Auto,Auto">
+            <ImageButton
+                Grid.Column="1"
+                HorizontalOptions="End"
+                Style="{StaticResource Dots}"
+                VerticalOptions="Center" />
+            <ImageButton
+                Grid.Column="0"
+                HorizontalOptions="End"
+                Style="{StaticResource Sort}"
+                VerticalOptions="Center" />
+        </Grid>
+    </cls:CustomPage.RightContent>
+    <cls:CustomPage.MainContent>
+        <Grid RowDefinitions="30,*">
+            <CollectionView Margin="18,0,0,0" ItemsSource="{Binding AuthorsFilter}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame
+                            HeightRequest="29"
+                            HorizontalOptions="Start"
+                            Style="{StaticResource ButtonFrame}"
+                            VerticalOptions="Center">
+                            <Label
+                                FontSize="11"
+                                Style="{StaticResource ButtonLabel}"
+                                Text="{Binding .}"
+                                VerticalOptions="Center" />
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <CollectionView
+                Grid.Row="1"
+                ItemsSource="{Binding Authors}"
+                SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Frame
+                                Margin="18,8,18,8"
+                                Padding="1"
+                                HeightRequest="60"
+                                Style="{StaticResource AccountCard}">
+                                <Frame.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding BidStatus}"
+                                        TargetType="Frame"
+                                        Value="{Static models:BidStatus.Higher}">
+                                        <Setter Property="Background">
+                                            <Setter.Value>
+                                                <LinearGradientBrush EndPoint="1,0">
+                                                    <GradientStop Offset="0.9" Color="Transparent" />
+                                                    <GradientStop Offset="1.4" Color="{StaticResource HigherColor}" />
+                                                </LinearGradientBrush>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </DataTrigger>
+                                    <DataTrigger
+                                        Binding="{Binding BidStatus}"
+                                        TargetType="Frame"
+                                        Value="{Static models:BidStatus.Lower}">
+                                        <Setter Property="Background">
+                                            <Setter.Value>
+                                                <LinearGradientBrush EndPoint="1,0">
+                                                    <GradientStop Offset="0.9" Color="Transparent" />
+                                                    <GradientStop Offset="1.4" Color="{StaticResource LowerColor}" />
+                                                </LinearGradientBrush>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </DataTrigger>
+                                </Frame.Triggers>
+
+                                <Frame Style="{StaticResource AccountCard}">
+                                    <SwipeView>
+                                        <SwipeView.RightItems>
+                                            <SwipeItems>
+                                                <SwipeItemView IsVisible="False" WidthRequest="85">
+                                                    <ImageButton
+                                                        Padding="15"
+                                                        CornerRadius="0"
+                                                        HorizontalOptions="FillAndExpand"
+                                                        Style="{StaticResource Hide}"
+                                                        VerticalOptions="FillAndExpand" />
+                                                    <SwipeItemView.Triggers>
+                                                        <DataTrigger
+                                                            Binding="{Binding BidStatus}"
+                                                            TargetType="SwipeItemView"
+                                                            Value="{Static models:BidStatus.None}">
+                                                            <Setter Property="IsVisible" Value="True" />
+                                                        </DataTrigger>
+                                                    </SwipeItemView.Triggers>
+                                                </SwipeItemView>
+                                                <SwipeItemView
+                                                    BackgroundColor="Transparent"
+                                                    IsVisible="False"
+                                                    WidthRequest="2">
+                                                    <SwipeItemView.Triggers>
+                                                        <DataTrigger
+                                                            Binding="{Binding BidStatus}"
+                                                            TargetType="SwipeItemView"
+                                                            Value="{Static models:BidStatus.None}">
+                                                            <Setter Property="IsVisible" Value="True" />
+                                                        </DataTrigger>
+                                                    </SwipeItemView.Triggers>
+                                                </SwipeItemView>
+                                                <SwipeItemView IsVisible="False" WidthRequest="85">
+                                                    <ImageButton
+                                                        Padding="15"
+                                                        CornerRadius="0" Clicked="TransferAuthorClicked"
+                                                        HorizontalOptions="FillAndExpand"
+                                                        Style="{StaticResource TransferAuthor}"
+                                                        VerticalOptions="FillAndExpand" />
+                                                    <SwipeItemView.Triggers>
+                                                        <DataTrigger
+                                                            Binding="{Binding BidStatus}"
+                                                            TargetType="SwipeItemView"
+                                                            Value="{Static models:BidStatus.None}">
+                                                            <Setter Property="IsVisible" Value="True" />
+                                                        </DataTrigger>
+                                                    </SwipeItemView.Triggers>
+                                                </SwipeItemView>
+
+                                                <SwipeItemView WidthRequest="85">
+                                                    <ImageButton
+                                                        Padding="15"
+                                                        CornerRadius="0"
+                                                        Clicked="MackBidClicked"
+                                                        HorizontalOptions="FillAndExpand"
+                                                        Style="{StaticResource Bid}"
+                                                        VerticalOptions="FillAndExpand" />
+                                                    <SwipeItemView.Triggers>
+                                                        <DataTrigger
+                                                            Binding="{Binding BidStatus}"
+                                                            TargetType="SwipeItemView"
+                                                            Value="{Static models:BidStatus.None}">
+                                                            <Setter Property="IsVisible" Value="False" />
+                                                        </DataTrigger>
+                                                    </SwipeItemView.Triggers>
+                                                </SwipeItemView>
+                                            </SwipeItems>
+                                        </SwipeView.RightItems>
+                                        <Grid
+                                            Padding="14"
+                                            ColumnDefinitions="*,Auto,30"
+                                            ColumnSpacing="10"
+                                            RowDefinitions="15,15"
+                                            RowSpacing="0"
+                                            Style="{StaticResource AccountGrid}">
+                                            <Grid.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding BindingContext.ItemTappedCommand, Source={x:Reference page}}" CommandParameter="{Binding .}" />
+                                            </Grid.GestureRecognizers>
+                                            <Label
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                FontSize="13"
+                                                Text="{Binding Name}"
+                                                VerticalOptions="Center" />
+                                            <Label
+                                                Grid.Row="1"
+                                                Grid.Column="0"
+                                                FontSize="10"
+                                                Text="{Binding ActiveDue}"
+                                                VerticalOptions="Center" />
+                                            <Label
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                FontSize="10"
+                                                VerticalOptions="Center">
+                                                <Label.Triggers>
+                                                    <DataTrigger
+                                                        Binding="{Binding BidStatus}"
+                                                        TargetType="Label"
+                                                        Value="{Static models:BidStatus.Higher}">
+                                                        <Setter Property="Text" Value="You have higher bid" />
+                                                        <Setter Property="TextColor" Value="{StaticResource HigherColor}" />
+                                                    </DataTrigger>
+                                                    <DataTrigger
+                                                        Binding="{Binding BidStatus}"
+                                                        TargetType="Label"
+                                                        Value="{Static models:BidStatus.Lower}">
+                                                        <Setter Property="Text" Value="You are not leading" />
+                                                        <Setter Property="TextColor" Value="{StaticResource LowerColor}" />
+                                                    </DataTrigger>
+                                                </Label.Triggers>
+                                            </Label>
+                                            <Label
+                                                Grid.Row="1"
+                                                Grid.Column="1"
+                                                FontSize="10"
+                                                VerticalOptions="Center">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="Current bid " />
+                                                        <Span FontAttributes="Bold" Text="{Binding CurrentBid, StringFormat='{0} UNT'}" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                                <Label.Triggers>
+                                                    <DataTrigger
+                                                        Binding="{Binding CurrentBid}"
+                                                        TargetType="Label"
+                                                        Value="0">
+                                                        <Setter Property="IsVisible" Value="False" />
+                                                    </DataTrigger>
+                                                </Label.Triggers>
+                                            </Label>
+                                            <ImageButton
+                                                Grid.RowSpan="2"
+                                                Grid.Column="2"
+                                                Padding="1"
+                                                Command="{Binding BindingContext.OptionsCommand, Source={x:Reference page}}"
+                                                CommandParameter="{Binding .}"
+                                                Style="{StaticResource Dots}"
+                                                VerticalOptions="Center" />
+                                        </Grid>
+                                    </SwipeView>
+                                </Frame>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </cls:CustomPage.MainContent>
+</cls:CustomPage>

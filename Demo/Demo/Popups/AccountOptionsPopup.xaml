@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+    x:Class="Demo.Popups.AccountOptionsPopup"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="http://rotorgames.com"
+    xmlns:views="clr-namespace:Demo.Views"
+    x:Name="page"
+    HasSystemPadding="{OnPlatform Android=True,
+                                  iOS=False}">
+    <pages:PopupPage.Animation>
+        <pages:ScaleAnimation
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="False"
+            PositionIn="Bottom"
+            PositionOut="Bottom"
+            ScaleIn="1.2"
+            ScaleOut="0.8" />
+    </pages:PopupPage.Animation>
+    <Frame
+        x:Name="Mainframe"
+        Margin="0,0,0,-20"
+        Padding="20,8,20,50"
+        BackgroundColor="{AppThemeBinding Dark={StaticResource Secondary},
+                                          Light={StaticResource LightBackground}}"
+        CornerRadius="20"
+        HasShadow="True"
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="EndAndExpand">
+        <Grid
+            ColumnDefinitions="*,*"
+            ColumnSpacing="12"
+            HorizontalOptions="FillAndExpand"
+            RowDefinitions="4,Auto,Auto,Auto,Auto,Auto"
+            RowSpacing="12">
+            <Frame
+                Grid.Row="0"
+                Grid.ColumnSpan="2"
+                HorizontalOptions="Center"
+                Style="{StaticResource PopupHandle}" />
+            <Button
+                Grid.Row="2"
+                Grid.ColumnSpan="2"
+                Text="Show private key" />
+            <Button
+                Grid.Row="3"
+                Grid.Column="0"
+                Style="{StaticResource DeleteButton}"
+                Text="Delete" />
+            <Button
+                Grid.Row="3"
+                Grid.Column="1"
+                Text="Backup" />
+            <Button
+                Grid.Row="4"
+                Grid.ColumnSpan="2"
+                Text="Hide from dashboard" />
+            <Frame
+                Grid.Row="5"
+                Grid.ColumnSpan="2"
+                Padding="0"
+                CornerRadius="10"
+                HeightRequest="48"
+                IsClippedToBounds="True">
+                <Grid
+                    Padding="0"
+                    ColumnDefinitions="*,*"
+                    ColumnSpacing="2">
+                    <Button
+                        Grid.Column="0"
+                        CornerRadius="0"
+                        Text="Receive" />
+                    <Button
+                        Grid.Column="1"
+                        Command="{Binding SendCommand}"
+                        CornerRadius="0"
+                        Text="Send" />
+                </Grid>
+            </Frame>
+        </Grid>
+    </Frame>
+</pages:PopupPage>

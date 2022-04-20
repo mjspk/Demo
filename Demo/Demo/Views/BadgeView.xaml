@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="Demo.Views.BadgeView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+     x:Name="Instance"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    
+
+</ContentView>

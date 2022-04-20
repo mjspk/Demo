@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="Demo.Views.CreateAccountStepTwoView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cls="clr-namespace:Demo.Controls"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    x:Name="view">
+    <StackLayout Padding="5" Spacing="30">
+        <StackLayout>
+            <Label FontSize="18" Text="Choose account name and color" />
+            <Label
+                FontSize="13"
+                Style="{StaticResource Regular}"
+                Text="Choose desired Account name and color" />
+        </StackLayout>
+        <StackLayout Margin="0,0,0,-12" Spacing="8">
+            <cls:BorderEntry Placeholder="Account name" Text="{Binding Wallet.Name}">
+                <cls:BorderEntry.Behaviors>
+                    <xct:CharactersValidationBehavior
+                        x:Name="cb"
+                        CharacterType="Letter"
+                        Flags="ValidateOnValueChanging"
+                        MaximumCharacterCount="30"
+                        MinimumCharacterCount="1" />
+                </cls:BorderEntry.Behaviors>
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Valid">
+                            <VisualState.Setters>
+                                <Setter Property="Style" Value="{StaticResource Valid}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Invalid">
+                            <VisualState.Setters>
+                                <Setter Property="Style" Value="{StaticResource InValid}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </cls:BorderEntry>
+            <StackLayout HeightRequest="12">
+                <Label
+                    FontSize="12"
+                    IsVisible="{Binding IsNotValid, Source={x:Reference cb}}"
+                    Text="Validation text message"
+                    TextColor="{StaticResource Red}" />
+            </StackLayout>
+        </StackLayout>
+        <Label Style="{StaticResource SubText}" Text="Please specify account name, for example: payment account, auction account, verification account etc." />
+        <Frame
+            Grid.Row="0"
+            Grid.RowSpan="2"
+            Grid.Column="0"
+            Padding="0"
+            Background="{Binding SelectedAccountColor.Color}"
+            CornerRadius="17"
+            HeightRequest="120"
+            HorizontalOptions="CenterAndExpand"
+            VerticalOptions="Center"
+            WidthRequest="120">
+            <Label
+                FontSize="24"
+                HorizontalOptions="Center"
+                Style="{StaticResource CodeLabel}"
+                Text="ABCD"
+                VerticalOptions="Center" />
+        </Frame>
+        <CollectionView HeightRequest="45" ItemsSource="{Binding Colors}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.Header>
+                <StackLayout Padding="{StaticResource LeftPadding}">
+                    <ImageButton
+                        Command="{Binding RandomizeCommand}"
+                        CornerRadius="22"
+                        HeightRequest="44"
+                        HorizontalOptions="Center"
+                        Style="{StaticResource Shuffle}"
+                        VerticalOptions="Center"
+                        WidthRequest="44" />
+                </StackLayout>
+            </CollectionView.Header>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <Frame
+                            Padding="0"
+                            BackgroundColor="{Binding Color}"
+                            CornerRadius="22"
+                            HasShadow="False"
+                            HeightRequest="44"
+                            HorizontalOptions="Center"
+                            IsClippedToBounds="True"
+                            VerticalOptions="Center"
+                            WidthRequest="44">
+                            <ImageButton
+                                BackgroundColor="{Binding Color}"
+                                BorderColor="{Binding BoderColor}"
+                                BorderWidth="2"
+                                Command="{Binding BindingContext.ColorTappedCommand, Source={x:Reference view}}"
+                                CommandParameter="{Binding .}"
+                                CornerRadius="20"
+                                HeightRequest="40"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                WidthRequest="40" />
+                        </Frame>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+
+</ContentView>

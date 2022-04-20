@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+	<item>
+		<color android:color="@color/launcher_background"/>
+	</item>
+	<item >
+		<bitmap android:gravity="fill"
+			android:src="@drawable/FrameBg"
+			android:tileMode="disabled"
+       />
+	</item>
+	<item android:height="169dp" android:width="120dp" android:gravity="center_horizontal|center_vertical">
+		<bitmap
+			android:src="@drawable/launcherlight"
+			android:tileMode="disabled"
+       />
+	</item>
+
+</layer-list>

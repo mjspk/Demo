@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cls:CustomPage
+    x:Class="Demo.Pages.ProductsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cls="clr-namespace:Demo.Controls"
+    xmlns:models="clr-namespace:Demo.Models"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    x:Name="page"
+    Title="My Products">
+    <cls:CustomPage.RightContent>
+        <Grid ColumnDefinitions="Auto,Auto">
+            <ImageButton
+                Grid.Column="1"
+                HorizontalOptions="End"
+                Style="{StaticResource Close}"
+                VerticalOptions="Center" />
+        </Grid>
+    </cls:CustomPage.RightContent>
+    <cls:CustomPage.MainContent>
+        <Grid RowDefinitions="*,Auto">
+            <CollectionView
+                Grid.Row="0"
+                ItemsSource="{Binding Products}"
+                SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Frame Margin="18,8,18,8" Style="{StaticResource AccountCard}">
+                                <SwipeView>
+                                    <SwipeView.RightItems>
+                                        <SwipeItems>
+                                            <SwipeItemView WidthRequest="83">
+                                                <ImageButton
+                                                    Padding="15"
+                                                    CornerRadius="0"
+                                                    HorizontalOptions="FillAndExpand"
+                                                    Style="{StaticResource TransferProduct}"
+                                                    VerticalOptions="FillAndExpand" />
+                                            </SwipeItemView>
+                                        </SwipeItems>
+                                    </SwipeView.RightItems>
+                                    <Grid
+                                        Padding="10,5"
+                                        ColumnDefinitions="*,Auto,30"
+                                        ColumnSpacing="10"
+                                        HeightRequest="50"
+                                        RowDefinitions="25,25"
+                                        RowSpacing="0"
+                                        Style="{StaticResource AccountGrid}">
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding BindingContext.ItemTappedCommand, Source={x:Reference page}}" CommandParameter="{Binding .}" />
+                                        </Grid.GestureRecognizers>
+                                        <Label
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            FontSize="13"
+                                            Text="{Binding Name}"
+                                            VerticalOptions="End" />
+                                        <Label
+                                            Grid.Row="1"
+                                            Grid.Column="0"
+                                            FontSize="10"
+                                            Text="{Binding Owner}"
+                                            VerticalOptions="Start" />
+                                        <ImageButton
+                                            Grid.Row="0"
+                                            Grid.RowSpan="2"
+                                            Grid.Column="2"
+                                            Padding="1"
+                                            Command="{Binding BindingContext.OptionsCommand, Source={x:Reference page}}"
+                                            CommandParameter="{Binding .}"
+                                            Style="{StaticResource Dots}"
+                                            VerticalOptions="Center" />
+                                    </Grid>
+                                </SwipeView>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Frame
+                Grid.Row="1"
+                Margin="0,0,0,-20"
+                Padding="0,0,0,30"
+                AbsoluteLayout.LayoutBounds="1,1,1,-1"
+                AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                HasShadow="True">
+                <StackLayout Padding="15">
+                    <Button Command="{Binding RegisterProductCommand}" Text="Register Product" />
+                </StackLayout>
+            </Frame>
+        </Grid>
+    </cls:CustomPage.MainContent>
+</cls:CustomPage>

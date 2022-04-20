@@ -1,0 +1,222 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Fonts\icomoon.ttf" />
+    <None Remove="Resources\Fonts\MaterialIcons.ttf" />
+    <None Remove="Resources\Fonts\Montserrat-Black.ttf" />
+    <None Remove="Resources\Fonts\Montserrat-BlackItalic.ttf" />
+    <None Remove="Resources\Fonts\Montserrat-Bold.ttf" />
+    <None Remove="Resources\Fonts\Montserrat-BoldItalic.ttf" />
+    <None Remove="Resources\Fonts\Montserrat-ExtraBold.ttf" />
+    <None Remove="Resources\Fonts\Montserrat-ExtraBoldItalic.ttf" />
+    <None Remove="Resources\Fonts\Montserrat-ExtraLight.ttf" />
+    <None Remove="Resources\Fonts\Montserrat-ExtraLightItalic.ttf" />
+    <None Remove="Resources\Fonts\Montserrat-Italic.ttf" />
+    <None Remove="Resources\Fonts\Montserrat-Light.ttf" />
+    <None Remove="Resources\Fonts\Montserrat-LightItalic.ttf" />
+    <None Remove="Resources\Fonts\Montserrat-Medium.ttf" />
+    <None Remove="Resources\Fonts\Montserrat-MediumItalic.ttf" />
+    <None Remove="Resources\Fonts\Montserrat-Regular.ttf" />
+    <None Remove="Resources\Fonts\Montserrat-SemiBold.ttf" />
+    <None Remove="Resources\Fonts\Montserrat-SemiBoldItalic.ttf" />
+    <None Remove="Resources\Fonts\Montserrat-Thin.ttf" />
+    <None Remove="Resources\Fonts\Montserrat-ThinItalic.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Fonts\icomoon.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\MaterialIcons.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Montserrat-Black.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Montserrat-BlackItalic.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Montserrat-Bold.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Montserrat-BoldItalic.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Montserrat-ExtraBold.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Montserrat-ExtraBoldItalic.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Montserrat-ExtraLight.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Montserrat-ExtraLightItalic.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Montserrat-Italic.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Montserrat-Light.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Montserrat-LightItalic.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Montserrat-Medium.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Montserrat-MediumItalic.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Montserrat-Regular.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Montserrat-SemiBold.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Montserrat-SemiBoldItalic.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Montserrat-Thin.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Montserrat-ThinItalic.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Rg.Plugins.Popup" Version="2.1.0" />
+    <PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.0" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2337" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.1" />
+    <PackageReference Include="Xamarin.Forms.Visual.Material" Version="5.0.0.2337" />
+    <PackageReference Include="ZXing.Net.Mobile" Version="2.4.1" />
+    <PackageReference Include="ZXing.Net.Mobile.Forms" Version="2.4.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Pages\ProductsPage.xaml.cs">
+      <DependentUpon>ProductsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\AuthorsPage.xaml.cs">
+      <DependentUpon>AuthorsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\AuthorRegistrationPage.cs" />
+    <Compile Update="Pages\AuthorsPage.xaml.cs">
+      <DependentUpon>AuthorsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\MakeBidPage.xaml.cs">
+      <DependentUpon>MakeBidPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\AuthorTransferRenewalPage.xaml.cs">
+      <DependentUpon>AuthorTransferRenewalPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\AuthorTransferPage.xaml.cs">
+      <DependentUpon>AuthorTransferPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\SendPage.xaml.cs">
+      <DependentUpon>SendPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\ETHTransferPage.xaml.cs">
+      <DependentUpon>ETHTransferPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\ProductSearchPage.xaml.cs">
+      <DependentUpon>ProductSearchPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\UnfinishTransferPage.xaml.cs">
+      <DependentUpon>UnfinishTransferPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\TransferCompletePage.xaml.cs">
+      <DependentUpon>TransferCompletePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\TransactionsPage.xaml.cs">
+      <DependentUpon>TransactionsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\PrivateKeyPage.xaml.cs">
+      <DependentUpon>PrivateKeyPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\DeleteAccountPage.xaml.cs">
+      <DependentUpon>DeleteAccountPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\RestoreAccountPage.xaml.cs">
+      <DependentUpon>RestoreAccountPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\CreateAccountPage.xaml.cs">
+      <DependentUpon>CreateAccountPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Popups\RecipientAccountPopup.xaml.cs">
+      <DependentUpon>RecipientAccountPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Popups\SelectAuthorPopup.xaml.cs">
+      <DependentUpon>SelectAuthorPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Popups\SourceAccountPopup.xaml.cs">
+      <DependentUpon>SourceAccountPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Popups\TransactionPopup.xaml.cs">
+      <DependentUpon>TransactionPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Popups\DeleteAccountPopup.xaml.cs">
+      <DependentUpon>DeleteAccountPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Popups\AccountOptionsPopup.xaml.cs">
+      <DependentUpon>AccountOptionsPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\DashboardPage.xaml.cs">
+      <DependentUpon>DashboardPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\AccountDetailsPage.xaml.cs">
+      <DependentUpon>AccountDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\ManageAccountsPage.xaml.cs">
+      <DependentUpon>ManageAccountsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\MakeBidStepTwoView.xaml.cs">
+      <DependentUpon>MakeBidStepTwoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\MakeBidStepOneView.xaml.cs">
+      <DependentUpon>MakeBidStepOneView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\AuthorTransferRenewalStepTwoView.xaml.cs">
+      <DependentUpon>AuthorTransferRenewalStepTwoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\AuthorTransferRenewalStepOneView.xaml.cs">
+      <DependentUpon>AuthorTransferRenewalStepOneView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\AuthorTransferStepTwoView.xaml.cs">
+      <DependentUpon>AuthorTransferStepTwoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\AuthorTransferStepOneView.xaml.cs">
+      <DependentUpon>AuthorTransferStepOneView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\SendStepTwoView.xaml.cs">
+      <DependentUpon>SendStepTwoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\SendStepOneView.xaml.cs">
+      <DependentUpon>SendStepOneView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ETHTransferStepTwoView.xaml.cs">
+      <DependentUpon>ETHTransferStepTwoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ETHTransferStepThreeView.xaml.cs">
+      <DependentUpon>ETHTransferStepThreeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ETHTransferStepOneView.xaml.cs">
+      <DependentUpon>ETHTransferStepOneView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\CreateAccountStepTwoView.xaml.cs">
+      <DependentUpon>CreateAccountStepTwoView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Controls\SwitchView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\StartPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Popups\RecipientAccountPopup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Popups\SelectAuthorPopup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Popups\SourceAccountPopup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Popups\TransactionPopup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Popups\DeleteAccountPopup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Popups\AlertPopup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Popups\AccountOptionsPopup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\AccountView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\BadgeView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\CreateAccountStepOneView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

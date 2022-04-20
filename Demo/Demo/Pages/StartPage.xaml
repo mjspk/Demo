@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" NavigationPage.HasNavigationBar="False"
+             x:Class="Demo.Pages.StartPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="35">
+                <Button Text="Account Details" Clicked="ButtonClicked" CommandParameter="0"/>
+                <Button Text="Authors" Clicked="ButtonClicked" CommandParameter="1"/>
+                <Button Text="Author Registration A" Clicked="ButtonClicked" CommandParameter="2"/>
+                <Button Text="Author Registration B" Clicked="ButtonClicked" CommandParameter="19"/>
+                <Button Text="Author Registration C" Clicked="ButtonClicked" CommandParameter="20"/>
+                <Button Text="Tranfer Author A" Clicked="ButtonClicked" CommandParameter="3"/>
+                <Button Text="Tranfer Author B" Clicked="ButtonClicked" CommandParameter="4"/>
+                <Button Text="Create Account" Clicked="ButtonClicked" CommandParameter="5"/>
+                <Button Text="DashBoard" Clicked="ButtonClicked" CommandParameter="6"/>
+                <Button Text="Delete Account" Clicked="ButtonClicked" CommandParameter="7"/>
+                <Button Text="ETH Transfer" Clicked="ButtonClicked" CommandParameter="8"/>
+                <Button Text="Make Bid" Clicked="ButtonClicked" CommandParameter="9"/>
+                <Button Text="Manage Accounts" Clicked="ButtonClicked" CommandParameter="10"/>
+                <Button Text="Show Private Key" Clicked="ButtonClicked" CommandParameter="11"/>
+                <Button Text="Products Search" Clicked="ButtonClicked" CommandParameter="12"/>
+                <Button Text="Products" Clicked="ButtonClicked" CommandParameter="13"/>
+                <Button Text="Restore Account" Clicked="ButtonClicked" CommandParameter="14"/>
+                <Button Text="Send" Clicked="ButtonClicked" CommandParameter="15"/>
+                <Button Text="Transactions" Clicked="ButtonClicked" CommandParameter="16"/>
+                <Button Text="Transaction Coplete" Clicked="ButtonClicked" CommandParameter="17"/>
+                <Button Text="Transaction Unfinished" Clicked="ButtonClicked" CommandParameter="18"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
