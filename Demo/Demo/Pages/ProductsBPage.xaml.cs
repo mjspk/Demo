@@ -45,8 +45,6 @@ namespace Demo.Pages
             Products.Add(new Product { Name = "Aximion3D", Color = Color.FromHex("#18C6A6"), Initl = "A", Owner = "ultranetorg" });
             Products.Add(new Product { Name = "3D UI", Color = Color.FromHex("#EE7636"), Initl = "3", Owner = "ultranetorg" });
             Products.Add(new Product { Name = "Ultranet User Node", Color = Color.FromHex("#4900E3"), Initl = "U", Owner = "ultranetorg" });
-
-
         }
         public Command CreateCommand
         {
