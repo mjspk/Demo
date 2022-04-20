@@ -5,28 +5,33 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Padding="35">
-                <Button Text="Account Details" Clicked="ButtonClicked" CommandParameter="0"/>
-                <Button Text="Authors" Clicked="ButtonClicked" CommandParameter="1"/>
-                <Button Text="Author Search A" Clicked="ButtonClicked" CommandParameter="2"/>
-				<Button Text="Author Search B" Clicked="ButtonClicked" CommandParameter="19"/>
-				<Button Text="Author Search C" Clicked="ButtonClicked" CommandParameter="20"/>
-                <Button Text="Tranfer Author A" Clicked="ButtonClicked" CommandParameter="3"/>
-                <Button Text="Tranfer Author B" Clicked="ButtonClicked" CommandParameter="4"/>
-                <Button Text="Create Account" Clicked="ButtonClicked" CommandParameter="5"/>
-                <Button Text="DashBoard" Clicked="ButtonClicked" CommandParameter="6"/>
-                <Button Text="Delete Account" Clicked="ButtonClicked" CommandParameter="7"/>
-                <Button Text="ETH Transfer" Clicked="ButtonClicked" CommandParameter="8"/>
-                <Button Text="Make Bid" Clicked="ButtonClicked" CommandParameter="9"/>
                 <Button Text="Manage Accounts" Clicked="ButtonClicked" CommandParameter="10"/>
-                <Button Text="Show Private Key" Clicked="ButtonClicked" CommandParameter="11"/>
-                <Button Text="Products Search" Clicked="ButtonClicked" CommandParameter="12"/>
-                <Button Text="Products A" Clicked="ButtonClicked" CommandParameter="13"/>
-                <Button Text="Products B" Clicked="ButtonClicked" CommandParameter="21"/>
+                <Button Text="Create Account" Clicked="ButtonClicked" CommandParameter="5"/>
+                <Button Text="Account Details" Clicked="ButtonClicked" CommandParameter="0"/>
+                <Button Text="Delete Account" Clicked="ButtonClicked" CommandParameter="7"/>
                 <Button Text="Restore Account" Clicked="ButtonClicked" CommandParameter="14"/>
+                <Button Text="Show Private Key" Clicked="ButtonClicked" CommandParameter="11"/>
+
+                <Button Text="ETH Transfer" Clicked="ButtonClicked" CommandParameter="8"/>
+                <Button Text="ETH Transfer Completed" Clicked="ButtonClicked" CommandParameter="17"/>
+                <Button Text="ETH Transfer Unfinished" Clicked="ButtonClicked" CommandParameter="18"/>
+
                 <Button Text="Send" Clicked="ButtonClicked" CommandParameter="15"/>
                 <Button Text="Transactions" Clicked="ButtonClicked" CommandParameter="16"/>
-                <Button Text="Transaction Coplete" Clicked="ButtonClicked" CommandParameter="17"/>
-                <Button Text="Transaction Unfinished" Clicked="ButtonClicked" CommandParameter="18"/>
+
+                <Button Text="Authors" Clicked="ButtonClicked" CommandParameter="1"/>
+                <Button Text="Author Search A" Clicked="ButtonClicked" CommandParameter="2"/>
+                <Button Text="Author Search B" Clicked="ButtonClicked" CommandParameter="19"/>
+                <Button Text="Author Search C" Clicked="ButtonClicked" CommandParameter="20"/>
+                <Button Text="Tranfer Author A" Clicked="ButtonClicked" CommandParameter="3"/>
+                <Button Text="Tranfer Author B" Clicked="ButtonClicked" CommandParameter="4"/>
+                <Button Text="Make a Bid" Clicked="ButtonClicked" CommandParameter="9"/>
+
+                <Button Text="Products A" Clicked="ButtonClicked" CommandParameter="13"/>
+                <Button Text="Products B" Clicked="ButtonClicked" CommandParameter="21"/>
+                <Button Text="Products Search" Clicked="ButtonClicked" CommandParameter="12"/>
+
+                <Button Text="Dashboard" Clicked="ButtonClicked" CommandParameter="6"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
