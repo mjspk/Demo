@@ -26,8 +26,8 @@
         x:Name="Mainframe"
         Margin="0,0,0,-20"
         Padding="0"
-      BackgroundColor="{AppThemeBinding Dark={StaticResource DarkBackground},
-                                                      Light={StaticResource PrimaryLight}}"
+        BackgroundColor="{AppThemeBinding Dark={StaticResource Secondary},
+                                          Light={StaticResource LightBackground}}"
         CornerRadius="20"
         HasShadow="True"
         HorizontalOptions="FillAndExpand"

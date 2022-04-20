@@ -20,7 +20,8 @@
                 <Button Text="Manage Accounts" Clicked="ButtonClicked" CommandParameter="10"/>
                 <Button Text="Show Private Key" Clicked="ButtonClicked" CommandParameter="11"/>
                 <Button Text="Products Search" Clicked="ButtonClicked" CommandParameter="12"/>
-                <Button Text="Products" Clicked="ButtonClicked" CommandParameter="13"/>
+                <Button Text="Products A" Clicked="ButtonClicked" CommandParameter="13"/>
+                <Button Text="Products B" Clicked="ButtonClicked" CommandParameter="21"/>
                 <Button Text="Restore Account" Clicked="ButtonClicked" CommandParameter="14"/>
                 <Button Text="Send" Clicked="ButtonClicked" CommandParameter="15"/>
                 <Button Text="Transactions" Clicked="ButtonClicked" CommandParameter="16"/>
