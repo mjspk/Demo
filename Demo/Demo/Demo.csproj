@@ -83,8 +83,8 @@
     <Compile Update="Pages\MakeBidPage.xaml.cs">
       <DependentUpon>MakeBidPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Pages\AuthorTransferRenewalPage.xaml.cs">
-      <DependentUpon>AuthorTransferRenewalPage.xaml</DependentUpon>
+    <Compile Update="Pages\AuthorRegistrationRenewalPage.xaml.cs">
+      <DependentUpon>AuthorRegistrationRenewalPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Pages\AuthorTransferPage.xaml.cs">
       <DependentUpon>AuthorTransferPage.xaml</DependentUpon>
