@@ -10,6 +10,7 @@
     <Application.Resources>
         <converters:StatusToStyleConverter x:Key="StatusToStyleConverter" />
         <converters:TransactionStatusToIconConverter x:Key="TransactionStatusToIconConverter" />
+        <converters:NotificationTypeConverter x:Key="NotificationTypeConverter" />
 
         <xct:InvertedBoolConverter x:Key="InvertedBoolConverter" />
         <xct:IsNotNullOrEmptyConverter x:Key="IsNotNullOrEmptyConverter" />
@@ -53,6 +54,8 @@
             <GradientStop Offset="0.1" Color="Transparent" />
             <GradientStop Offset="1.0" Color="Black" />
         </LinearGradientBrush>
+        <Color x:Key="Orang">#E09A30</Color>
+
         <Color x:Key="Green">#7AE291</Color>
         <Color x:Key="Blue">#408CFF</Color>
         <Color x:Key="Purple">#9A4AFF</Color>
@@ -79,6 +82,16 @@
         <Color x:Key="SubTextColorLight">#738A93</Color>
         <Color x:Key="SubTextColorDark">#C2C2C2</Color>
         <Color x:Key="LighRed">#E6D7D7</Color>
+        <Style x:Key="StackLine" TargetType="StackLayout">
+            <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource Primary}, Light={StaticResource PrimaryForLight}}" />
+            <Setter Property="HeightRequest" Value="0.4" />
+            <Setter Property="Opacity" Value="0.4" />
+        </Style>
+        <Style x:Key="StackSperator" TargetType="StackLayout">
+            <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark=White, Light={StaticResource Secondary}}" />
+            <Setter Property="HeightRequest" Value="0.4" />
+            <Setter Property="Opacity" Value="0.3" />
+        </Style>
         <ControlTemplate x:Key="TabItemTemplate">
             <StackLayout>
                 <Frame
@@ -127,6 +140,61 @@
                 </Frame>
             </StackLayout>
         </ControlTemplate>
+        <ControlTemplate x:Key="RightPinTabItemTemplate">
+            <Frame
+                Margin="0,10,0,4"
+                Padding="5"
+                BackgroundColor="{TemplateBinding CurrentBadgeBackgroundColor}"
+                CornerRadius="6"
+                HasShadow="False"
+                HeightRequest="36"
+                HorizontalOptions="End"
+                VerticalOptions="Center"
+                WidthRequest="50">
+                <Label
+                    FontSize="14"
+                    HorizontalOptions="Center"
+                    Text="{TemplateBinding Text}"
+                    TextColor="{TemplateBinding CurrentTextColor}"
+                    VerticalOptions="Center" />
+            </Frame>
+        </ControlTemplate>
+        <ControlTemplate x:Key="LeftPinTabItemTemplate">
+            <Frame
+                Margin="0,10,0,4"
+                Padding="5"
+                BackgroundColor="{TemplateBinding CurrentBadgeBackgroundColor}"
+                CornerRadius="6"
+                HasShadow="False"
+                HeightRequest="36"
+                HorizontalOptions="Start"
+                VerticalOptions="Center"
+                WidthRequest="50">
+                <Label
+                    FontSize="14"
+                    HorizontalOptions="Center"
+                    Text="{TemplateBinding Text}"
+                    TextColor="{TemplateBinding CurrentTextColor}"
+                    VerticalOptions="Center" />
+            </Frame>
+        </ControlTemplate>
+        <ControlTemplate x:Key="SettingsTabItemTemplate">
+            <Frame
+                Margin="5,0,5,0"
+                Padding="0"
+                BackgroundColor="{TemplateBinding CurrentBadgeBackgroundColor}"
+                CornerRadius="6"
+                HasShadow="False"
+                HeightRequest="34"
+                VerticalOptions="Center">
+                <Label
+                    FontSize="14"
+                    HorizontalOptions="Center"
+                    Text="{TemplateBinding Text}"
+                    TextColor="{TemplateBinding CurrentTextColor}"
+                    VerticalOptions="Center" />
+            </Frame>
+        </ControlTemplate>
         <Style TargetType="xct:TabViewItem">
             <Setter Property="BadgeBackgroundColor" Value="{AppThemeBinding Dark={StaticResource DarkBackground}, Light={StaticResource LightBackground}}" />
             <Setter Property="BadgeBackgroundColorSelected" Value="{AppThemeBinding Dark={StaticResource PrimaryDarkLighten}, Light={StaticResource PrimaryForLight}}" />
@@ -135,7 +203,16 @@
             <Setter Property="TextColorSelected" Value="{AppThemeBinding Dark={StaticResource Primary}, Light={StaticResource PrimaryLight}}" />
         </Style>
         <Style x:Key="RecipientTaps" TargetType="xct:TabViewItem">
+            <Setter Property="ControlTemplate" Value="{StaticResource SettingsTabItemTemplate}" />
+        </Style>
+        <Style x:Key="SettingsTaps" TargetType="xct:TabViewItem">
             <Setter Property="ControlTemplate" Value="{StaticResource RecipientTabItemTemplate}" />
+        </Style>
+        <Style x:Key="LeftPinTap" TargetType="xct:TabViewItem">
+            <Setter Property="ControlTemplate" Value="{StaticResource LeftPinTabItemTemplate}" />
+        </Style>
+        <Style x:Key="RightPinTap" TargetType="xct:TabViewItem">
+            <Setter Property="ControlTemplate" Value="{StaticResource RightPinTabItemTemplate}" />
         </Style>
         <Style x:Key="PrivateKey" TargetType="xct:TabViewItem">
             <Setter Property="Icon" Value="{FontImage Size=35, FontFamily=icomoon, Glyph={x:Static fi:IconFont.PrivateKey}}" />
@@ -145,6 +222,7 @@
             <Setter Property="Icon" Value="{FontImage Size=35, FontFamily=icomoon, Glyph={x:Static fi:IconFont.FileKey}}" />
             <Setter Property="Text" Value="From wallet file" />
         </Style>
+
         <Style ApplyToDerivedTypes="True" TargetType="IndicatorView">
             <Setter Property="SelectedIndicatorColor" Value="{AppThemeBinding Dark={StaticResource PrimaryDark}, Light={StaticResource SelectedColorLight}}" />
             <Setter Property="IndicatorColor" Value="{AppThemeBinding Dark={StaticResource UnSelectedColorDark}, Light={StaticResource UnSelectedColorLight}}" />
@@ -209,12 +287,41 @@
             <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource Secondary}, Light={StaticResource LightBackground}}" />
             <Setter Property="Visual" Value="Material" />
         </Style>
+        <Style x:Key="RedDot" TargetType="Frame">
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="CornerRadius" Value="3" />
+            <Setter Property="BackgroundColor" Value="{StaticResource Red}" />
+            <Setter Property="HeightRequest" Value="6" />
+            <Setter Property="WidthRequest" Value="6" />
+        </Style>
+        <Style x:Key="GreenDot" TargetType="Frame">
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="CornerRadius" Value="3" />
+            <Setter Property="BackgroundColor" Value="{StaticResource Green}" />
+            <Setter Property="HeightRequest" Value="6" />
+            <Setter Property="WidthRequest" Value="6" />
+        </Style>
+        <Style x:Key="OrangDot" TargetType="Frame">
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="CornerRadius" Value="3" />
+            <Setter Property="BackgroundColor" Value="{StaticResource Orang}" />
+            <Setter Property="HeightRequest" Value="6" />
+            <Setter Property="WidthRequest" Value="6" />
+        </Style>
         <Style x:Key="Container" TargetType="Frame">
             <Setter Property="Padding" Value="2" />
             <Setter Property="CornerRadius" Value="10" />
             <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource DarkBackground}, Light={StaticResource LightBackground}}" />
             <Setter Property="BorderColor" Value="{AppThemeBinding Dark={StaticResource PrimaryDarkLighten}, Light=#DDEAEE}" />
             <Setter Property="HasShadow" Value="False" />
+        </Style>
+        <Style x:Key="ComboBox" TargetType="Frame">
+            <Setter Property="Padding" Value="2" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource DarkBackground}, Light={StaticResource LightBackground}}" />
+            <Setter Property="BorderColor" Value="{AppThemeBinding Dark={StaticResource Primary}, Light={StaticResource PrimaryForLight}}" />
+            <Setter Property="HasShadow" Value="False" />
+            <Setter Property="HeightRequest" Value="44" />
         </Style>
         <Style x:Key="PopupHandle" TargetType="Frame">
             <Setter Property="Padding" Value="0" />
@@ -301,6 +408,21 @@
             <Setter Property="CornerRadius" Value="8" />
             <Setter Property="xct:IconTintColorEffect.TintColor" Value="{AppThemeBinding Dark={StaticResource Primary}, Light={StaticResource PrimaryLight}}" />
         </Style>
+        <Style x:Key="LogOut" TargetType="ImageButton">
+            <Setter Property="Source" Value="{FontImage Size=35, FontFamily=icomoon, Glyph={x:Static fi:IconFont.Logout}}" />
+            <Setter Property="xct:IconTintColorEffect.TintColor" Value="{AppThemeBinding Dark={StaticResource Primary}, Light={StaticResource PrimaryForLight}}" />
+
+        </Style>
+        <Style x:Key="Fingerprint" TargetType="ImageButton">
+            <Setter Property="Source" Value="{FontImage Size=35, FontFamily=icomoon, Glyph={x:Static fi:IconFont.Fingerprint}}" />
+            <Setter Property="xct:IconTintColorEffect.TintColor" Value="{AppThemeBinding Dark={StaticResource Primary}, Light={StaticResource PrimaryForLight}}" />
+
+        </Style>
+        <Style x:Key="Backspace" TargetType="ImageButton">
+            <Setter Property="Source" Value="{FontImage Size=35, FontFamily=icomoon, Glyph={x:Static fi:IconFont.Backspace}}" />
+            <Setter Property="xct:IconTintColorEffect.TintColor" Value="{AppThemeBinding Dark={StaticResource Primary}, Light={StaticResource PrimaryForLight}}" />
+
+        </Style>
         <Style x:Key="ArrowLeft" TargetType="ImageButton">
             <Setter Property="Source" Value="{FontImage Size=35, FontFamily=icomoon, Glyph={x:Static fi:IconFont.ArrowLeft}}" />
         </Style>
@@ -317,6 +439,10 @@
         <Style x:Key="Done" TargetType="ImageButton">
             <Setter Property="Source" Value="{FontImage Size=35, FontFamily=icomoon, Glyph={x:Static fi:IconFont.Done}}" />
         </Style>
+        <Style x:Key="Read" TargetType="ImageButton">
+            <Setter Property="Source" Value="{FontImage Size=35, FontFamily=icomoon, Glyph={x:Static fi:IconFont.Read}}" />
+            <Setter Property="xct:IconTintColorEffect.TintColor" Value="{StaticResource Primary}" />
+        </Style>
         <Style x:Key="Check" TargetType="ImageButton">
             <Setter Property="Source" Value="{FontImage Size=35, FontFamily=icomoon, Glyph={x:Static fi:IconFont.Done}}" />
             <Setter Property="xct:IconTintColorEffect.TintColor" Value="{StaticResource Primary}" />
@@ -325,6 +451,11 @@
                     <Setter Property="xct:IconTintColorEffect.TintColor" Value="{AppThemeBinding Dark={StaticResource PrimaryDarkLighten}, Light={StaticResource UnSelectedColorLight}}" />
                 </Trigger>
             </Style.Triggers>
+        </Style>
+        <Style x:Key="Cancel" TargetType="ImageButton">
+            <Setter Property="Source" Value="{FontImage Size=35, FontFamily=icomoon, Glyph={x:Static fi:IconFont.Close}}" />
+            <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource DarkBackground}, Light={StaticResource LightBackground}}" />
+            <Setter Property="xct:ShadowEffect.Color" Value="LightGray" />
         </Style>
         <Style x:Key="Close" TargetType="ImageButton">
             <Setter Property="Source" Value="{FontImage Size=35, FontFamily=icomoon, Glyph={x:Static fi:IconFont.Close}}" />
@@ -416,6 +547,7 @@
         <Style x:Key="Dots" TargetType="ImageButton">
             <Setter Property="Source" Value="{FontImage Size=35, FontFamily=icomoon, Glyph={x:Static fi:IconFont.Dots}}" />
         </Style>
+
         <Style
             x:Key="Receive"
             BasedOn="{StaticResource DashBoard}"
@@ -464,21 +596,95 @@
             <Setter Property="HeightRequest" Value="30" />
             <Setter Property="WidthRequest" Value="30" />
         </Style>
+        <Style x:Key="Rhombus" TargetType="Image">
+            <Setter Property="Source" Value="{FontImage Size=35, FontFamily=icomoon, Glyph={x:Static fi:IconFont.Rhombus}}" />
+            <Setter Property="xct:IconTintColorEffect.TintColor" Value="{AppThemeBinding Dark={StaticResource Primary}, Light={StaticResource PrimaryDarkLighten}}" />
+            <Setter Property="HeightRequest" Value="16" />
+            <Setter Property="WidthRequest" Value="16" />
+        </Style>
         <Style x:Key="TopArrowIcon" TargetType="Image">
             <Setter Property="Source" Value="{FontImage Size=35, FontFamily=icomoon, Glyph={x:Static fi:IconFont.ArrowTop}}" />
-            <Setter Property="xct:IconTintColorEffect.TintColor" Value="{AppThemeBinding Dark=#ffffff, Light=#1E5468}" />
+            <Setter Property="xct:IconTintColorEffect.TintColor" Value="{AppThemeBinding Dark=#ffffff, Light={StaticResource PrimaryDark}}" />
             <Setter Property="HeightRequest" Value="22" />
             <Setter Property="WidthRequest" Value="22" />
         </Style>
         <Style x:Key="BottomArrowIcon" TargetType="Image">
             <Setter Property="Source" Value="{FontImage Size=35, FontFamily=icomoon, Glyph={x:Static fi:IconFont.ArrowBottom}}" />
-            <Setter Property="xct:IconTintColorEffect.TintColor" Value="{AppThemeBinding Dark=#ffffff, Light=#1E5468}" />
+            <Setter Property="xct:IconTintColorEffect.TintColor" Value="{AppThemeBinding Dark=#ffffff, Light={StaticResource PrimaryDark}}" />
             <Setter Property="HeightRequest" Value="22" />
             <Setter Property="WidthRequest" Value="22" />
         </Style>
+
+        <Style x:Key="Logo2" TargetType="Image">
+            <Setter Property="Source" Value="{AppThemeBinding Dark='Logo2Dark.png', Light='Logo2Light.png'}" />
+            <Setter Property="HeightRequest" Value="120" />
+            <Setter Property="WidthRequest" Value="120" />
+        </Style>
+        <Style x:Key="Logo" TargetType="Image">
+            <Setter Property="Source" Value="{AppThemeBinding Dark='IconNight.png', Light='Icon.png'}" />
+            <Setter Property="HeightRequest" Value="120" />
+            <Setter Property="WidthRequest" Value="120" />
+        </Style>
+        <Style x:Key="Logo3" TargetType="Image">
+            <Setter Property="Source" Value="IconNight.png" />
+            <Setter Property="xct:IconTintColorEffect.TintColor" Value="{AppThemeBinding Dark={StaticResource Primary}, Light={StaticResource PrimaryDark}}" />
+            <Setter Property="HeightRequest" Value="120" />
+            <Setter Property="WidthRequest" Value="120" />
+        </Style>
+        <Style x:Key="NoNetwork" TargetType="Image">
+            <Setter Property="Source" Value="{FontImage Size=35, FontFamily=icomoon, Glyph={x:Static fi:IconFont.NoNetwork}}" />
+            <Setter Property="xct:IconTintColorEffect.TintColor" Value="{StaticResource Primary}" />
+            <Setter Property="HeightRequest" Value="48" />
+            <Setter Property="WidthRequest" Value="48" />
+        </Style>
+        <Style x:Key="AccountsLogo" TargetType="Image">
+            <Setter Property="Source" Value="{FontImage Size=35, FontFamily=icomoon, Glyph={x:Static fi:IconFont.Accounts}}" />
+            <Setter Property="xct:IconTintColorEffect.TintColor" Value="{StaticResource Primary}" />
+            <Setter Property="HeightRequest" Value="48" />
+            <Setter Property="WidthRequest" Value="48" />
+        </Style>
+
+        <Style x:Key="Globe" TargetType="Image">
+            <Setter Property="Source" Value="{FontImage Size=35, FontFamily=icomoon, Glyph={x:Static fi:IconFont.Network}}" />
+            <Setter Property="xct:IconTintColorEffect.TintColor" Value="{AppThemeBinding Dark={StaticResource Primary}, Light={StaticResource PrimaryDark}}" />
+            <Setter Property="HeightRequest" Value="18" />
+            <Setter Property="WidthRequest" Value="18" />
+            <Setter Property="Opacity" Value="0.5" />
+        </Style>
+
+        <Style x:Key="Star" TargetType="Image">
+            <Setter Property="Source" Value="{FontImage Size=35, FontFamily=icomoon, Glyph={x:Static fi:IconFont.Star}}" />
+            <Setter Property="xct:IconTintColorEffect.TintColor" Value="{AppThemeBinding Dark={StaticResource Primary}, Light={StaticResource PrimaryDark}}" />
+            <Setter Property="HeightRequest" Value="18" />
+            <Setter Property="WidthRequest" Value="18" />
+            <Setter Property="Opacity" Value="0.5" />
+
+        </Style>
+        <Style x:Key="Twitter" TargetType="Image">
+            <Setter Property="Source" Value="{FontImage Size=35, FontFamily=icomoon, Glyph={x:Static fi:IconFont.Twitter}}" />
+            <Setter Property="xct:IconTintColorEffect.TintColor" Value="{AppThemeBinding Dark={StaticResource Primary}, Light={StaticResource PrimaryDark}}" />
+            <Setter Property="HeightRequest" Value="18" />
+            <Setter Property="WidthRequest" Value="18" />
+            <Setter Property="Opacity" Value="0.5" />
+
+        </Style>
+        <Style x:Key="Telegram" TargetType="Image">
+            <Setter Property="Source" Value="{FontImage Size=35, FontFamily=icomoon, Glyph={x:Static fi:IconFont.Telegram}}" />
+            <Setter Property="xct:IconTintColorEffect.TintColor" Value="{AppThemeBinding Dark={StaticResource Primary}, Light={StaticResource PrimaryDark}}" />
+            <Setter Property="HeightRequest" Value="18" />
+            <Setter Property="WidthRequest" Value="18" />
+            <Setter Property="Opacity" Value="0.5" />
+        </Style>
+        <Style x:Key="Mail" TargetType="Image">
+            <Setter Property="Source" Value="{FontImage Size=35, FontFamily=icomoon, Glyph={x:Static fi:IconFont.Mail}}" />
+            <Setter Property="xct:IconTintColorEffect.TintColor" Value="{AppThemeBinding Dark={StaticResource Primary}, Light={StaticResource PrimaryDark}}" />
+            <Setter Property="HeightRequest" Value="18" />
+            <Setter Property="WidthRequest" Value="18" />
+            <Setter Property="Opacity" Value="0.5" />
+        </Style>
         <Style x:Key="BottomArrowsIcon" TargetType="Image">
             <Setter Property="Source" Value="{FontImage Size=35, FontFamily=icomoon, Glyph={x:Static fi:IconFont.ArrowsBottom}}" />
-            <Setter Property="xct:IconTintColorEffect.TintColor" Value="{AppThemeBinding Dark=#ffffff, Light=#1E5468}" />
+            <Setter Property="xct:IconTintColorEffect.TintColor" Value="{AppThemeBinding Dark=#ffffff, Light={StaticResource PrimaryDark}}" />
             <Setter Property="HeightRequest" Value="22" />
             <Setter Property="WidthRequest" Value="22" />
         </Style>
@@ -544,6 +750,13 @@
             <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource Secondary}, Light={StaticResource PrimaryLight}}" />
         </Style>
         <Style
+            x:Key="NumberLabel"
+            ApplyToDerivedTypes="True"
+            TargetType="Label">
+            <Setter Property="FontSize" Value="36" />
+            <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource Primary}, Light={StaticResource PrimaryForLight}}" />
+        </Style>
+        <Style
             x:Key="UNTLabel"
             ApplyToDerivedTypes="True"
             TargetType="Label">
@@ -578,15 +791,15 @@
             <Setter Property="FontFamily" Value="Medium" />
         </Style>
         <Style ApplyToDerivedTypes="True" TargetType="cls:BorderPicker">
-            <Setter Property="TextColor" Value="Black" />
-            <Setter Property="FontSize" Value="16" />
+            <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource PrimaryLight}, Light={StaticResource PrimaryDark}}" />
+            <Setter Property="FontSize" Value="13" />
             <Setter Property="BorderWidth" Value="1" />
-            <Setter Property="BorderRadius" Value="8" />
-            <Setter Property="HeightRequest" Value="40" />
+            <Setter Property="BorderRadius" Value="6" />
             <Setter Property="FillColor" Value="{AppThemeBinding Dark={StaticResource DarkBackground}, Light={StaticResource LightBackground}}" />
-            <Setter Property="TitleColor" Value="LightGray" />
+            <Setter Property="BorderColor" Value="{AppThemeBinding Dark={StaticResource Primary}, Light={StaticResource PrimaryForLight}}" />
+            <Setter Property="HeightRequest" Value="44" />
+            <Setter Property="TitleColor" Value="{AppThemeBinding Dark={StaticResource PrimaryLight}, Light={StaticResource PrimaryDark}}" />
             <Setter Property="FontFamily" Value="Medium" />
-            <Setter Property="BorderColor" Value="LightGray" />
         </Style>
         <Style ApplyToDerivedTypes="True" TargetType="cls:BorderEntry">
             <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource PrimaryLight}, Light={StaticResource PrimaryDark}}" />

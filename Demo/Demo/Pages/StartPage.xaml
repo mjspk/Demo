@@ -1,37 +1,172 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" NavigationPage.HasNavigationBar="False"
-             x:Class="Demo.Pages.StartPage">
+<ContentPage
+    x:Class="Demo.Pages.StartPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Padding="35">
-                <Button Text="Manage Accounts" Clicked="ButtonClicked" CommandParameter="10"/>
-                <Button Text="Create Account" Clicked="ButtonClicked" CommandParameter="5"/>
-                <Button Text="Account Details" Clicked="ButtonClicked" CommandParameter="0"/>
-                <Button Text="Delete Account" Clicked="ButtonClicked" CommandParameter="7"/>
-                <Button Text="Restore Account" Clicked="ButtonClicked" CommandParameter="14"/>
-                <Button Text="Show Private Key" Clicked="ButtonClicked" CommandParameter="11"/>
+                <Button
+                    Clicked="ButtonClicked"
+                    CommandParameter="10"
+                    Text="Manage Accounts" />
+                <Button
+                    Clicked="ButtonClicked"
+                    CommandParameter="5"
+                    Text="Create Account" />
+                <Button
+                    Clicked="ButtonClicked"
+                    CommandParameter="0"
+                    Text="Account Details" />
+                <Button
+                    Clicked="ButtonClicked"
+                    CommandParameter="7"
+                    Text="Delete Account" />
+                <Button
+                    Clicked="ButtonClicked"
+                    CommandParameter="14"
+                    Text="Restore Account" />
+                <Button
+                    Clicked="ButtonClicked"
+                    CommandParameter="11"
+                    Text="Show Private Key" />
 
-                <Button Text="ETH Transfer" Clicked="ButtonClicked" CommandParameter="8"/>
-                <Button Text="ETH Transfer Completed" Clicked="ButtonClicked" CommandParameter="17"/>
-                <Button Text="ETH Transfer Unfinished" Clicked="ButtonClicked" CommandParameter="18"/>
+                <Button
+                    Clicked="ButtonClicked"
+                    CommandParameter="8"
+                    Text="ETH Transfer" />
+                <Button
+                    Clicked="ButtonClicked"
+                    CommandParameter="17"
+                    Text="ETH Transfer Completed" />
+                <Button
+                    Clicked="ButtonClicked"
+                    CommandParameter="18"
+                    Text="ETH Transfer Unfinished" />
 
-                <Button Text="Send" Clicked="ButtonClicked" CommandParameter="15"/>
-                <Button Text="Transactions" Clicked="ButtonClicked" CommandParameter="16"/>
+                <Button
+                    Clicked="ButtonClicked"
+                    CommandParameter="15"
+                    Text="Send" />
+                <Button
+                    Clicked="ButtonClicked"
+                    CommandParameter="16"
+                    Text="Transactions A" />
+                <Button
+                    Clicked="ButtonClicked"
+                    CommandParameter="22"
+                    Text="Transactions B" />
 
-                <Button Text="Authors" Clicked="ButtonClicked" CommandParameter="1"/>
-                <Button Text="Author Search A" Clicked="ButtonClicked" CommandParameter="2"/>
-                <Button Text="Author Search B" Clicked="ButtonClicked" CommandParameter="19"/>
-                <Button Text="Author Search C" Clicked="ButtonClicked" CommandParameter="20"/>
-                <Button Text="Tranfer Author A" Clicked="ButtonClicked" CommandParameter="3"/>
-                <Button Text="Tranfer Author B" Clicked="ButtonClicked" CommandParameter="4"/>
-                <Button Text="Make a Bid" Clicked="ButtonClicked" CommandParameter="9"/>
+                <Button
+                    Clicked="ButtonClicked"
+                    CommandParameter="1"
+                    Text="Authors" />
+                <Button
+                    Clicked="ButtonClicked"
+                    CommandParameter="2"
+                    Text="Author Search A" />
+                <Button
+                    Clicked="ButtonClicked"
+                    CommandParameter="19"
+                    Text="Author Search B" />
+                <Button
+                    Clicked="ButtonClicked"
+                    CommandParameter="20"
+                    Text="Author Search C" />
+                <Button
+                    Clicked="ButtonClicked"
+                    CommandParameter="3"
+                    Text="Author Registration" />
+                <Button
+                    Clicked="ButtonClicked"
+                    CommandParameter="4"
+                    Text="Author Registration Renewal" />
+                <Button
+                    Clicked="ButtonClicked"
+                    CommandParameter="9"
+                    Text="Make a Bid" />
 
-                <Button Text="Products A" Clicked="ButtonClicked" CommandParameter="13"/>
-                <Button Text="Products B" Clicked="ButtonClicked" CommandParameter="21"/>
-                <Button Text="Products Search" Clicked="ButtonClicked" CommandParameter="12"/>
+                <Button
+                    Clicked="ButtonClicked"
+                    CommandParameter="13"
+                    Text="Products A" />
+                <Button
+                    Clicked="ButtonClicked"
+                    CommandParameter="21"
+                    Text="Products B" />
+                <Button
+                    Clicked="ButtonClicked"
+                    CommandParameter="12"
+                    Text="Products Search" />
 
-                <Button Text="Dashboard" Clicked="ButtonClicked" CommandParameter="6"/>
+                <Button
+                    Clicked="ButtonClicked"
+                    CommandParameter="6"
+                    Text="Dashboard" />
+
+
+                <Button
+                    Clicked="ButtonClicked"
+                    CommandParameter="23"
+                    Text="Enter Pin A" />
+                <Button
+                    Clicked="ButtonClicked"
+                    CommandParameter="24"
+                    Text="Enter Pin B" />
+                <Button
+                    Clicked="ButtonClicked"
+                    CommandParameter="25"
+                    Text="Create Pin" />
+                <Button
+                    Clicked="ButtonClicked"
+                    CommandParameter="26"
+                    Text="Network" />
+                <Button
+                    Clicked="ButtonClicked"
+                    CommandParameter="27"
+                    Text="Settings A" />
+                <Button
+                    Clicked="ButtonClicked"
+                    CommandParameter="28"
+                    Text="Settings B" />
+                <Button
+                    Clicked="ButtonClicked"
+                    CommandParameter="29"
+                    Text="Help A" />
+                <Button
+                    Clicked="ButtonClicked"
+                    CommandParameter="30"
+                    Text="Help B" />
+                <Button
+                    Clicked="ButtonClicked"
+                    CommandParameter="31"
+                    Text="Whats New" />
+                <Button
+                    Clicked="ButtonClicked"
+                    CommandParameter="32"
+                    Text="Whats New Popup" />
+                <Button
+                    Clicked="ButtonClicked"
+                    CommandParameter="33"
+                    Text="Notifications" />
+                <Button
+                    Clicked="ButtonClicked"
+                    CommandParameter="34"
+                    Text="Notification" />
+                <Button
+                    Clicked="ButtonClicked"
+                    CommandParameter="35"
+                    Text="Accounts Popup" />
+                <Button
+                    Clicked="ButtonClicked"
+                    CommandParameter="36"
+                    Text="No Network Popup" />
+                <Button
+                    Clicked="ButtonClicked"
+                    CommandParameter="37"
+                    Text="About" />
+
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

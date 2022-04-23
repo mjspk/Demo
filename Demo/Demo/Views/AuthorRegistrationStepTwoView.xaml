@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="Demo.Views.AuthorRegistrationStepTwoView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cls="clr-namespace:Demo.Controls"
+    xmlns:views="clr-namespace:Demo.Views"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    x:Name="view">
+    <StackLayout Padding="5" Spacing="30">
+        <StackLayout>
+            <Label FontSize="18" Text="Do you confirm registration  of this author?" />
+            <Label
+                FontSize="13"
+                Style="{StaticResource Regular}"
+                Text="Clicking 'Confirm' button, registration will start" />
+        </StackLayout>
+        <StackLayout Spacing="20">
+            <Grid ColumnDefinitions="*,*">
+                <Label
+                    Grid.Column="0"
+                    Style="{StaticResource DashLabel}"
+                    Text="Registering Author:" />
+                <Label
+                    Grid.Column="1"
+                    HorizontalOptions="End"
+                    Text="UltRAnet ORG" />
+            </Grid>
+            <Grid ColumnDefinitions="*,*">
+                <Label
+                    Grid.Column="0"
+                    Style="{StaticResource DashLabel}"
+                    Text="With name:" />
+                <Label
+                    Grid.Column="1"
+                    HorizontalOptions="End"
+                    Text="ultranetorg" />
+            </Grid>
+            <Grid ColumnDefinitions="*,*">
+                <Label
+                    Grid.Column="0"
+                    Style="{StaticResource DashLabel}"
+                    Text="With price:" />
+                <Label
+                    Grid.Column="1"
+                    HorizontalOptions="End"
+                    Text="500 UNT ($220)" />
+            </Grid>
+        </StackLayout>
+        <StackLayout>
+            <Label Style="{StaticResource DashLabel}" Text="From Account" />
+            <views:AccountView Grid.ColumnSpan="2" BindingContext="{Binding Wallet}">
+                <views:AccountView.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SelectAccountCommand}" />
+                </views:AccountView.GestureRecognizers>
+            </views:AccountView>
+        </StackLayout>
+    </StackLayout>
+</ContentView>

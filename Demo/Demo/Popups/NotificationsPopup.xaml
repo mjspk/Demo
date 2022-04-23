@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+    x:Class="Demo.Popups.NotificationsPopup"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cls="clr-namespace:Demo.Controls"
+    xmlns:models="clr-namespace:Demo.Models"
+    xmlns:pages="http://rotorgames.com"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    x:Name="page"
+    HasSystemPadding="{OnPlatform Android=True,
+                                  iOS=False}">
+    <pages:PopupPage.Animation>
+        <pages:ScaleAnimation
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="False"
+            PositionIn="Bottom"
+            PositionOut="Bottom"
+            ScaleIn="1.2"
+            ScaleOut="0.8" />
+    </pages:PopupPage.Animation>
+    <Frame
+        x:Name="Mainframe"
+        Margin="0,0,0,-20"
+        Padding="20,8,20,50"
+        BackgroundColor="{AppThemeBinding Dark={StaticResource Secondary},
+                                          Light={StaticResource LightBackground}}"
+        CornerRadius="20"
+        HasShadow="True"
+        HeightRequest="600"
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="EndAndExpand">
+        <StackLayout HorizontalOptions="FillAndExpand" Spacing="15">
+            <Grid RowDefinitions="20,Auto,*" RowSpacing="15">
+                <Frame
+                    Grid.Row="0"
+                    HorizontalOptions="CenterAndExpand"
+                    Style="{StaticResource PopupHandle}"
+                    VerticalOptions="Center" />
+                <Grid
+                    Grid.Row="1"
+                    ColumnDefinitions="*,Auto"
+                    VerticalOptions="Center">
+                    <Label
+                        Grid.Column="0"
+                        FontSize="18"
+                        Text="Notifications"
+                        VerticalOptions="Center" />
+                    <ImageButton
+                        Grid.Column="1"
+                        HorizontalOptions="EndAndExpand"
+                        Style="{StaticResource Dots}"
+                        VerticalOptions="Center" />
+                </Grid>
+                <CollectionView
+                    Grid.Row="2"
+                    ItemsSource="{Binding Notifications}"
+                    SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Padding="0,8,0,8">
+                                <SwipeView BackgroundColor="Transparent">
+                                    <SwipeView.RightItems>
+                                        <SwipeItems>
+                                            <SwipeItemView BackgroundColor="Transparent" WidthRequest="83">
+                                                <ImageButton
+                                                    Padding="15"
+                                                    BackgroundColor="Transparent"
+                                                    CornerRadius="0"
+                                                    HorizontalOptions="FillAndExpand"
+                                                    Style="{StaticResource Read}"
+                                                    VerticalOptions="FillAndExpand" />
+                                            </SwipeItemView>
+                                        </SwipeItems>
+                                    </SwipeView.RightItems>
+                                    <SwipeView.LeftItems>
+                                        <SwipeItems>
+                                            <SwipeItemView BackgroundColor="Transparent" WidthRequest="83">
+                                                <ImageButton
+                                                    Padding="15"
+                                                    BackgroundColor="Transparent"
+                                                    CornerRadius="0"
+                                                    HorizontalOptions="FillAndExpand"
+                                                    Style="{StaticResource Read}"
+                                                    VerticalOptions="FillAndExpand" />
+                                            </SwipeItemView>
+                                        </SwipeItems>
+                                    </SwipeView.LeftItems>
+                                    <Grid
+                                        Padding="0,5"
+                                        ColumnDefinitions="50,*,30"
+                                        ColumnSpacing="10"
+                                        RowDefinitions="25,25"
+                                        RowSpacing="0">
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding BindingContext.ItemTappedCommand, Source={x:Reference page}}" CommandParameter="{Binding .}" />
+                                        </Grid.GestureRecognizers>
+                                        <Image
+                                            Grid.Row="0"
+                                            Grid.RowSpan="2"
+                                            Grid.Column="0"
+                                            Aspect="AspectFill"
+                                            HeightRequest="28"
+                                            HorizontalOptions="Center"
+                                            Source="{Binding Type, Converter={StaticResource NotificationTypeConverter}}"
+                                            VerticalOptions="Center"
+                                            WidthRequest="25" />
+                                        <StackLayout
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            Orientation="Horizontal"
+                                            Spacing="5">
+                                            <Label
+                                                FontSize="13"
+                                                Text="{Binding Title}"
+                                                VerticalOptions="Center" />
+                                            <Frame HorizontalOptions="Start" VerticalOptions="Center">
+                                                <Frame.Triggers>
+                                                    <DataTrigger
+                                                        Binding="{Binding Severity}"
+                                                        TargetType="Frame"
+                                                        Value="{Static models:Severity.High}">
+                                                        <Setter Property="Style" Value="{StaticResource RedDot}" />
+                                                    </DataTrigger>
+                                                    <DataTrigger
+                                                        Binding="{Binding Severity}"
+                                                        TargetType="Frame"
+                                                        Value="{Static models:Severity.Mid}">
+                                                        <Setter Property="Style" Value="{StaticResource OrangDot}" />
+                                                    </DataTrigger>
+                                                    <DataTrigger
+                                                        Binding="{Binding Severity}"
+                                                        TargetType="Frame"
+                                                        Value="{Static models:Severity.Low}">
+                                                        <Setter Property="Style" Value="{StaticResource GreenDot}" />
+                                                    </DataTrigger>
+                                                </Frame.Triggers>
+                                            </Frame>
+                                        </StackLayout>
+                                        <Label
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            FontSize="10"
+                                            Text="{Binding Body}"
+                                            VerticalOptions="Start" />
+                                        <ImageButton
+                                            Grid.Row="0"
+                                            Grid.RowSpan="2"
+                                            Grid.Column="2"
+                                            Padding="1"
+                                            Command="{Binding BindingContext.OptionsCommand, Source={x:Reference page}}"
+                                            CommandParameter="{Binding .}"
+                                            Style="{StaticResource Dots}"
+                                            VerticalOptions="Center" />
+                                    </Grid>
+                                </SwipeView>
+                                <StackLayout Style="{StaticResource StackSperator}" />
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
+            <Button Text="Close" />
+        </StackLayout>
+    </Frame>
+</pages:PopupPage>

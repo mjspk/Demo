@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <cls:CustomPage
-    x:Class="Demo.Pages.AuthorTransferRenewalPage"
+    x:Class="Demo.Pages.AuthorRegistrationRenewalPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:cls="clr-namespace:Demo.Controls"
     xmlns:views="clr-namespace:Demo.Views"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     x:Name="page"
-    Title="Transfer Author">
+    Title="Author Registration">
     <cls:CustomPage.MainContent>
         <Grid
             Padding="{StaticResource PagePadding}"
@@ -28,8 +28,8 @@
                 </CarouselView.ItemTemplate>
                 <CarouselView.ItemsSource>
                     <x:Array Type="{x:Type View}">
-                        <views:AuthorTransferRenewalStepOneView />
-                        <views:AuthorTransferRenewalStepTwoView />
+                        <views:AuthorRegistrationRenewalStepOneView />
+                        <views:AuthorRegistrationRenewalStepTwoView />
                     </x:Array>
                 </CarouselView.ItemsSource>
             </CarouselView>

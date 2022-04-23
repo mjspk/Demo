@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cls:CustomPage
+    x:Class="Demo.Pages.SettingsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:c1="http://schemas.grapecity.com/xf/2019/xaml"
+    xmlns:cls="clr-namespace:Demo.Controls"
+    xmlns:fi="clr-namespace:Demo.Models"
+    xmlns:views="clr-namespace:Demo.Views"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    x:Name="page"
+    Title="Settings">
+    <cls:CustomPage.RightContent>
+        <StackLayout>
+            <ImageButton
+                HorizontalOptions="End"
+                Style="{StaticResource Search}"
+                VerticalOptions="Center" />
+        </StackLayout>
+    </cls:CustomPage.RightContent>
+    <cls:CustomPage.MainContent>
+        <Grid
+            Padding="{StaticResource PagePadding}"
+            RowDefinitions="Auto,0.4,Auto,0.4,*,Auto"
+            RowSpacing="25">
+            <Grid
+                Grid.Row="0"
+                ColumnDefinitions="*,46"
+                ColumnSpacing="50"
+                RowDefinitions="Auto,Auto"
+                RowSpacing="1">
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Style="{StaticResource DashLabel}"
+                    Text="Block app" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    FontSize="13"
+                    Style="{StaticResource Regular}"
+                    Text="After blocking, the application will become not available for download" />
+                <cls:SwitchView
+                    Grid.RowSpan="2"
+                    Grid.Column="1"
+                    VerticalOptions="Center" />
+            </Grid>
+            <StackLayout Grid.Row="1" Style="{StaticResource StackLine}" />
+
+            <Grid
+                Grid.Row="2"
+                ColumnDefinitions="*,46"
+                ColumnSpacing="40"
+                RowDefinitions="Auto,Auto,Auto">
+                <Label
+                    Grid.Row="0"
+                    Style="{StaticResource DashLabel}"
+                    Text="Block app" />
+                <Label
+                    Grid.Row="1"
+                    FontSize="13"
+                    Style="{StaticResource Regular}"
+                    Text="After blocking, the application will become not available for download" />
+                <xct:TabView
+                    x:Name="tv"
+                    Grid.Row="2"
+                    Grid.ColumnSpan="2"
+                    IsSwipeEnabled="False"
+                    TabStripHeight="46"
+                    TabStripPlacement="Bottom">
+                    <xct:TabView.TabStripBackgroundView>
+                        <Frame HeightRequest="44" Style="{StaticResource Container}" />
+                    </xct:TabView.TabStripBackgroundView>
+                    <xct:TabViewItem Style="{StaticResource RecipientTaps}" Text="One" />
+                    <xct:TabViewItem Style="{StaticResource RecipientTaps}" Text="Two" />
+                    <xct:TabViewItem Style="{StaticResource RecipientTaps}" Text="Three" />
+                </xct:TabView>
+            </Grid>
+            <StackLayout Grid.Row="3" Style="{StaticResource StackLine}" />
+            <StackLayout Grid.Row="4">
+                <Label Style="{StaticResource DashLabel}" Text="Enable secure sign in" />
+                <Grid ColumnDefinitions="*,35" RowSpacing="-10">
+                    <cls:BorderPicker
+                        x:Name="picker"
+                        Title="Select"
+                        Grid.ColumnSpan="2"
+                        HorizontalOptions="FillAndExpand"
+                        ItemsSource="{Binding Months}" />
+                    <Image
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        HorizontalOptions="Center"
+                        InputTransparent="True"
+                        Style="{StaticResource BottomArrowIcon}"
+                        VerticalOptions="Center">
+                        <Image.Triggers>
+                            <DataTrigger
+                                Binding="{Binding IsFocused, Source={Reference picker}}"
+                                TargetType="Image"
+                                Value="False">
+                                <Setter Property="Rotation" Value="0" />
+                            </DataTrigger>
+                            <DataTrigger
+                                Binding="{Binding IsFocused, Source={Reference picker}}"
+                                TargetType="Image"
+                                Value="True">
+                                <Setter Property="Rotation" Value="180" />
+                            </DataTrigger>
+                        </Image.Triggers>
+                    </Image>
+                </Grid>
+            </StackLayout>
+            <Button
+                Grid.Row="5"
+                Command="{Binding RegisterProductCommand}"
+                Text="Close" />
+        </Grid>
+    </cls:CustomPage.MainContent>
+</cls:CustomPage>

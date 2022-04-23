@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+    x:Class="Demo.Popups.NotificationPopup"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cls="clr-namespace:Demo.Controls"
+    xmlns:models="clr-namespace:Demo.Models"
+    xmlns:pages="http://rotorgames.com"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    x:Name="page"
+    HasSystemPadding="{OnPlatform Android=True,
+                                  iOS=False}">
+    <pages:PopupPage.Animation>
+        <pages:ScaleAnimation
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="False"
+            PositionIn="Bottom"
+            PositionOut="Bottom"
+            ScaleIn="1.2"
+            ScaleOut="0.8" />
+    </pages:PopupPage.Animation>
+    <Frame
+        x:Name="Mainframe"
+        Margin="0,0,0,-20"
+        Padding="20,8,20,50"
+        BackgroundColor="{AppThemeBinding Dark={StaticResource Secondary},
+                                          Light={StaticResource LightBackground}}"
+        CornerRadius="20"
+        HasShadow="True"
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="EndAndExpand">
+        <StackLayout HorizontalOptions="FillAndExpand" Spacing="15">
+            <Grid RowDefinitions="20,Auto,*" RowSpacing="15">
+                <Frame
+                    Grid.Row="0"
+                    HorizontalOptions="CenterAndExpand"
+                    Style="{StaticResource PopupHandle}"
+                    VerticalOptions="Center" />
+                <Grid
+                    Grid.Row="1"
+                    ColumnDefinitions="*,*,*"
+                    VerticalOptions="Center">
+                    <Label
+                        Grid.Column="1"
+                        FontSize="18"
+                        Text="Notification"
+                        VerticalOptions="Center" />
+                    <ImageButton
+                        Grid.Column="0"
+                        HeightRequest="28"
+                        HorizontalOptions="Start"
+                        Opacity="0.4"
+                        Style="{StaticResource ArrowLeft}"
+                        VerticalOptions="Center"
+                        WidthRequest="28" />
+                </Grid>
+                <StackLayout Grid.Row="2" Spacing="10">
+                    <Image
+                        Grid.Row="0"
+                        Grid.RowSpan="2"
+                        Grid.Column="0"
+                        Aspect="AspectFill"
+                        HeightRequest="35"
+                        HorizontalOptions="Center"
+                        Source="{Binding Notification.Type, Converter={StaticResource NotificationTypeConverter}}"
+                        WidthRequest="35" />
+                    <Grid ColumnDefinitions="*,*">
+                        <Label
+                            Grid.Column="0"
+                            Style="{StaticResource DashLabel}"
+                            Text="Date" />
+                        <Label
+                            Grid.Column="1"
+                            HorizontalOptions="End"
+                            Opacity="0.7"
+                            Text="Today" />
+                    </Grid>
+                    <Grid ColumnDefinitions="*,*">
+                        <Label
+                            Grid.Column="0"
+                            Style="{StaticResource DashLabel}"
+                            Text="Severity" />
+                        <StackLayout
+                            Grid.Column="1"
+                            HorizontalOptions="EndAndExpand"
+                            Orientation="Horizontal"
+                            Spacing="5">
+                            <Label
+                                FontSize="13"
+                                Text="{Binding Notification.Severity}"
+                                VerticalOptions="Center" />
+                            <Frame HorizontalOptions="End" VerticalOptions="Center">
+                                <Frame.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding Notification.Severity}"
+                                        TargetType="Frame"
+                                        Value="{Static models:Severity.High}">
+                                        <Setter Property="Style" Value="{StaticResource RedDot}" />
+                                    </DataTrigger>
+                                    <DataTrigger
+                                        Binding="{Binding Severity}"
+                                        TargetType="Frame"
+                                        Value="{Static models:Severity.Mid}">
+                                        <Setter Property="Style" Value="{StaticResource OrangDot}" />
+                                    </DataTrigger>
+                                    <DataTrigger
+                                        Binding="{Binding Severity}"
+                                        TargetType="Frame"
+                                        Value="{Static models:Severity.Low}">
+                                        <Setter Property="Style" Value="{StaticResource GreenDot}" />
+                                    </DataTrigger>
+                                </Frame.Triggers>
+                            </Frame>
+                        </StackLayout>
+                    </Grid>
+                    <Grid RowDefinitions="Auto,Auto" RowSpacing="10">
+                        <Label
+                            Grid.Row="0"
+                            Style="{StaticResource DashLabel}"
+                            Text="Notification" />
+                        <Label
+                            Grid.Row="1"
+                            HorizontalOptions="Start"
+                            Opacity="0.7"
+                            Text="{Binding Notification.Body}" />
+                    </Grid>
+                </StackLayout>
+            </Grid>
+            <Button Text="Mark as read" />
+        </StackLayout>
+    </Frame>
+</pages:PopupPage>

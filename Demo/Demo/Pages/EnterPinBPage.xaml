@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cls:CustomPage
+    x:Class="Demo.Pages.EnterPinBPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cls="clr-namespace:Demo.Controls"
+    xmlns:fi="clr-namespace:Demo.Models"
+    xmlns:views="clr-namespace:Demo.Views"
+    x:Name="page"
+    HasBackButton="False">
+    <cls:CustomPage.MainContent>
+        <ScrollView>
+            <StackLayout Padding="{StaticResource PagePadding}" Spacing="70">
+                <StackLayout Spacing="20">
+                    <Image HorizontalOptions="Center" Style="{StaticResource Logo}" />
+                    <Label
+                        FontSize="18"
+                        HorizontalOptions="Center"
+                        Text=" Ultranet User Center" />
+                </StackLayout>
+                <IndicatorView HorizontalOptions="Center">
+                    <IndicatorView.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>0</x:String>
+                            <x:String>0</x:String>
+                            <x:String>0</x:String>
+                            <x:String>0</x:String>
+                            <x:String>0</x:String>
+                            <x:String>0</x:String>
+                        </x:Array>
+                    </IndicatorView.ItemsSource>
+                    <IndicatorView.IndicatorTemplate>
+                        <DataTemplate>
+                            <Button Margin="5" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="14" WidthRequest="14" CornerRadius="7"/>
+                        </DataTemplate>
+                    </IndicatorView.IndicatorTemplate>
+                </IndicatorView>
+                <Grid
+                    ColumnDefinitions="*,*,*"
+                    RowDefinitions="*,*,*,*"
+                    RowSpacing="40"
+                    VerticalOptions="EndAndExpand">
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        HorizontalOptions="Center"
+                        Style="{StaticResource NumberLabel}"
+                        Text="1"
+                        VerticalOptions="Center" />
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        HorizontalOptions="Center"
+                        Style="{StaticResource NumberLabel}"
+                        Text="2"
+                        VerticalOptions="Center" />
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        HorizontalOptions="Center"
+                        Style="{StaticResource NumberLabel}"
+                        Text="3"
+                        VerticalOptions="Center" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        HorizontalOptions="Center"
+                        Style="{StaticResource NumberLabel}"
+                        Text="4"
+                        VerticalOptions="Center" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        HorizontalOptions="Center"
+                        Style="{StaticResource NumberLabel}"
+                        Text="5"
+                        VerticalOptions="Center" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        HorizontalOptions="Center"
+                        Style="{StaticResource NumberLabel}"
+                        Text="6"
+                        VerticalOptions="Center" />
+                    <Label
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        HorizontalOptions="Center"
+                        Style="{StaticResource NumberLabel}"
+                        Text="7"
+                        VerticalOptions="Center" />
+                    <Label
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        HorizontalOptions="Center"
+                        Style="{StaticResource NumberLabel}"
+                        Text="8"
+                        VerticalOptions="Center" />
+                    <Label
+                        Grid.Row="2"
+                        Grid.Column="2"
+                        HorizontalOptions="Center"
+                        Style="{StaticResource NumberLabel}"
+                        Text="9"
+                        VerticalOptions="Center" />
+                    <ImageButton
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        Padding="1"
+                        HeightRequest="32"
+                        HorizontalOptions="Center"
+                        Style="{StaticResource Backspace}"
+                        VerticalOptions="Center"
+                        WidthRequest="32" />
+                    <Label
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        HorizontalOptions="Center"
+                        Style="{StaticResource NumberLabel}"
+                        Text="0"
+                        VerticalOptions="Center" />
+                    <ImageButton
+                        Grid.Row="3"
+                        Grid.Column="2"
+                        Padding="1"
+                        HeightRequest="32"
+                        HorizontalOptions="Center"
+                        Style="{StaticResource LogOut}"
+                        VerticalOptions="Center"
+                        WidthRequest="32" />
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </cls:CustomPage.MainContent>
+</cls:CustomPage>

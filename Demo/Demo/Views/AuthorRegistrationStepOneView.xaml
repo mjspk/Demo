@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="Demo.Views.AuthorRegistrationStepOneView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cls="clr-namespace:Demo.Controls"
+    xmlns:views="clr-namespace:Demo.Views"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    x:Name="view">
+    <ScrollView>
+        <StackLayout Padding="5" Spacing="20">
+            <StackLayout>
+                <Label FontSize="18" Text="Choose your payment account and Author title" />
+                <Label
+                    FontSize="13"
+                    Style="{StaticResource Regular}"
+                    Text="Your need specify your source, destination accounts and amount to transfer" />
+            </StackLayout>
+            <StackLayout>
+                <Label Style="{StaticResource DashLabel}" Text="Payment Account" />
+                <views:AccountView Grid.ColumnSpan="2" BindingContext="{Binding Wallet}">
+                    <views:AccountView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SelectAccountCommand}" />
+                    </views:AccountView.GestureRecognizers>
+                </views:AccountView>
+            </StackLayout>
+            <StackLayout Grid.Column="0" Spacing="5">
+                <Label Style="{StaticResource DashLabel}" Text="Title" />
+                <Label
+                    FontSize="13"
+                    Style="{StaticResource Regular}"
+                    Text="Please specify Author name. This name will be used like a application domain" />
+                <cls:BorderEntry Text="Title">
+                    <cls:BorderEntry.Behaviors>
+                        <xct:CharactersValidationBehavior
+                            x:Name="cb1"
+                            CharacterType="Letter"
+                            Flags="ValidateOnValueChanging"
+                            MaximumCharacterCount="30"
+                            MinimumCharacterCount="1" />
+                    </cls:BorderEntry.Behaviors>
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Valid">
+                                <VisualState.Setters>
+                                    <Setter Property="Style" Value="{StaticResource Valid}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Invalid">
+                                <VisualState.Setters>
+                                    <Setter Property="Style" Value="{StaticResource InValid}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </cls:BorderEntry>
+                <StackLayout HeightRequest="12">
+                    <Label
+                        FontSize="12"
+                        IsVisible="{Binding IsNotValid, Source={x:Reference cb1}}"
+                        Text="Validation text message"
+                        TextColor="{StaticResource Red}" />
+                </StackLayout>
+            </StackLayout>
+            <StackLayout Grid.Column="0" Spacing="5">
+                <Label Style="{StaticResource DashLabel}" Text="Name" />
+                <Label
+                    FontSize="13"
+                    Style="{StaticResource Regular}"
+                    Text="Normalized Author name" />
+                <cls:BorderEntry Text="Name">
+                    <cls:BorderEntry.Behaviors>
+                        <xct:CharactersValidationBehavior
+                            x:Name="cb2"
+                            CharacterType="Letter"
+                            Flags="ValidateOnValueChanging"
+                            MaximumCharacterCount="30"
+                            MinimumCharacterCount="1" />
+                    </cls:BorderEntry.Behaviors>
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Valid">
+                                <VisualState.Setters>
+                                    <Setter Property="Style" Value="{StaticResource Valid}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Invalid">
+                                <VisualState.Setters>
+                                    <Setter Property="Style" Value="{StaticResource InValid}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </cls:BorderEntry>
+                <StackLayout HeightRequest="12">
+                    <Label
+                        FontSize="12"
+                        IsVisible="{Binding IsNotValid, Source={x:Reference cb2}}"
+                        Text="Validation text message"
+                        TextColor="{StaticResource Red}" />
+                </StackLayout>
+            </StackLayout>
+            <Grid ColumnDefinitions="*,*">
+                <Label
+                    Grid.Column="0"
+                    Style="{StaticResource DashLabel}"
+                    Text="Estimated price:" />
+                <Label
+                    Grid.Column="1"
+                    HorizontalOptions="End"
+                    Opacity="0.7"
+                    Text="10 UNT ($15)" />
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+</ContentView>

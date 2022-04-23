@@ -158,6 +158,9 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="C1.Xamarin.Forms.Input">
+      <Version>4.8.20213.512</Version>
+    </PackageReference>
     <PackageReference Include="Rg.Plugins.Popup">
       <Version>2.1.0</Version>
     </PackageReference>
@@ -211,5 +214,11 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\IconNight%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Logo2Dark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Logo2Light.png" />
   </ItemGroup>
 </Project>

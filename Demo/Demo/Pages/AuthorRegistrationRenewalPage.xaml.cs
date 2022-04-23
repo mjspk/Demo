@@ -12,13 +12,13 @@ using Xamarin.Forms;
 
 namespace Demo.Pages
 {
-    public partial class AuthorTransferRenewalPage : CustomPage
+    public partial class AuthorRegistrationRenewalPage : CustomPage
     {
-        AuthorTransferRenewalViewModel viewModel;
-        public AuthorTransferRenewalPage()
+        AuthorRegistrationRenewalViewModel viewModel;
+        public AuthorRegistrationRenewalPage()
         {
             InitializeComponent();
-            BindingContext=viewModel=new AuthorTransferRenewalViewModel(this);
+            BindingContext=viewModel=new AuthorRegistrationRenewalViewModel(this);
         }
         protected override void OnAppearing()
         {
@@ -26,10 +26,10 @@ namespace Demo.Pages
             viewModel.OnAppearing();
         }
     }
-    public class AuthorTransferRenewalViewModel : BaseViewModel
+    public class AuthorRegistrationRenewalViewModel : BaseViewModel
     {
        
-        public AuthorTransferRenewalViewModel(Page page)
+        public AuthorRegistrationRenewalViewModel(Page page)
         {
             Page = page;
         

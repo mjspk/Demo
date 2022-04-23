@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cls:CustomPage
+    x:Class="Demo.Pages.EnterPinPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cls="clr-namespace:Demo.Controls"
+    xmlns:fi="clr-namespace:Demo.Models"
+    xmlns:views="clr-namespace:Demo.Views"
+    x:Name="page"
+    HasBackButton="False">
+    <cls:CustomPage.MainContent>
+        <ScrollView>
+            <StackLayout Padding="{StaticResource PagePadding}" Spacing="60">
+                <Label
+                    FontSize="18"
+                    HorizontalOptions="Center"
+                    Text=" Ultranet User Center" />
+                <Image HorizontalOptions="Center" Style="{StaticResource Logo2}" />
+                <Label
+                    FontSize="12"
+                    HorizontalOptions="Center"
+                    Text="Enter PIN or use Fingerprint" />
+                <Grid VerticalOptions="EndAndExpand" RowSpacing="40" ColumnDefinitions="*,*,*" RowDefinitions="*,*,*,*">
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        HorizontalOptions="Center"
+                        Style="{StaticResource NumberLabel}"
+                        Text="1"
+                        VerticalOptions="Center" />
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        HorizontalOptions="Center"
+                        Style="{StaticResource NumberLabel}"
+                        Text="2"
+                        VerticalOptions="Center" />
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        HorizontalOptions="Center"
+                        Style="{StaticResource NumberLabel}"
+                        Text="3"
+                        VerticalOptions="Center" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        HorizontalOptions="Center"
+                        Style="{StaticResource NumberLabel}"
+                        Text="4"
+                        VerticalOptions="Center" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        HorizontalOptions="Center"
+                        Style="{StaticResource NumberLabel}"
+                        Text="5"
+                        VerticalOptions="Center" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        HorizontalOptions="Center"
+                        Style="{StaticResource NumberLabel}"
+                        Text="6"
+                        VerticalOptions="Center" />
+                    <Label
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        HorizontalOptions="Center"
+                        Style="{StaticResource NumberLabel}"
+                        Text="7"
+                        VerticalOptions="Center" />
+                    <Label
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        HorizontalOptions="Center"
+                        Style="{StaticResource NumberLabel}"
+                        Text="8"
+                        VerticalOptions="Center" />
+                    <Label
+                        Grid.Row="2"
+                        Grid.Column="2"
+                        HorizontalOptions="Center"
+                        Style="{StaticResource NumberLabel}"
+                        Text="9"
+                        VerticalOptions="Center" />
+                    <ImageButton
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        Padding="1"
+                        HeightRequest="32"
+                        HorizontalOptions="Center"
+                        Style="{StaticResource Backspace}"
+                        VerticalOptions="Center"
+                        WidthRequest="32" />
+                    <Label
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        HorizontalOptions="Center"
+                        Style="{StaticResource NumberLabel}"
+                        Text="0"
+                        VerticalOptions="Center" />
+                    <ImageButton
+                        Grid.Row="3"
+                        Grid.Column="2"
+                        Padding="1"
+                        HeightRequest="32"
+                        HorizontalOptions="Center"
+                        Style="{StaticResource LogOut}"
+                        VerticalOptions="Center"
+                        WidthRequest="32" />
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </cls:CustomPage.MainContent>
+</cls:CustomPage>

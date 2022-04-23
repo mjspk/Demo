@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+    x:Class="Demo.Popups.AccountsPopup"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cls="clr-namespace:Demo.Controls"
+    xmlns:models="clr-namespace:Demo.Models"
+    xmlns:pages="http://rotorgames.com"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    x:Name="page"
+    HasSystemPadding="{OnPlatform Android=True,
+                                  iOS=False}">
+    <pages:PopupPage.Animation>
+        <pages:ScaleAnimation
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="False"
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="1.2"
+            ScaleOut="0.8" />
+    </pages:PopupPage.Animation>
+    <Frame
+        Padding="20"
+        BackgroundColor="{AppThemeBinding Dark={StaticResource Secondary},
+                                          Light={StaticResource LightBackground}}"
+        BorderColor="{AppThemeBinding Dark={StaticResource Primary},
+                                      Light=Transparent}"
+        CornerRadius="20"
+        HasShadow="True"
+        HeightRequest="173"
+        HorizontalOptions="CenterAndExpand"
+        VerticalOptions="CenterAndExpand"
+        WidthRequest="273">
+        <StackLayout Grid.Row="2" Spacing="15">
+            <Image
+                Aspect="AspectFill"
+                HorizontalOptions="Center"
+                Style="{StaticResource AccountsLogo}" />
+            <StackLayout>
+                <Label
+                    FontSize="18"
+                    HorizontalOptions="Center"
+                    Text="Accounts" />
+                <Label
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    Text="List of allowed account and operations with these accounts" />
+            </StackLayout>
+        </StackLayout>
+    </Frame>
+</pages:PopupPage>

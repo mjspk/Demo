@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="Demo.Views.AuthorRegistrationRenewalStepOneView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cls="clr-namespace:Demo.Controls"
+    xmlns:views="clr-namespace:Demo.Views"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    x:Name="view">
+    <StackLayout Padding="5" Spacing="30">
+        <StackLayout>
+            <Label FontSize="18" Text="Choose renewal period" />
+            <Label
+                FontSize="13"
+                Style="{StaticResource Regular}"
+                Text="Your need specify renewal period" />
+        </StackLayout>
+        <StackLayout>
+            <Label Style="{StaticResource DashLabel}" Text="Author to renew" />
+            <Grid ColumnDefinitions="*,35" RowSpacing="-10">
+                <Frame
+                    Grid.ColumnSpan="2"
+                    HeightRequest="60"
+                    Style="{StaticResource AccountCard}">
+                    <Grid RowDefinitions="Auto,Auto">
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            FontSize="13"
+                            Text="{Binding Author.Name}"
+                            VerticalOptions="Center" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            FontSize="10"
+                            Text="{Binding Author.ActiveDue}"
+                            VerticalOptions="Center" />
+                    </Grid>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SelectAuthorCommand}" />
+                    </Frame.GestureRecognizers>
+                </Frame>
+                <Image
+                    Grid.Column="1"
+                    HorizontalOptions="Center"
+                    InputTransparent="True"
+                    Style="{StaticResource BottomArrowsIcon}"
+                    VerticalOptions="Center" />
+            </Grid>
+        </StackLayout>
+        <StackLayout>
+            <Label Style="{StaticResource DashLabel}" Text="Pay from Account" />
+            <Grid ColumnDefinitions="*,35" RowSpacing="-10">
+                <views:AccountView Grid.ColumnSpan="2" BindingContext="{Binding Wallet}">
+                    <views:AccountView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SelectAccountCommand}" />
+                    </views:AccountView.GestureRecognizers>
+                </views:AccountView>
+                <Image
+                    Grid.Column="1"
+                    HorizontalOptions="Center"
+                    InputTransparent="True"
+                    Style="{StaticResource BottomArrowsIcon}"
+                    VerticalOptions="Center" />
+            </Grid>
+        </StackLayout>
+        <StackLayout Spacing="15">
+            <Grid ColumnDefinitions="*,*">
+                <Label
+                    Grid.Column="0"
+                    Style="{StaticResource DashLabel}"
+                    Text="Renewal period"
+                    VerticalOptions="Center" />
+                <cls:BorderEntry
+                    Grid.Column="1"
+                    FontSize="24"
+                    RightPadding="35">
+                    <cls:BorderEntry.Behaviors>
+                        <xct:CharactersValidationBehavior
+                            x:Name="cb2"
+                            CharacterType="Letter"
+                            Flags="ValidateOnValueChanging"
+                            MaximumCharacterCount="30"
+                            MinimumCharacterCount="1" />
+                    </cls:BorderEntry.Behaviors>
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Valid">
+                                <VisualState.Setters>
+                                    <Setter Property="Style" Value="{StaticResource Valid}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Invalid">
+                                <VisualState.Setters>
+                                    <Setter Property="Style" Value="{StaticResource InValid}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </cls:BorderEntry>
+            </Grid>
+            <Grid ColumnDefinitions="*,*">
+                <Label
+                    Grid.Column="0"
+                    Style="{StaticResource DashLabel}"
+                    Text="Estimated end date" />
+                <Label
+                    Grid.Column="1"
+                    HorizontalOptions="End"
+                    Opacity="0.7"
+                    Text="01/10/2033" />
+            </Grid>
+            <Grid ColumnDefinitions="*,*">
+                <Label
+                    Grid.Column="0"
+                    Style="{StaticResource DashLabel}"
+                    Text="Estimated comission" />
+                <Label
+                    Grid.Column="1"
+                    HorizontalOptions="End"
+                    Opacity="0.7"
+                    Text="10 UNT ($15)" />
+            </Grid>
+        </StackLayout>
+    </StackLayout>
+</ContentView>

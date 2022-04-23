@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cls:CustomPage
+    x:Class="Demo.Pages.NetworkPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cls="clr-namespace:Demo.Controls"
+    xmlns:fi="clr-namespace:Demo.Models"
+    xmlns:views="clr-namespace:Demo.Views"
+    x:Name="page"
+    Title="Network">
+    <cls:CustomPage.MainContent>
+        <Grid RowDefinitions="*,Auto">
+            <StackLayout
+                Grid.Row="0"
+                Padding="30"
+                Spacing="20"
+                VerticalOptions="StartAndExpand">
+                <Grid ColumnDefinitions="*,*">
+                    <Label
+                        Grid.Column="0"
+                        Style="{StaticResource DashLabel}"
+                        Text="Nodes count" />
+                    <Label
+                        Grid.Column="1"
+                        HorizontalOptions="End"
+                        Text="381" />
+                </Grid>
+                <Grid ColumnDefinitions="*,*">
+                    <Label
+                        Grid.Column="0"
+                        Style="{StaticResource DashLabel}"
+                        Text="Number of active users " />
+                    <Label
+                        Grid.Column="1"
+                        HorizontalOptions="End"
+                        Text="94" />
+                </Grid>
+                <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,*">
+                    <Label
+                        Grid.Column="0"
+                        Style="{StaticResource DashLabel}"
+                        Text="Bandwidth" />
+                    <Label
+                        Grid.Column="2"
+                        HorizontalOptions="End"
+                        Text="180 TH/s" />
+                </Grid>
+                <Grid ColumnDefinitions="*,*">
+                    <Label
+                        Grid.Column="0"
+                        Style="{StaticResource DashLabel}"
+                        Text="Last block date" />
+                    <Label
+                        Grid.Column="1"
+                        HorizontalOptions="End"
+                        Text="29 Jun 2021 20:47" />
+                </Grid>
+                <Grid ColumnDefinitions="*,*">
+                    <Label
+                        Grid.Column="0"
+                        Style="{StaticResource DashLabel}"
+                        Text="Round number" />
+                    <Label
+                        Grid.Column="1"
+                        HorizontalOptions="End"
+                        Text="36017" />
+                </Grid>
+                <Grid ColumnDefinitions="*,*">
+                    <Label
+                        Grid.Column="0"
+                        Style="{StaticResource DashLabel}"
+                        Text="Current time" />
+                    <Label
+                        Grid.Column="1"
+                        HorizontalOptions="End"
+                        Text="2020 Aug 21 23:20" />
+                </Grid>
+            </StackLayout>
+
+            <Frame
+                Grid.Row="1"
+                Margin="0,0,0,-20"
+                Padding="0,0,0,30"
+                AbsoluteLayout.LayoutBounds="1,1,1,-1"
+                AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                HasShadow="True">
+                <StackLayout Padding="15">
+                    <Button Command="{Binding RegisterProductCommand}" Text="Close" />
+                </StackLayout>
+            </Frame>
+        </Grid>
+    </cls:CustomPage.MainContent>
+</cls:CustomPage>

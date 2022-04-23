@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+    x:Class="Demo.Popups.CreatePinPopup"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cls="clr-namespace:Demo.Controls"
+    xmlns:pages="http://rotorgames.com"
+    xmlns:views="clr-namespace:Demo.Views"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    x:Name="page"
+    HasSystemPadding="{OnPlatform Android=True,
+                                  iOS=False}">
+    <pages:PopupPage.Animation>
+        <pages:ScaleAnimation
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="False"
+            PositionIn="Bottom"
+            PositionOut="Bottom"
+            ScaleIn="1.2"
+            ScaleOut="0.8" />
+    </pages:PopupPage.Animation>
+    <Frame
+        x:Name="Mainframe"
+        Margin="0,0,0,-20"
+        Padding="20,8,20,50"
+        BackgroundColor="{AppThemeBinding Dark={StaticResource Secondary},
+                                          Light={StaticResource LightBackground}}"
+        CornerRadius="20"
+        HasShadow="True"
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="EndAndExpand">
+        <StackLayout Spacing="60">
+            <Grid
+                Grid.Row="0"
+                RowDefinitions="25,Auto"
+                RowSpacing="15">
+                <Frame
+                    Grid.Row="0"
+                    HorizontalOptions="CenterAndExpand"
+                    Style="{StaticResource PopupHandle}"
+                    VerticalOptions="Center" />
+                <Label
+                    Grid.Row="1"
+                    FontSize="18"
+                    HorizontalOptions="Center"
+                    Text="Create a PIN" />
+            </Grid>
+            <xct:TabView
+                x:Name="tv"
+                Grid.Row="1"
+                HeightRequest="239"
+                IsSwipeEnabled="False" TabStripHeight="55"
+                TabStripPlacement="Bottom"
+                WidthRequest="120">
+                <xct:TabView.TabStripBackgroundView>
+                    <Frame
+                        Margin="15,0,15,0"
+                        BorderColor="Transparent"
+                        HorizontalOptions="CenterAndExpand"
+                        Style="{StaticResource Container}"
+                        WidthRequest="122" />
+                </xct:TabView.TabStripBackgroundView>
+                <xct:TabViewItem Style="{StaticResource RightPinTap}" Text="4">
+                    <StackLayout  Spacing="30">
+                        <Image HorizontalOptions="Center" Style="{StaticResource Logo2}" />
+                        <Label
+                            FontSize="14"
+                            HorizontalOptions="Center"
+                            Style="{StaticResource Regular}"
+                            Text="PIN Length" />
+                    </StackLayout>
+                </xct:TabViewItem>
+                <xct:TabViewItem Style="{StaticResource LeftPinTap}" Text="8">
+                    <StackLayout Spacing="30">
+                        <Image HorizontalOptions="Center" Style="{StaticResource Logo2}" />
+                        <Label
+                            FontSize="14"
+                            HorizontalOptions="Center"
+                            Style="{StaticResource Regular}"
+                            Text="PIN Length" />
+                    </StackLayout>
+                </xct:TabViewItem>
+            </xct:TabView>
+            <Grid
+                ColumnDefinitions="*,*,*"
+                RowDefinitions="*,*,*,*"
+                RowSpacing="40"
+                VerticalOptions="EndAndExpand">
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    HorizontalOptions="Center"
+                    Style="{StaticResource NumberLabel}"
+                    Text="1"
+                    VerticalOptions="Center" />
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    HorizontalOptions="Center"
+                    Style="{StaticResource NumberLabel}"
+                    Text="2"
+                    VerticalOptions="Center" />
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    HorizontalOptions="Center"
+                    Style="{StaticResource NumberLabel}"
+                    Text="3"
+                    VerticalOptions="Center" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    HorizontalOptions="Center"
+                    Style="{StaticResource NumberLabel}"
+                    Text="4"
+                    VerticalOptions="Center" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    HorizontalOptions="Center"
+                    Style="{StaticResource NumberLabel}"
+                    Text="5"
+                    VerticalOptions="Center" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    HorizontalOptions="Center"
+                    Style="{StaticResource NumberLabel}"
+                    Text="6"
+                    VerticalOptions="Center" />
+                <Label
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    HorizontalOptions="Center"
+                    Style="{StaticResource NumberLabel}"
+                    Text="7"
+                    VerticalOptions="Center" />
+                <Label
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    HorizontalOptions="Center"
+                    Style="{StaticResource NumberLabel}"
+                    Text="8"
+                    VerticalOptions="Center" />
+                <Label
+                    Grid.Row="2"
+                    Grid.Column="2"
+                    HorizontalOptions="Center"
+                    Style="{StaticResource NumberLabel}"
+                    Text="9"
+                    VerticalOptions="Center" />
+                <ImageButton
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    Padding="1"
+                    HeightRequest="32"
+                    HorizontalOptions="Center"
+                    Style="{StaticResource Backspace}"
+                    VerticalOptions="Center"
+                    WidthRequest="32" />
+                <Label
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    HorizontalOptions="Center"
+                    Style="{StaticResource NumberLabel}"
+                    Text="0"
+                    VerticalOptions="Center" />
+                <ImageButton
+                    Grid.Row="3"
+                    Grid.Column="2"
+                    Padding="1"
+                    HeightRequest="32"
+                    HorizontalOptions="Center"
+                    Style="{StaticResource LogOut}"
+                    VerticalOptions="Center"
+                    WidthRequest="32" />
+            </Grid>
+        </StackLayout>
+    </Frame>
+</pages:PopupPage>

@@ -1,4 +1,6 @@
-﻿using Demo.Views;
+﻿using Demo.Pages;
+using Demo.Popups;
+using Demo.Views;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -10,7 +12,7 @@ namespace Demo
         public App()
         {
             InitializeComponent();
-            MainPage =new NavigationPage(new Pages.StartPage());
+            MainPage = new NavigationPage(new StartPage());
         }
 
         protected override void OnStart()

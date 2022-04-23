@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+    x:Class="Demo.Popups.WhatsNewPopup"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cls="clr-namespace:Demo.Controls"
+    xmlns:pages="http://rotorgames.com"
+    xmlns:views="clr-namespace:Demo.Views"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    x:Name="page"
+    HasSystemPadding="{OnPlatform Android=True,
+                                  iOS=False}">
+    <pages:PopupPage.Animation>
+        <pages:ScaleAnimation
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="False"
+            PositionIn="Bottom"
+            PositionOut="Bottom"
+            ScaleIn="1.2"
+            ScaleOut="0.8" />
+    </pages:PopupPage.Animation>
+    <Frame
+        x:Name="Mainframe"
+        Margin="0,0,0,-20"
+        Padding="20,8,20,50"
+        BackgroundColor="{AppThemeBinding Dark={StaticResource Secondary},
+                                          Light={StaticResource LightBackground}}"
+        CornerRadius="20"
+        HasShadow="True"
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="EndAndExpand">
+        <StackLayout HorizontalOptions="FillAndExpand" Spacing="15">
+            <Grid RowDefinitions="20,*" RowSpacing="15">
+                <Frame
+                    Grid.Row="0"
+                    HorizontalOptions="CenterAndExpand"
+                    Style="{StaticResource PopupHandle}"
+                    VerticalOptions="Center" />
+                <StackLayout
+                    Grid.Row="1"
+                    Padding="30"
+                    Spacing="20"
+                    VerticalOptions="StartAndExpand">
+                    <Grid
+                        ColumnDefinitions="*,Auto"
+                        VerticalOptions="Center">
+                        <Label
+                            Grid.Column="0"
+                            FontSize="14"
+                            Text="UUC version 1.23.4567"
+                            VerticalOptions="Center" />
+                        <Label
+                            Grid.Column="1"
+                            FontSize="12"
+                            HorizontalOptions="EndAndExpand"
+                            Opacity="0.6"
+                            Text="18 Dec 2028"
+                            VerticalOptions="Center" />
+                    </Grid>
+                    <StackLayout>
+                        <Frame
+                            Padding="0"
+                            BackgroundColor="#62D260"
+                            CornerRadius="8"
+                            HeightRequest="31"
+                            HorizontalOptions="Start"
+                            WidthRequest="75">
+                            <Label
+                                HorizontalOptions="Center"
+                                Text="Added"
+                                TextColor="White"
+                                VerticalOptions="Center" />
+                        </Frame>
+                        <StackLayout Spacing="5">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
+                                        <Label
+                                            Grid.Column="0"
+                                            FontSize="15"
+                                            Text="."
+                                            VerticalOptions="Start" />
+                                        <Label
+                                            Grid.Column="1"
+                                            FontSize="13"
+                                            Text="{Binding .}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                            <BindableLayout.ItemsSource>
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>The term was coined by Antoine Destutt de Tracy</x:String>
+                                    <x:String>And philosopher, who conceived it in 1796</x:String>
+                                    <x:String>To develop a rational system of ideas to oppose the</x:String>
+                                </x:Array>
+                            </BindableLayout.ItemsSource>
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout>
+                        <Frame
+                            Padding="0"
+                            BackgroundColor="#3DC1F2"
+                            CornerRadius="8"
+                            HeightRequest="31"
+                            HorizontalOptions="Start"
+                            WidthRequest="75">
+                            <Label
+                                HorizontalOptions="Center"
+                                Text="Fixed"
+                                TextColor="White"
+                                VerticalOptions="Center" />
+                        </Frame>
+                        <StackLayout Spacing="5">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
+                                        <Label
+                                            Grid.Column="0"
+                                            FontSize="15"
+                                            Text="."
+                                            VerticalOptions="Start" />
+                                        <Label
+                                            Grid.Column="1"
+                                            FontSize="13"
+                                            Text="{Binding .}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                            <BindableLayout.ItemsSource>
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>The sensations that people experience as they interact with the material world</x:String>
+                                    <x:String>Cted to the terroristic phase of the revolution</x:String>
+                                    <x:String>Extending the vocabulary beyond what the general reader already possessed</x:String>
+                                </x:Array>
+                            </BindableLayout.ItemsSource>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </Grid>
+            <Button Text="Continue to UUC" />
+        </StackLayout>
+    </Frame>
+</pages:PopupPage>

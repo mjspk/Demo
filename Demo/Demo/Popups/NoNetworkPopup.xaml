@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+    x:Class="Demo.Popups.NoNetworkPopup"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cls="clr-namespace:Demo.Controls"
+    xmlns:models="clr-namespace:Demo.Models"
+    xmlns:pages="http://rotorgames.com"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    x:Name="page"
+    HasSystemPadding="{OnPlatform Android=True,
+                                  iOS=False}">
+    <pages:PopupPage.Animation>
+        <pages:ScaleAnimation
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="False"
+            PositionIn="Bottom"
+            PositionOut="Bottom"
+            ScaleIn="1.2"
+            ScaleOut="0.8" />
+    </pages:PopupPage.Animation>
+    <Frame
+        x:Name="Mainframe"
+        Margin="0,0,0,-20"
+        Padding="20,8,20,50"
+        BackgroundColor="{AppThemeBinding Dark={StaticResource Secondary},
+                                          Light={StaticResource LightBackground}}"
+        CornerRadius="20"
+        HasShadow="True"
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="EndAndExpand">
+        <StackLayout HorizontalOptions="FillAndExpand" Spacing="15">
+            <Grid RowDefinitions="20,*" RowSpacing="15">
+                <Frame
+                    Grid.Row="0"
+                    HorizontalOptions="CenterAndExpand"
+                    Style="{StaticResource PopupHandle}"
+                    VerticalOptions="Center" />
+                <StackLayout Grid.Row="1" Spacing="15">
+                    <Image
+                        Aspect="AspectFill"
+                        HorizontalOptions="Center"
+                        Style="{StaticResource NoNetwork}" />
+                    <StackLayout>
+                        <Label
+                            FontSize="18"
+                            HorizontalOptions="Center"
+                            Text="You're not online" />
+                        <Label
+                            HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            Text="Check the connection or wait notifications about its restoration" />
+                    </StackLayout>
+                </StackLayout>
+            </Grid>
+            <Button Style="{StaticResource LableButton}" Text="Exit program" />
+            <Button Text="Try again" />
+        </StackLayout>
+    </Frame>
+</pages:PopupPage>

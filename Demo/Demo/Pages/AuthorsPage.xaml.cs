@@ -32,7 +32,7 @@ namespace Demo.Pages
 
         private async void TransferAuthorClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new AuthorTransferPage());
+            await Navigation.PushAsync(new AuthorRegistrationPage());
         }
 
         private async void MackBidClicked(object sender, EventArgs e)

@@ -15,11 +15,11 @@ namespace Demo.Pages
 {
     public partial class AuthorSearchPage : CustomPage
     {
-        AuthorRegistrationViewModel viewModel;
+        AuthorSearchPViewModel viewModel;
         public AuthorSearchPage(Author Author)
         {
             InitializeComponent();
-            BindingContext=viewModel=new AuthorRegistrationViewModel(this, Author);
+            BindingContext=viewModel=new AuthorSearchPViewModel(this, Author);
         }
         protected override void OnAppearing()
         {
@@ -27,10 +27,10 @@ namespace Demo.Pages
             viewModel.OnAppearing();
         }
     }
-    public class AuthorRegistrationViewModel : BaseViewModel
+    public class AuthorSearchPViewModel : BaseViewModel
     {
        
-        public AuthorRegistrationViewModel(Page page, Author author)
+        public AuthorSearchPViewModel(Page page, Author author)
         {
             Page = page;
             Author = author;
