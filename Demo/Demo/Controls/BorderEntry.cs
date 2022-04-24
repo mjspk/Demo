@@ -17,7 +17,7 @@ namespace Demo.Controls
         }
 
         
-        public static readonly BindableProperty AutoFocusProperty = BindableProperty.Create("AutoFocus", typeof(bool), typeof(BorderEntry), false);
+        public static readonly BindableProperty AutoFocusProperty = BindableProperty.Create("AutoFocus", typeof(bool), typeof(BorderEntry), true);
         public bool AutoFocus
         {
             get { return (bool)GetValue(AutoFocusProperty); }
