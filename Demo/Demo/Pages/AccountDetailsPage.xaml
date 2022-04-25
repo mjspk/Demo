@@ -113,24 +113,11 @@
                             <xct:CharactersValidationBehavior
                                 x:Name="cb"
                                 CharacterType="Letter"
-                                Flags="ValidateOnValueChanging"
+                                Flags="ValidateOnValueChanging" ValidStyle="{StaticResource Valid}" InvalidStyle="{StaticResource InValid}"
                                 MaximumCharacterCount="30"
                                 MinimumCharacterCount="1" />
                         </cls:BorderEntry.Behaviors>
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="CommonStates">
-                                <VisualState x:Name="Valid">
-                                    <VisualState.Setters>
-                                        <Setter Property="Style" Value="{StaticResource Valid}" />
-                                    </VisualState.Setters>
-                                </VisualState>
-                                <VisualState x:Name="Invalid">
-                                    <VisualState.Setters>
-                                        <Setter Property="Style" Value="{StaticResource InValid}" />
-                                    </VisualState.Setters>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
+                        
                     </cls:BorderEntry>
                     <StackLayout HeightRequest="12">
                         <Label

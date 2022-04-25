@@ -72,23 +72,12 @@
                                 x:Name="cb1"
                                 CharacterType="Letter"
                                 Flags="ValidateOnValueChanging"
+                                InvalidStyle="{StaticResource InValid}"
                                 MaximumCharacterCount="30"
-                                MinimumCharacterCount="1" />
+                                MinimumCharacterCount="1"
+                                ValidStyle="{StaticResource Valid}" />
                         </cls:BorderEntry.Behaviors>
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="CommonStates">
-                                <VisualState x:Name="Valid">
-                                    <VisualState.Setters>
-                                        <Setter Property="Style" Value="{StaticResource Valid}" />
-                                    </VisualState.Setters>
-                                </VisualState>
-                                <VisualState x:Name="Invalid">
-                                    <VisualState.Setters>
-                                        <Setter Property="Style" Value="{StaticResource InValid}" />
-                                    </VisualState.Setters>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
+
                     </cls:BorderEntry>
                     <Label
                         Margin="10,10"
