@@ -218,4 +218,22 @@
   <ItemGroup>
     <BundleResource Include="Resources\Logo2Light.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Accounts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Accounts%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Accounts%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\NoNetwork.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\NoNetwork%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\NoNetwork%403x.png" />
+  </ItemGroup>
 </Project>

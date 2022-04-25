@@ -4,6 +4,7 @@ using Android.Content.Res;
 using Android.Graphics;
 using Android.OS;
 using Android.Views;
+using Android.Views.InputMethods;
 using Demo.Controls;
 using Demo.Droid.Randerers;
 using Xamarin.Forms;
@@ -15,6 +16,7 @@ namespace Demo.Droid.Randerers
     public class BorderEntryRenderer : EntryRenderer
     {
         BorderEntry element;
+        BorderEntry Oldelement;
 
         private BorderRenderer _renderer;
         private const GravityFlags DefaultGravity = GravityFlags.CenterVertical;
@@ -30,6 +32,7 @@ namespace Demo.Droid.Randerers
                 return;
 
             element = (BorderEntry)this.Element;
+            Oldelement = (BorderEntry)e.OldElement;
 
 
             var editText = this.Control;
@@ -37,6 +40,7 @@ namespace Demo.Droid.Randerers
             UpdateBackground(element);
             UpdatePadding(element);
             UpdateTextAlighnment(element);
+            UpdateAutoFocus();
             editText.CompoundDrawablePadding = 25;
 
         }
@@ -61,6 +65,10 @@ namespace Demo.Droid.Randerers
             else if (e.PropertyName == BorderEntry.HorizontalTextAlignmentProperty.PropertyName)
             {
                 UpdateTextAlighnment(entryEx);
+            }
+            else if (e.PropertyName == BorderEntry.AutoFocusProperty.PropertyName)
+            {
+                UpdateAutoFocus();
             }
             else if (e.PropertyName == BorderEntry.LineColorProperty.PropertyName)
             {
@@ -90,7 +98,22 @@ namespace Demo.Droid.Randerers
                 }
             }
         }
-
+        public void UpdateAutoFocus()
+        {
+            if (element.AutoFocus)
+            {
+                this.Control.ShowSoftInputOnFocus = element.AutoFocus;
+                InputMethodManager imm = (InputMethodManager)this.Context.GetSystemService(Context.InputMethodService);
+                imm.HideSoftInputFromWindow(this.Control.WindowToken, HideSoftInputFlags.NotAlways);
+            }
+            else
+            {
+                this.Control.ShowSoftInputOnFocus = element.AutoFocus;
+                InputMethodManager imm = (InputMethodManager)this.Context.GetSystemService(Context.InputMethodService);
+                imm.HideSoftInputFromWindow(this.Control.WindowToken, 0);
+            }
+          
+        }
 
 
         private void UpdateBackground(BorderEntry entryEx)

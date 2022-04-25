@@ -36,6 +36,7 @@ namespace Demo.Droid.Randerers
             UpdatePadding(element);
             UpdateTextAlighnment(element);
             editText.CompoundDrawablePadding = 25;
+            element.Visual = VisualMarker.Material;
 
         }
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -60,6 +61,7 @@ namespace Demo.Droid.Randerers
             {
                 UpdateTextAlighnment(PickerEx);
             }
+           
         }
 
         protected override void Dispose(bool disposing)

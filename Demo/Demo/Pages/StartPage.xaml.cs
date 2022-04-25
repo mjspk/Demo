@@ -150,7 +150,7 @@ namespace Demo.Pages
                     await NotificationsPopup.Show();
                     break;
                 case 34:
-                    await NotificationsPopup.Show();
+                    await NotificationPopup.Show();
                     break;
                 case 35:
                     await AccountsPopup.Show();

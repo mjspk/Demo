@@ -56,7 +56,7 @@
                     </StackLayout>
                 </StackLayout>
             </Grid>
-            <Button Style="{StaticResource LableButton}" Text="Exit program" />
+            <Button Style="{StaticResource LableButton2}" Text="Exit program" />
             <Button Text="Try again" />
         </StackLayout>
     </Frame>

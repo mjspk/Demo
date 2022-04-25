@@ -14,7 +14,7 @@
         <StackLayout>
             <ImageButton
                 HorizontalOptions="End"
-                Style="{StaticResource Search}"
+                Style="{StaticResource SearchSettings}"
                 VerticalOptions="Center" />
         </StackLayout>
     </cls:CustomPage.RightContent>
@@ -79,13 +79,34 @@
             <StackLayout Grid.Row="3" Style="{StaticResource StackLine}" />
             <StackLayout Grid.Row="4">
                 <Label Style="{StaticResource DashLabel}" Text="Enable secure sign in" />
-                <Grid ColumnDefinitions="*,35" RowSpacing="-10">
-                    <cls:BorderPicker
+                <Grid
+                    ColumnDefinitions="*,35"
+                    RowDefinitions="44,Auto"
+                    RowSpacing="-3">
+                    <cls:BorderEntry
                         x:Name="picker"
-                        Title="Select"
+                        Grid.Row="0"
                         Grid.ColumnSpan="2"
                         HorizontalOptions="FillAndExpand"
-                        ItemsSource="{Binding Months}" />
+                        IsSpellCheckEnabled="False"
+                        Placeholder="Select"
+                        Style="{StaticResource EntryPicker}"
+                        Text="{Binding SelectedItem, Source={Reference pickerList}}">
+                        <cls:BorderEntry.Triggers>
+                            <DataTrigger
+                                Binding="{Binding IsFocused, Source={Reference picker}}"
+                                TargetType="cls:BorderEntry"
+                                Value="True">
+                                <Setter Property="AutoFocus" Value="False" />
+                            </DataTrigger>
+                            <DataTrigger
+                                Binding="{Binding IsFocused, Source={Reference pickerList}}"
+                                TargetType="cls:BorderEntry"
+                                Value="True">
+                                <Setter Property="AutoFocus" Value="False" />
+                            </DataTrigger>
+                        </cls:BorderEntry.Triggers>
+                    </cls:BorderEntry>
                     <Image
                         Grid.Row="0"
                         Grid.Column="1"
@@ -108,6 +129,42 @@
                             </DataTrigger>
                         </Image.Triggers>
                     </Image>
+                    <Frame
+                        Grid.Row="1"
+                        Grid.ColumnSpan="2"
+                        Style="{StaticResource ComboBox}">
+                        <Frame.Triggers>
+                            <DataTrigger
+                                Binding="{Binding IsFocused, Source={Reference picker}}"
+                                TargetType="Frame"
+                                Value="True">
+                                <Setter Property="IsVisible" Value="True" />
+                            </DataTrigger>
+                            <DataTrigger
+                                Binding="{Binding IsFocused, Source={Reference picker}}"
+                                TargetType="Frame"
+                                Value="False">
+                                <Setter Property="IsVisible" Value="False" />
+                            </DataTrigger>
+                        </Frame.Triggers>
+                        <CollectionView
+                            x:Name="pickerList"
+                            HeightRequest="200"
+                            ItemsSource="{Binding Months}"
+                            SelectionMode="Single">
+                            <CollectionView.ItemsLayout>
+                                <LinearItemsLayout Orientation="Vertical" />
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Label
+                                        Padding="15,5"
+                                        Style="{StaticResource ListLabel}"
+                                        Text="{Binding .}" />
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </Frame>
                 </Grid>
             </StackLayout>
             <Button

@@ -34,7 +34,7 @@ namespace Demo.iOS.Renderers
             UpdateBorderRadius();
             UpdateRightPadding();
             UpdateLeftPadding();
-
+            UpdateAutoFocus();
             Control.ClipsToBounds = true;
 
 
@@ -67,6 +67,19 @@ namespace Demo.iOS.Renderers
             else if (e.PropertyName == BorderEntry.RightPaddingProperty.PropertyName)
             {
                 UpdateRightPadding();
+            }
+            else if (e.PropertyName == BorderEntry.AutoFocusProperty.PropertyName)
+            {
+                UpdateAutoFocus();
+            }
+        }
+        public void UpdateAutoFocus()
+        {
+            entryEx = this.Element as BorderEntry;
+
+            if (!entryEx.AutoFocus)
+            {
+                this.Control.InputView = new UIView();
             }
         }
         private void UpdateLineColor()

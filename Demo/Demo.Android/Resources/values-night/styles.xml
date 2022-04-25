@@ -19,7 +19,7 @@
 	 <item name="android:colorActivatedHighlight">@android:color/transparent</item>
   </style>
 
-  <style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">
+  <style name="AppCompatDialogStyle" parent="Theme.AppCompat.DayNight.Dialog">
 	  <item name="colorAccent">@color/colorAccent</item>
   </style>
 </resources>
