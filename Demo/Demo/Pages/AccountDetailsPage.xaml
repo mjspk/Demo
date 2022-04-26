@@ -119,7 +119,7 @@
                         </cls:BorderEntry.Behaviors>
                         
                     </cls:BorderEntry>
-                    <StackLayout HeightRequest="12">
+                    <StackLayout >
                         <Label
                             FontSize="12"
                             IsVisible="{Binding IsNotValid, Source={x:Reference cb}}"

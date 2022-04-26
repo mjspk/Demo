@@ -61,7 +61,7 @@
                         Style="{StaticResource UNTLabel}"
                         Text="ETH" />
                 </AbsoluteLayout>
-                <StackLayout HeightRequest="12">
+                <StackLayout>
                     <Label
                         FontSize="12"
                         IsVisible="{Binding IsNotValid, Source={x:Reference cb1}}"

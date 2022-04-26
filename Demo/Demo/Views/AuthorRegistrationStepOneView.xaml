@@ -42,7 +42,7 @@
                             ValidStyle="{StaticResource Valid}" />
                     </cls:BorderEntry.Behaviors>
                 </cls:BorderEntry>
-                <StackLayout HeightRequest="12">
+                <StackLayout>
                     <Label
                         FontSize="12"
                         IsVisible="{Binding IsNotValid, Source={x:Reference cb1}}"
@@ -68,7 +68,7 @@
                             ValidStyle="{StaticResource Valid}" />
                     </cls:BorderEntry.Behaviors>
                 </cls:BorderEntry>
-                <StackLayout HeightRequest="12">
+                <StackLayout >
                     <Label
                         FontSize="12"
                         IsVisible="{Binding IsNotValid, Source={x:Reference cb2}}"
